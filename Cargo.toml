@@ -1,0 +1,13 @@
+[package]
+name = "kos-sys"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+libc = "0.2"
+
+[patch.crates-io]
+libc = { path = "/opt/toolchains/dc/rust/libc" }
