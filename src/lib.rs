@@ -10,5 +10,11 @@
 pub mod prelude;
 extern crate libc;
 
+#[cfg(feature = "allocator")]
+pub mod allocator;
+#[cfg(feature = "panic_handler")]
+pub mod panic_handler;
+
+pub mod dc;
 pub mod kos;
 pub mod malloc;
