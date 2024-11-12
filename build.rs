@@ -11,4 +11,9 @@ fn main() {
     {
         println!("cargo:rustc-link-search=native={}", lib_path);
     }
+
+    cc::Build::new()
+        .compiler("kos-cc")
+        .file("src/c_stubs/pvrh.c")
+        .compile("kossysc");
 }

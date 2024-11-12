@@ -15,6 +15,7 @@ pub mod allocator;
 #[cfg(feature = "panic_handler")]
 pub mod panic_handler;
 
+pub mod arch;
 pub mod dc;
 pub mod kos;
 pub mod malloc;
