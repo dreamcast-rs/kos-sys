@@ -16,6 +16,7 @@ pub mod pvr;
 pub mod sd;
 pub mod sound;
 pub mod spu;
+pub mod syscalls;
 pub mod vec3f;
 pub mod vector;
 pub mod video;
