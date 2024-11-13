@@ -1,7 +1,12 @@
 //pub mod biosfont;
+pub mod fmath;
 pub mod maple;
+pub mod matrix;
+pub mod matrix3d;
 pub mod net;
 pub mod pvr;
 pub mod sd;
 //pub mod sound;
+pub mod vec3f;
+pub mod vector;
 pub mod video;
