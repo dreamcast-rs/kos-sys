@@ -15,6 +15,7 @@ fn main() {
     cc::Build::new()
         .compiler("kos-cc")
         .file("src/c_stubs/fmathh.c")
+        .file("src/c_stubs/g2bush.c")
         .file("src/c_stubs/matrixh.c")
         .file("src/c_stubs/pvrh.c")
         .file("src/c_stubs/vec3fh.c")
