@@ -11,6 +11,7 @@ pub mod matrix;
 pub mod matrix3d;
 pub mod minifont;
 pub mod net;
+pub mod perfctr;
 pub mod pvr;
 pub mod sd;
 pub mod sound;
