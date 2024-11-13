@@ -77,6 +77,8 @@ pub struct vid_mode_t {
 }
 
 extern "C" {
+    pub static mut vram_s: *mut u16;
+    pub static mut vram_l: *mut u32;
     pub fn vid_check_cable() -> i8;
     pub fn vid_set_vram(base: u32);
     pub fn vid_set_start(base: u32);
