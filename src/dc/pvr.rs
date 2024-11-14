@@ -783,9 +783,8 @@ extern "C" {
                                 textureaddr2: pvr_ptr_t, filtering2: c_int);
     pub fn pvr_txr_load(src: *mut c_void, dst: pvr_ptr_t, count: u32);
     pub fn pvr_txr_load_ex(src: *mut c_void, dst: pvr_ptr_t, w: u32, h: u32, flags: u32);
-    // FIXME: Uncomment this fn after merging addons bindings
-    //pub fn pvr_txr_load_kimg(img: *mut crate::addons::kos::img::kos_img_t,
-    //                         dst: pvr_ptr_t, flags: u32);
+    pub fn pvr_txr_load_kimg(img: *mut crate::addons::img::kos_img_t,
+                             dst: pvr_ptr_t, flags: u32);
     pub fn pvr_dma_transfer(src: *mut c_void, dest: c_uintptr_t, count: c_size_t,
                             r#type: c_int, block: c_int, callback: pvr_dma_callback_t,
                             cbdata: *mut c_void) -> c_int;
