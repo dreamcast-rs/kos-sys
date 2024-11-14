@@ -19,3 +19,6 @@ pub mod arch;
 pub mod dc;
 pub mod kos;
 pub mod malloc;
+
+// Re-export dependency crates
+pub use paste;

@@ -19,7 +19,7 @@ fn main() {
         .file("src/c_stubs/matrixh.c")
         .file("src/c_stubs/pvrh.c")
         .file("src/c_stubs/vec3fh.c")
-        .flag("-Wno-unused-parameter")
         .flag("-Wno-unused-but-set-parameter")
+        .flag("-Wno-unused-parameter")
         .compile("kossysc");
 }
