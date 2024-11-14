@@ -25,7 +25,7 @@ macro_rules! KOS_INIT_FLAGS {
 macro_rules! KOS_INIT_EARLY {
     ($func:expr) => {
         #[no_mangle]
-        pub static __kos_init_early_fn: Option<extern "C" fn()> = Some($func);
+        pub static __kos_init_early_fn: Option<unsafe extern "C" fn()> = Some($func);
     };
 }
 

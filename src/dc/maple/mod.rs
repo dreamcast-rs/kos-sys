@@ -94,8 +94,8 @@ pub struct maple_frame_t {
     pub send_buf:               *mut c_void,
     pub recv_buf:               *mut u8,
     pub dev:                    *mut maple_device_t,
-    pub callback:               Option<extern "C" fn(*mut maple_state_t,
-                                                     *mut maple_frame_t)>,
+    pub callback:               Option<unsafe extern "C" fn(*mut maple_state_t,
+                                                            *mut maple_frame_t)>,
     pub recv_buf_arr:           [u8; 1024 + 32],
 }
 
@@ -153,11 +153,12 @@ pub struct maple_driver_t {
     pub prev:                   *mut *mut maple_driver_t,
     pub functions:              u32,
     pub name:                   *const c_char,
-    pub periodic:               Option<extern "C" fn(drv: *mut maple_driver_t)>,
-    pub attach:                 Option<extern "C" fn(drv: *mut maple_driver_t,
-                                                     dev: *mut maple_device_t) -> c_int>,
-    pub detach:                 Option<extern "C" fn(drv: *mut maple_driver_t,
-                                                     dev: *mut maple_device_t)>,
+    pub periodic:               Option<unsafe extern "C" fn(drv: *mut maple_driver_t)>,
+    pub attach:                 Option<unsafe extern "C" fn(drv: *mut maple_driver_t,
+                                                            dev: *mut maple_device_t)
+                                                            -> c_int>,
+    pub detach:                 Option<unsafe extern "C" fn(drv: *mut maple_driver_t,
+                                                            dev: *mut maple_device_t)>,
 }
 
 #[repr(C)]
@@ -201,8 +202,8 @@ pub const MAPLE_EINVALID: c_int             = -3;
 pub const MAPLE_ENOTSUPP: c_int             = -4;
 pub const MAPLE_ETIMEOUT: c_int             = -5;
 
-pub type maple_attach_callback_t = Option<extern "C" fn(*mut maple_device_t)>;
-pub type maple_detach_callback_t = Option<extern "C" fn(*mut maple_device_t)>;
+pub type maple_attach_callback_t = Option<unsafe extern "C" fn(*mut maple_device_t)>;
+pub type maple_detach_callback_t = Option<unsafe extern "C" fn(*mut maple_device_t)>;
 
 // Not a direct replacement for MAPLE_FOREACH_BEGIN and MAPLE_FOREACH_END,
 // but close enough to replicate the functionality used by them
@@ -252,8 +253,9 @@ extern "C" {
     pub fn maple_driver_unreg(driver: *mut maple_driver_t) -> c_int;
     pub fn maple_driver_attach(det: *mut maple_frame_t) -> c_int;
     pub fn maple_driver_detach(p: c_int, u: c_int) -> c_int;
-    pub fn maple_driver_foreach(drv: *mut maple_driver_t, callback: Option<extern "C"
-                                fn(*mut maple_device_t) -> c_int>) -> c_int;
+    pub fn maple_driver_foreach(drv: *mut maple_driver_t,
+                                callback: Option<unsafe extern "C" fn(*mut maple_device_t)
+                                -> c_int>) -> c_int;
     pub fn maple_attach_callback(functions: u32, cb: maple_attach_callback_t);
     pub fn maple_detach_callback(functions: u32, cb: maple_detach_callback_t);
 

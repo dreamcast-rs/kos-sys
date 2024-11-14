@@ -9,16 +9,16 @@ pub type snd_stream_hnd_t = c_int;
 
 pub const SND_STREAM_INVALID: snd_stream_hnd_t  = -1;
 
-pub type snd_stream_callback_t = Option<extern "C" fn(hnd: snd_stream_hnd_t,
-                                                      smp_req: c_int,
-                                                      smp_recv: *mut c_int)
-                                                      -> *mut c_void>;
+pub type snd_stream_callback_t = Option<unsafe extern "C" fn(hnd: snd_stream_hnd_t,
+                                                             smp_req: c_int,
+                                                             smp_recv: *mut c_int)
+                                                             -> *mut c_void>;
                                                       
-pub type snd_stream_filter_t = Option<extern "C" fn(hnd: snd_stream_hnd_t,
-                                                    obj: *mut c_void, hz: c_int,
-                                                    channels: c_int,
-                                                    buffer: *mut *mut c_void,
-                                                    samplecnt: *mut c_int)>;
+pub type snd_stream_filter_t = Option<unsafe extern "C" fn(hnd: snd_stream_hnd_t,
+                                                           obj: *mut c_void, hz: c_int,
+                                                           channels: c_int,
+                                                           buffer: *mut *mut c_void,
+                                                           samplecnt: *mut c_int)>;
 
 extern "C" {
     pub fn snd_stream_set_callback(hnd: snd_stream_hnd_t, cb: snd_stream_callback_t);

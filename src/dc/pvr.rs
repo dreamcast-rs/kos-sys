@@ -705,7 +705,7 @@ pub const PVR_TXRLOAD_DMA: u32                  = 0x8000;
 pub const PVR_TXRLOAD_NONBLOCK: u32             = 0x4000;
 pub const PVR_TXRLOAD_SQ: u32                   = 0x2000;
 
-pub type pvr_dma_callback_t = Option<extern "C" fn(data: *mut c_void)>;
+pub type pvr_dma_callback_t = Option<unsafe extern "C" fn(data: *mut c_void)>;
 
 pub const PVR_DMA_VRAM64: c_int                 = 0;
 pub const PVR_DMA_VRAM32: c_int                 = 1;

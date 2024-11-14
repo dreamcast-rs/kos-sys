@@ -10,7 +10,7 @@ pub const G2_DMA_CHAN_CH3: u32  = 3;
 pub const G2_DMA_TO_G2: u32     = 0;
 pub const G2_DMA_TO_SH4: u32    = 1;
 
-pub type g2_dma_callback_t = Option<extern "C" fn(data: *mut c_void)>;
+pub type g2_dma_callback_t = Option<unsafe extern "C" fn(data: *mut c_void)>;
 
 #[repr(C)]
 pub struct g2_ctx_t {

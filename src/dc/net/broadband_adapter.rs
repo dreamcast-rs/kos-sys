@@ -179,7 +179,8 @@ pub const RT_CONFIG5_LDPS: u32          = 0x04;
 pub const RT_CONFIG5_LANW: u32          = 0x02;
 pub const RT_CONFIG5_PME_STS: u32       = 0x01;
 
-pub type eth_rx_callback_t              = Option<extern "C" fn(pkt: *mut u8, len: c_int)>;
+pub type eth_rx_callback_t              = Option<unsafe extern "C" fn(pkt: *mut u8,
+                                                                      len: c_int)>;
 
 pub const BBA_TX_OK: c_int              = 0;
 pub const BBA_TX_ERROR: c_int           = -1;

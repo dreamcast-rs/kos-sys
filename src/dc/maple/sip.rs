@@ -1,8 +1,8 @@
 use crate::prelude::*;
 use super::maple_device_t;
 
-pub type sip_sample_cb = Option<extern "C" fn(dev: *mut maple_device_t,
-                                              samples: *mut u8, len: c_size_t)>;
+pub type sip_sample_cb = Option<unsafe extern "C" fn(dev: *mut maple_device_t,
+                                                     samples: *mut u8, len: c_size_t)>;
 
 #[repr(C)]
 pub struct sip_state_t {

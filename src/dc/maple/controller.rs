@@ -31,7 +31,7 @@ pub struct cont_state_t {
     pub joy2y: c_int,
 }
 
-pub type cont_btn_callback_t = Option<extern "C" fn(addr: u8, btns: u32)>;
+pub type cont_btn_callback_t = Option<unsafe extern "C" fn(addr: u8, btns: u32)>;
 
 pub const CONT_CAPABILITY_C: u32                    = 1 << 24;
 pub const CONT_CAPABILITY_B: u32                    = 1 << 25;
