@@ -1,4 +1,4 @@
-use crate::kos::blockdev::kos_blockdev_t;
+use crate::os::blockdev::kos_blockdev_t;
 use crate::prelude::*;
 
 extern "C" {

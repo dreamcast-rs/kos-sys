@@ -8,17 +8,18 @@
 //! for more information on setting up KallistiOS and Rust to use this crate.
 
 pub mod prelude;
-extern crate libc;
 
 #[cfg(feature = "allocator")]
 pub mod allocator;
 #[cfg(feature = "panic_handler")]
 pub mod panic_handler;
 
+pub mod addons;
 pub mod arch;
 pub mod dc;
-pub mod kos;
+pub mod os;
 pub mod malloc;
 
 // Re-export dependency crates
+pub extern crate libc;
 pub use paste;

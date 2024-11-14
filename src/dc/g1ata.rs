@@ -1,4 +1,4 @@
-use crate::kos::blockdev::kos_blockdev_t;
+use crate::os::blockdev::kos_blockdev_t;
 use crate::prelude::*;
 
 pub const G1_ATA_MASTER: u8     = 0x00;

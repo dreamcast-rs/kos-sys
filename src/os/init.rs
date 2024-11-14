@@ -3,19 +3,19 @@ use crate::prelude::*;
 #[macro_export]
 macro_rules! KOS_INIT_FLAGS {
     ($flags:expr) => {
-        use $crate::{arch::init_flags::*, kos::init::*};
+        use $crate::{arch::init_flags::*, os::init::*};
         #[no_mangle]
         pub static __kos_init_flags: u32 = $flags;
-        $crate::KOS_INIT_FLAG!($flags, $crate::kos::init::INIT_NET, arch_init_net);
-        $crate::KOS_INIT_FLAG!($flags, $crate::kos::init::INIT_NET, net_shutdown);
-        $crate::KOS_INIT_FLAG!($flags, $crate::kos::init::INIT_NET, bba_la_init);
-        $crate::KOS_INIT_FLAG!($flags, $crate::kos::init::INIT_NET, bba_la_shutdown);
-        $crate::KOS_INIT_FLAG!($flags, $crate::kos::init::INIT_FS_ROMDISK,
+        $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_NET, arch_init_net);
+        $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_NET, net_shutdown);
+        $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_NET, bba_la_init);
+        $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_NET, bba_la_shutdown);
+        $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_FS_ROMDISK,
                                fs_romdisk_init);
-        $crate::KOS_INIT_FLAG!($flags, $crate::kos::init::INIT_FS_ROMDISK,
+        $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_FS_ROMDISK,
                                fs_romdisk_shutdown);
-        $crate::KOS_INIT_FLAG!($flags, $crate::kos::init::INIT_EXPORT, export_init);
-        $crate::KOS_INIT_FLAG_NONE!($flags, $crate::kos::init::INIT_NO_SHUTDOWN,
+        $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_EXPORT, export_init);
+        $crate::KOS_INIT_FLAG_NONE!($flags, $crate::os::init::INIT_NO_SHUTDOWN,
                                     kos_shutdown);
         $crate::KOS_INIT_FLAGS_ARCH!($flags);
     };

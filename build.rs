@@ -14,11 +14,11 @@ fn main() {
 
     cc::Build::new()
         .compiler("kos-cc")
-        .file("src/c_stubs/fmathh.c")
-        .file("src/c_stubs/g2bush.c")
-        .file("src/c_stubs/matrixh.c")
-        .file("src/c_stubs/pvrh.c")
-        .file("src/c_stubs/vec3fh.c")
+        .file("src/dc/fmath.c")
+        .file("src/dc/g2bus.c")
+        .file("src/dc/matrix.c")
+        .file("src/dc/pvr.c")
+        .file("src/dc/vec3f.c")
         .flag("-Wno-unused-but-set-parameter")
         .flag("-Wno-unused-parameter")
         .compile("kossysc");
