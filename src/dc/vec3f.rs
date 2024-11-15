@@ -2,9 +2,9 @@ use crate::prelude::*;
 
 #[repr(C)]
 pub struct vec3f_t {
-    x:  c_float,
-    y:  c_float,
-    z:  c_float,
+    pub x:  c_float,
+    pub y:  c_float,
+    pub z:  c_float,
 }
 
 pub const R_DEG: c_float =  182.04444443623349541909523793743;

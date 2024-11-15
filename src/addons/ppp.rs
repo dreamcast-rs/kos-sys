@@ -4,18 +4,18 @@ use crate::prelude::*;
 
 #[repr(C)]
 pub struct ppp_device_t {
-    name:       *const c_char,
-    descr:      *const c_char,
-    index:      c_int,
-    flags:      u32,
-    privdata:   *mut c_void,
-    detect:     Option<unsafe extern "C" fn(dev: *mut ppp_device_t) -> c_int>,
-    init:       Option<unsafe extern "C" fn(dev: *mut ppp_device_t) -> c_int>,
-    shutdown:   Option<unsafe extern "C" fn(dev: *mut ppp_device_t) -> c_int>,
-    tx:         Option<unsafe extern "C" fn(dev: *mut ppp_device_t, data: *const u8,
-                                            len: c_size_t, flags: u32) -> c_int>,
-    rx:         Option<unsafe extern "C" fn(dev: *mut ppp_device_t, 
-                                            out_len: *mut c_ssize_t) -> *const u8>,
+    pub name:       *const c_char,
+    pub descr:      *const c_char,
+    pub index:      c_int,
+    pub flags:      u32,
+    pub privdata:   *mut c_void,
+    pub detect:     Option<unsafe extern "C" fn(dev: *mut ppp_device_t) -> c_int>,
+    pub init:       Option<unsafe extern "C" fn(dev: *mut ppp_device_t) -> c_int>,
+    pub shutdown:   Option<unsafe extern "C" fn(dev: *mut ppp_device_t) -> c_int>,
+    pub tx:         Option<unsafe extern "C" fn(dev: *mut ppp_device_t, data: *const u8,
+                                                len: c_size_t, flags: u32) -> c_int>,
+    pub rx:         Option<unsafe extern "C" fn(dev: *mut ppp_device_t,
+                                                out_len: *mut c_ssize_t) -> *const u8>,
 }
 
 pub const PPP_TX_END_OF_PKT: u32        = 0x00000001;
@@ -24,18 +24,19 @@ pub const PPP_TX_END_OF_PKT: u32        = 0x00000001;
 
 #[repr(C)]
 pub struct ppp_protocol_t {
-    next:           *mut ppp_protocol_t,
-    prev:           *mut *mut ppp_protocol_t,
-    name:           *const c_char,
-    code:           u16,
-    privdata:       *mut c_void,
-    init:           Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t) -> c_int>,
-    shutdown:       Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t) -> c_int>,
-    input:          Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t,
-                                                buf: *const u8, len: c_size_t) -> c_int>,
-    enter_phase:    Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t,
-                                                oldp: c_int, newp: c_int)>,
-    check_timeouts: Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t, tm: u64)>,
+    pub next:           *mut ppp_protocol_t,
+    pub prev:           *mut *mut ppp_protocol_t,
+    pub name:           *const c_char,
+    pub code:           u16,
+    pub privdata:       *mut c_void,
+    pub init:           Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t) -> c_int>,
+    pub shutdown:       Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t) -> c_int>,
+    pub input:          Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t,
+                                                    buf: *const u8, len: c_size_t)
+                                                    -> c_int>,
+    pub enter_phase:    Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t,
+                                                    oldp: c_int, newp: c_int)>,
+    pub check_timeouts: Option<unsafe extern "C" fn(proto: *mut ppp_protocol_t, tm: u64)>,
 }
 
 pub const PPP_PHASE_DEAD: c_int         = 0x01;

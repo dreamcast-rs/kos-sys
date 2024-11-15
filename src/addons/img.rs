@@ -4,11 +4,11 @@ use crate::prelude::*;
 
 #[repr(C)]
 pub struct kos_img_t {
-    data:       *mut c_void,
-    w:          u32,
-    h:          u32,
-    fmt:        u32,
-    byte_count: u32,
+    pub data:       *mut c_void,
+    pub w:          u32,
+    pub h:          u32,
+    pub fmt:        u32,
+    pub byte_count: u32,
 }
 
 pub const fn KOS_IMG_FMT_I(x: u32) -> u32 {

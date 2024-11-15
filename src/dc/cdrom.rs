@@ -94,10 +94,10 @@ pub const CD_FAIL: c_int                        = 0xF0;
 
 #[repr(C)]
 pub struct CDROM_TOC {
-    entry:          [u32; 99],
-    first:          u32,
-    last:           u32,
-    leadout_sector: u32,
+    pub entry:          [u32; 99],
+    pub first:          u32,
+    pub last:           u32,
+    pub leadout_sector: u32,
 }
 
 #[macro_export]

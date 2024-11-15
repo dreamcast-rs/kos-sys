@@ -1,8 +1,8 @@
 #[repr(C)]
 pub struct kos_md5_cxt_t {
-    size:   u64,
-    hash:   [u32; 4],
-    buf:    [u8; 64],
+    pub size:   u64,
+    pub hash:   [u32; 4],
+    pub buf:    [u8; 64],
 }
 
 extern "C" {
