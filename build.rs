@@ -1,7 +1,4 @@
 fn main() {
-    // Include libpthread from KallistiOS
-    println!("cargo:rustc-link-lib=pthread");
-
     // Include library paths from KallistiOS environment
     let kos_ldflags = std::env::var("KOS_LDFLAGS")
         .expect("Missing $KOS_LDFLAGS -- KallistiOS environment not sourced!");
