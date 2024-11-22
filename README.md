@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="misc/logo.png" alt="Ferris holding a Dreamcast controller" />
+  <img src="https://github.com/dreamcast-rs/.github/blob/main/images/ferris-kos.png?raw=true" alt="Ferris holding a KallistiOS golden apple" />
   <h1 align="center"><strong>kos-sys</strong></h1>
   <p align="center">
     Raw/unsafe Rust bindings for KallistiOS on Sega Dreamcast
