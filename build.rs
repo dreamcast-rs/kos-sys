@@ -11,6 +11,8 @@ fn main() {
 
     cc::Build::new()
         .compiler("kos-cc")
+        .try_flags_from_environment("KOS_CFLAGS")
+        .expect("Missing $KOS_CFLAGS -- KallistiOS environment not sourced!")
         .file("src/dc/fmath.c")
         .file("src/dc/g2bus.c")
         .file("src/dc/matrix.c")
