@@ -1,4 +1,5 @@
 #![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
 
 use crate::prelude::*;
@@ -115,32 +116,26 @@ pub const RT_RX_CRC_ERR: u32            = 0x0004;
 pub const RT_RX_FRAME_ALIGN: u32        = 0x0002;
 pub const RT_RX_STATUS_OK: u32          = 0x0001;
 
-#[macro_export]
-macro_rules! RT_ERTH {
-    ($x:expr) => {
-        $x << 24
-    };
+#[inline]
+pub const fn RT_ERTH(n: u32) -> u32 {
+    n << 24
 }
 
 pub const RT_RXC_MulERINT: u32          = 0x00020000;
 pub const RT_RXC_RER8: u32              = 0x00010000;
-#[macro_export]
-macro_rules! RT_RXC_RXFTH {
-    ($x:expr) => {
-        $x << 13
-    };
+#[inline]
+pub const fn RT_RXC_RXFTH(n: u32) -> u32 {
+    n << 13
 }
-#[macro_export]
-macro_rules! RT_RXC_RBLEN {
-    ($x:expr) => {
-        $x << 11
-    };
+
+#[inline]
+pub const fn RT_RXC_RBLEN(n: u32) -> u32 {
+    n << 11
 }
-#[macro_export]
-macro_rules! RT_RXC_MXDMA {
-    ($x:expr) => {
-        $x << 8
-    };
+
+#[inline]
+pub const fn RT_RXC_MXDMA(n: u32) -> u32 {
+    n << 8
 }
 
 pub const RT_RXC_WRAP: u32              = 0x00000080;

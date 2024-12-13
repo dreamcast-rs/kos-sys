@@ -1,4 +1,6 @@
 #![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+
 use crate::prelude::*;
 
 pub mod controller;
@@ -27,11 +29,9 @@ pub const MAPLE_ENABLE_DISABLED: c_uint     = 0;
 pub const MAPLE_STATE_IDLE: c_uint          = 0;
 pub const MAPLE_STATE_DMA: c_uint           = 1;
 pub const MAPLE_SPEED_2MBPS: c_uint         = 0;
-#[macro_export]
-macro_rules! MAPLE_SPEED_TIMEOUT {
-    ($n:expr) => {
-        $n << 16
-    };
+#[inline]
+pub const fn MAPLE_SPEED_TIMEOUT(n: c_uint) -> c_uint {
+    n << 16
 }
 
 pub const MAPLE_RESET1_MAGIC: c_uint        = 0x6155405F;
