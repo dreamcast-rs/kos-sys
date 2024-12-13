@@ -11,14 +11,17 @@ pub struct kos_img_t {
     pub byte_count: u32,
 }
 
+#[inline]
 pub const fn KOS_IMG_FMT_I(x: u32) -> u32 {
     x & 0xFFFF
 }
 
+#[inline]
 pub const fn KOS_IMG_FMT_D(x: u32) -> u32 {
     (x >> 16) & 0xFFFF
 }
 
+#[inline]
 pub const fn KOS_IMG_FMT(i: u32, d: u32) -> u32 {
     (i & 0xFFFF) | ((d & 0xFFFF) << 16)
 }
