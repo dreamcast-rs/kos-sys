@@ -2,6 +2,8 @@ pub mod asic;
 pub mod biosfont;
 pub mod cdrom;
 pub mod dmac;
+pub mod fifo;
+pub mod flashrom;
 pub mod fmath;
 pub mod fs_iso9660;
 pub mod fs_vmu;
