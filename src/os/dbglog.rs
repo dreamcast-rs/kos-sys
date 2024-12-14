@@ -11,6 +11,6 @@ pub const DBG_KDEBUG: c_int     = 7;
 
 #[link(name = "kallisti")]
 extern "C" {
-    pub fn dbglog(level: c_int, string: *const c_char);
+    pub fn dbglog(level: c_int, fmt: *const c_char, ...);
     pub fn dbglog_set_level(level: c_int);
 }
