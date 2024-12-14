@@ -27,6 +27,7 @@ pub mod sq;
 pub mod sound;
 pub mod spu;
 pub mod syscalls;
+pub mod ubc;
 pub mod vblank;
 pub mod vec3f;
 pub mod vector;
