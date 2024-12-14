@@ -7,6 +7,7 @@ pub mod fb_console;
 pub mod flashrom;
 pub mod fmath;
 pub mod fs_dcload;
+pub mod fs_dclsocket;
 pub mod fs_iso9660;
 pub mod fs_vmu;
 pub mod g1ata;
