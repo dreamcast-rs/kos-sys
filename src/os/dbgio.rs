@@ -35,5 +35,5 @@ extern "C" {
     pub fn dbgio_write_str(str: *const c_char) -> c_int;
     pub fn dbgio_disable();
     pub fn dbgio_enable();
-    pub fn dbgio_printf(fmt: *const c_char, ...);
+    pub fn dbgio_printf(fmt: *const c_char, ...) -> c_int;
 }
