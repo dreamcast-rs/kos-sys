@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-
 use crate::prelude::*;
 
 pub const SND_STREAM_MAX: c_size_t              = 4;

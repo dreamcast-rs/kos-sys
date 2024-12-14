@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-
 use crate::prelude::*;
 use super::netinet::in6_addr;
 

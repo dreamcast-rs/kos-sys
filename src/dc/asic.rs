@@ -1,4 +1,3 @@
-#![allow(non_camel_case_types)]
 use crate::prelude::*;
 
 pub const ASIC_EVT_PVR_RENDERDONE_VIDEO: u16    = 0x0000;

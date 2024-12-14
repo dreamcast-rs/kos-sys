@@ -1,5 +1,3 @@
-#![allow(non_snake_case)]
-
 use crate::prelude::*;
 
 #[repr(C)]

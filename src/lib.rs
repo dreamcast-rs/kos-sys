@@ -2,6 +2,10 @@
 #![doc(html_favicon_url = "https://kos-sys.dreamcast.wiki/kos-sys_favicon.ico")]
 #![no_std]
 
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(non_upper_case_globals)]
+
 //! Raw/unsafe bindings to KallistiOS v2.1.0 for Sega Dreamcast.
 //!
 //! See [dreamcast.rs](https://dreamcast.rs) or the [dreamcast.wiki](https://dreamcast.wiki)

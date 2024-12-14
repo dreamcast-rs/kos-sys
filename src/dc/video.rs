@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-
 use crate::prelude::*;
 
 pub const CT_ANY: i8            = -1;

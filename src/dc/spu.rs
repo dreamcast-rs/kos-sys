@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-
 use crate::prelude::*;
 
 pub const SPU_RAM_BASE: c_uintptr_t             = 0x00800000;

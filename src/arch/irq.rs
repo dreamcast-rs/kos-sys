@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
 use crate::prelude::*;
 
 pub const REG_BYTE_CNT: usize           = 256;

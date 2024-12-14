@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-
 #[repr(C)]
 pub enum perf_cntr_t {
     PRFC0,

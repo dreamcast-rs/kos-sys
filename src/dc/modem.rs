@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
 use crate::prelude::*;
 
 pub const MODEM_SPEED_AUTO: c_uchar         = 0x0;

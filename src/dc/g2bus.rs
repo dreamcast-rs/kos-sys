@@ -1,5 +1,3 @@
-#![allow(non_camel_case_types)]
-
 use crate::prelude::*;
 
 pub const G2_DMA_CHAN_SPU: u32  = 0;

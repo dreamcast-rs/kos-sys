@@ -1,4 +1,3 @@
-#![allow(non_snake_case)]
 use crate::prelude::*;
 use core::ptr::write_volatile;
 
