@@ -1,5 +1,7 @@
 pub mod blockdev;
+pub mod dbgio;
 pub mod dbglog;
+pub mod inet;
 pub mod init;
 pub mod init_base;
 pub mod net;
