@@ -30,3 +30,6 @@ pub mod vblank;
 pub mod vec3f;
 pub mod vector;
 pub mod video;
+pub mod vmu_fb;
+pub mod vmu_pkg;
+pub mod vmufs;
