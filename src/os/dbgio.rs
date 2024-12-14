@@ -19,9 +19,9 @@ pub const DBGIO_MODE_POLLED: c_int  = 0;
 pub const DBGIO_MODE_IRQ: c_int     = 1;
 
 extern "C" {
-    pub static dbgio_handlers: *mut *mut dbgio_handler_t;
-    pub static dbgio_handler_cnt: c_int;
-    pub static dbgio_null: dbgio_handler_t;
+    pub static mut dbgio_handlers: *mut *mut dbgio_handler_t;
+    pub static mut dbgio_handler_cnt: c_int;
+    pub static mut dbgio_null: dbgio_handler_t;
     pub fn dbgio_dev_select(name: *const c_char) -> c_int;
     pub fn dbgio_dev_get() -> *const c_char;
     pub fn dbgio_init() -> c_int;
