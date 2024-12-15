@@ -1,7 +1,10 @@
 pub mod cache;
+pub mod exec;
+pub mod gdb;
 pub mod init_flags;
 pub mod irq;
 pub mod memory;
+pub mod rtc;
 pub mod stack;
 pub mod timer;
 pub mod types;
