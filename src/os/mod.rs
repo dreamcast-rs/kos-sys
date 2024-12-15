@@ -11,3 +11,5 @@ pub mod netinet;
 pub mod nmmgr;
 pub mod opts;
 pub mod socket;
+pub mod termios;
+pub mod uname;
