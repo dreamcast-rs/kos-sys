@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 pub mod bspline;
 pub mod ext2;
 pub mod fat;

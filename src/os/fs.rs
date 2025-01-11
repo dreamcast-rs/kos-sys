@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use core::ffi::VaList;
 use crate::prelude::*;
 use libc::{off_t, off64_t, stat, time_t};
@@ -29,7 +33,6 @@ pub type file_t = c_int;
 
 pub const FILEHND_INVALID: file_t   = -1;
 
-// FIXME: Verify struct size is correct due to unstable VaList use
 #[repr(C)]
 pub struct vfs_handler_t {
     pub nmmgr:      crate::os::nmmgr::nmmgr_handler_t,
@@ -95,6 +98,7 @@ pub const SEEK_SET: c_int           = 0;
 pub const SEEK_CUR: c_int           = 1;
 pub const SEEK_END: c_int           = 2;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub static mut fd_table: [*mut c_void; super::opts::FD_SETSIZE];
     pub fn fs_open(r#fn: *const c_char, mode: c_int) -> file_t;
@@ -134,6 +138,7 @@ extern "C" {
     pub fn fs_load(src: *const c_char, out_ptr: *mut *mut c_void) -> c_ssize_t;
     pub fn fs_path_append(dst: *mut c_char, src: *const c_char,
                           len: c_size_t) -> c_ssize_t;
+    pub fn fs_normalize_path(path: *const c_char, resolved: *mut c_char) -> *mut c_char;
     pub fn fs_init() -> c_int;
     pub fn fs_shutdown();
 }

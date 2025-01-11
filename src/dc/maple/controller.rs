@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 use super::maple_device_t;
 
@@ -134,6 +138,7 @@ pub const CONT_TYPE_DENSHA_DE_GO: u32               = CONT_CAPABILITIES_STANDARD
                                                       CONT_CAPABILITY_D |
                                                       CONT_CAPABILITIES_DPAD;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn cont_btn_callback(addr: u8, btns: u32, cb: cont_btn_callback_t);
     pub fn cont_has_capabilities(cont: *const maple_device_t, capabilities: u32) -> c_int;

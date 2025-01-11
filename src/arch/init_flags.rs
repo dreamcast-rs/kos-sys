@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 #[macro_export]
 macro_rules! KOS_INIT_FLAGS_ARCH {
     ($flags:expr) => {
@@ -33,7 +37,7 @@ macro_rules! KOS_INIT_FLAGS_ARCH {
                                mouse_shutdown);
         $crate::KOS_INIT_FLAG!($flags, $crate::arch::init_flags::INIT_LIGHTGUN,
                                lightgun_init);
-        $crate::KOS_INIT_FLAG!($flags, $crate::arch::init_flags::INIT_LIGHTGUN, 
+        $crate::KOS_INIT_FLAG!($flags, $crate::arch::init_flags::INIT_LIGHTGUN,
                                lightgun_shutdown);
         $crate::KOS_INIT_FLAG!($flags, $crate::arch::init_flags::INIT_VMU,
                                vmu_init);

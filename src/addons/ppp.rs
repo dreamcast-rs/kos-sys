@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 // "self" parameters renamed to "dev"
@@ -53,6 +57,7 @@ pub const PPP_FLAG_MAGIC_NUMBER: u32    = 0x00000010;
 pub const PPP_FLAG_WANT_MRU: u32        = 0x00000020;
 pub const PPP_FLAG_NO_ACCM: u32         = 0x00000040;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn ppp_set_device(dev: *mut ppp_device_t) -> c_int;
     pub fn ppp_set_login(username: *const c_char, password: *const c_char) -> c_int;

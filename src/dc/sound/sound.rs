@@ -1,5 +1,10 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn snd_mem_malloc(size: c_size_t) -> u32;
     pub fn snd_mem_free(addr: u32);

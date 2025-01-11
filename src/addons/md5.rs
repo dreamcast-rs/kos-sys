@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 #[repr(C)]
 pub struct kos_md5_cxt_t {
     pub size:   u64,
@@ -5,6 +9,7 @@ pub struct kos_md5_cxt_t {
     pub buf:    [u8; 64],
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn kos_md5_start(cxt: *mut kos_md5_cxt_t);
     pub fn kos_md5_hash_block(cxt: *mut kos_md5_cxt_t, input: *const u8, size: u32);

@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::os::fs::dirent_t;
 use crate::os::fs::vfs_handler_t;
 use crate::prelude::*;
@@ -68,6 +72,7 @@ pub struct dcload_stat {
 
 pub type dcload_stat_t = dcload_stat;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub static dbgio_dcload: crate::os::dbgio::dbgio_handler_t;
     pub static dcload_type: c_int;

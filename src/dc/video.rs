@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const CT_ANY: i8            = -1;
@@ -74,6 +78,7 @@ pub struct vid_mode_t {
     pub fb_size:    c_size_t,
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub static mut vram_s: *mut u16;
     pub static mut vram_l: *mut u32;
@@ -94,4 +99,5 @@ extern "C" {
     pub fn vid_init(disp_mode: c_int, pixel_mode: vid_pixel_mode_t);
     pub fn vid_shutdown();
     pub fn vid_screen_shot(destfn: *const c_char) -> c_int;
+    pub fn vid_screen_shot_data(buffer: *mut *mut u8) -> c_size_t;
 }

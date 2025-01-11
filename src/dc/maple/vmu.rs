@@ -1,8 +1,12 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 use super::maple_device_t;
 
-pub const VMU_SCREEN_WIDTH: c_int   = 48;
-pub const VMU_SCREEN_HEIGHT: c_int  = 32;
+pub const VMU_SCREEN_WIDTH: usize   = 48;
+pub const VMU_SCREEN_HEIGHT: usize  = 32;
 
 pub const VMU_DPAD_UP: u8           = 0 << 1;
 pub const VMU_DPAD_DOWN: u8         = 1 << 1;
@@ -24,6 +28,7 @@ pub struct vmu_state_t {
     pub buttons:        u8,
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn vmu_has_241_blocks(dev: *mut maple_device_t) -> c_int;
     pub fn vmu_toggle_241_blocks(dev: *mut maple_device_t) -> c_int;

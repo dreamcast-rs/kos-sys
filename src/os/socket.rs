@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub type socklen_t = u32;
@@ -73,6 +77,7 @@ pub const SHUT_RDWR: u32        = SHUT_RD | SHUT_WR;
 
 pub const SOMAXCONN: c_int      = 32;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn accept(socket: c_int, address: *mut sockaddr,
                   address_len: *mut socklen_t) -> c_int;
@@ -92,8 +97,10 @@ extern "C" {
     pub fn socket(domain: c_int, r#type: c_int, protocol: c_int) -> c_int;
     pub fn getsockname(socket: c_int, name: *mut sockaddr,
                        name_len: *mut socklen_t) -> c_int;
+    pub fn getpeername(socket: c_int, name: *mut sockaddr,
+                       name_len: *mut socklen_t) -> c_int;
     pub fn getsockopt(socket: c_int, level: c_int, option_name: c_int,
                       option_value: *mut c_void, option_len: *mut socklen_t) -> c_int;
     pub fn setsockopt(socket: c_int, level: c_int, option_name: c_int,
-                      option_value: *const c_void, option_len: socklen_t) -> c_int; 
+                      option_value: *const c_void, option_len: socklen_t) -> c_int;
 }

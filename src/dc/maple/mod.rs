@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub mod controller;
@@ -124,15 +128,15 @@ pub struct maple_response_t {
 
 #[repr(C)]
 pub struct maple_device_t {
-    pub valid:                  c_int,
     pub port:                   c_int,
     pub unit:                   c_int,
     pub info:                   maple_devinfo_t,
-    pub dev_mask:               c_int,
     pub frame:                  maple_frame_t,
     pub drv:                    *mut maple_driver_t,
-    pub status_valid:           c_int, // volatile
-    pub status:                 [u8; 1024],
+    pub probe_mask:             u8,
+    pub dev_mask:               u8,
+    pub status_valid:           u8, // volatile
+    pub status:                 FAM<u32>,
 }
 
 pub const MAPLE_PORT_COUNT: c_size_t        = 4;
@@ -141,7 +145,7 @@ pub const MAPLE_UNIT_COUNT: c_size_t        = 6;
 #[repr(C)]
 pub struct maple_port_t {
     pub port:                   c_int,
-    pub units:                  [maple_device_t; MAPLE_UNIT_COUNT],
+    pub units:                  [*mut maple_device_t; MAPLE_UNIT_COUNT],
 }
 
 #[repr(C)]
@@ -150,6 +154,7 @@ pub struct maple_driver_t {
     pub prev:                   *mut *mut maple_driver_t,
     pub functions:              u32,
     pub name:                   *const c_char,
+    pub status_size:            c_size_t,
     pub periodic:               Option<unsafe extern "C" fn(drv: *mut maple_driver_t)>,
     pub attach:                 Option<unsafe extern "C" fn(drv: *mut maple_driver_t,
                                                             dev: *mut maple_device_t)
@@ -167,9 +172,8 @@ pub struct maple_state_t {
     pub vbl_cntr:               c_int, // volatile
     pub dma_buffer:             *mut u8,
     pub dma_in_progress:        c_int, // volatile
-    pub detect_port_next:       c_int,
-    pub detect_unit_next:       c_int,
-    pub detect_wrapped:         c_int, // volatile
+    pub detect_port_next:       u8,
+    pub scan_ready_mask:        u8, // volatile
     pub vbl_handle:             c_int,
     pub gun_port:               c_int,
     pub gun_x:                  c_int,
@@ -218,6 +222,7 @@ macro_rules! MAPLE_FOREACH {
     };
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub static mut maple_state: maple_state_t;
 

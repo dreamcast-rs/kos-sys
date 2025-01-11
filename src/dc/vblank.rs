@@ -1,5 +1,10 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn vblank_handler_add(hnd: super::asic::asic_evt_handler,
                               data: *mut c_void) -> c_int;

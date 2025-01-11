@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::os::blockdev::kos_blockdev_t;
 use crate::prelude::*;
 
@@ -6,6 +10,7 @@ pub const G1_ATA_MASTER_ALT: u8 = 0x90;
 pub const G1_ATA_SLAVE: u8      = 0xB0;
 pub const G1_ATA_LBA_MODE: u8   = 0x40;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn g1_dma_in_progress() -> c_int;
     pub fn g1_ata_mutex_lock() -> c_int;

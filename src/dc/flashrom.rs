@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const FLASHROM_PT_SYSTEM: c_int         = 0;
@@ -129,6 +133,7 @@ pub struct flashrom_ispcfg_t {
     phone2:         [c_char; 26],
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn flashrom_info(part: c_int, start_out: *mut c_int,
                          size_out: *mut c_int) -> c_int;

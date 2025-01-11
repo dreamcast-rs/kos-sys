@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 #[inline]
@@ -10,11 +14,12 @@ pub const fn SQ_MASK_DEST(dest: c_uintptr_t) -> *mut u32 {
     SQ_MASK_DEST_ADDR(dest) as *mut u32
 }
 
+#[link(name = "kallisti")]
 extern "C" {
-    pub fn sq_lock(dest: *mut c_void);
+    pub fn sq_lock(dest: *mut c_void) -> *mut u32;
     pub fn sq_unlock();
     pub fn sq_wait();
-    #[link_name = "sq_flush_stub"]
+    #[link_name = "sq_flush_wrapper"]
     pub fn sq_flush(dest: *mut c_void);
     pub fn sq_cpy(dest: *mut c_void, src: *const c_void, n: c_size_t) -> *mut c_void;
     pub fn sq_fast_cpy(dest: *mut c_void, src: *const c_void, n: c_size_t) -> *mut c_void;

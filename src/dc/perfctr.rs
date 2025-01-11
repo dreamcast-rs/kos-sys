@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 #[repr(C)]
 pub enum perf_cntr_t {
     PRFC0,
@@ -40,7 +44,7 @@ pub enum perf_cntr_event_t {
     PMCR_UBC_B_MATCH_MODE                     = 0x1a,
     PMCR_INSTRUCTION_CACHE_FILL_MODE          = 0x21,
     PMCR_OPERAND_CACHE_FILL_MODE              = 0x22,
-    PMCR_ELAPSED_TIME_MODE                    = 0x23, 
+    PMCR_ELAPSED_TIME_MODE                    = 0x23,
     PMCR_PIPELINE_FREEZE_BY_ICACHE_MISS_MODE  = 0x24,
     PMCR_PIPELINE_FREEZE_BY_DCACHE_MISS_MODE  = 0x25,
     PMCR_PIPELINE_FREEZE_BY_BRANCH_MODE       = 0x27,
@@ -48,6 +52,7 @@ pub enum perf_cntr_event_t {
     PMCR_PIPELINE_FREEZE_BY_FPU_MODE          = 0x29,
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn perf_cntr_config(counter: perf_cntr_t, event_mode: *mut perf_cntr_event_t,
                             clock_type: *mut perf_cntr_clock_t) -> bool;

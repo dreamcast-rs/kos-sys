@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 use super::maple_device_t;
 
@@ -35,6 +39,7 @@ pub const PURUPURU_SPECIAL_MOTOR1: u8       = 1 << 4;
 pub const PURUPURU_SPECIAL_MOTOR2: u8       = 1 << 7;
 pub const PURUPURU_SPECIAL_PULSE: u8        = 1;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn purupuru_rumble(dev: *mut maple_device_t,
                            effect: *mut purupuru_effect_t) -> c_int;

@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const MOUSE_RIGHTBUTTON: u16    = 1 << 1;
@@ -26,6 +30,7 @@ pub struct mouse_state_t {
     pub dz:         c_int,
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn mouse_init();
     pub fn mouse_shutdown();

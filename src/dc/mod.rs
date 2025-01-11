@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 pub mod asic;
 pub mod biosfont;
 pub mod cdrom;
@@ -19,6 +23,7 @@ pub mod matrix3d;
 pub mod minifont;
 pub mod modem;
 pub mod net;
+pub mod perf_monitor;
 pub mod perfctr;
 pub mod pvr;
 pub mod scif;

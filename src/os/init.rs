@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 #[macro_export]
@@ -29,7 +33,7 @@ macro_rules! KOS_INIT_EARLY {
     };
 }
 
-pub const INIT_DEFAULT: u32     = INIT_IRQ | INIT_THD_PREEMPT | INIT_FS_ROMDISK | 
+pub const INIT_DEFAULT: u32     = INIT_IRQ | INIT_THD_PREEMPT | INIT_FS_ROMDISK |
                                   crate::arch::init_flags::INIT_DEFAULT_ARCH;
 pub const INIT_NONE: u32        = 0x00000000;
 pub const INIT_IRQ: u32         = 0x00000001;
@@ -41,6 +45,7 @@ pub const INIT_EXPORT: u32      = 0x00000020;
 pub const INIT_FS_ROMDISK: u32  = 0x00000040;
 pub const INIT_NO_SHUTDOWN: u32 = 0x00000080;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub static __kos_romdisk: *mut c_void;
 }

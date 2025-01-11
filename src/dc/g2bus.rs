@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const G2_DMA_CHAN_SPU: u32  = 0;
@@ -15,15 +19,16 @@ pub struct g2_ctx_t {
     irq_state:  c_int,
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn g2_dma_transfer(sh4: *mut c_void, g2bus: *mut c_void, length: c_size_t,
                            block: u32, callback: g2_dma_callback_t, cbdata: *mut c_void,
                            dir: u32, mode: u32, g2chn: u32, sh4chn: u32) -> c_int;
     pub fn g2_dma_init() -> c_int;
     pub fn g2_dma_shutdown();
-    #[link_name = "g2_lock_stub"]
+    #[link_name = "g2_lock_wrapper"]
     pub fn g2_lock() -> g2_ctx_t;
-    #[link_name = "g2_unlock_stub"]
+    #[link_name = "g2_unlock_wrapper"]
     pub fn g2_unlock(ctx: g2_ctx_t);
     pub fn g2_read_8(address: c_uintptr_t) -> u8;
     pub fn g2_write_8(address: c_uintptr_t, value: u8);

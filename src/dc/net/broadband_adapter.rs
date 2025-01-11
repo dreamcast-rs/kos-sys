@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const RT_IDR0: u32                  = 0x00;
@@ -180,7 +184,7 @@ pub const BBA_TX_AGAIN: c_int           = -2;
 pub const BBA_TX_NOWAIT: c_int          = 0;
 pub const BBA_TX_WAIT: c_int            = 1;
 
-
+#[link(name = "kallisti")]
 extern "C" {
     pub fn bba_get_mac(arr: *mut u8);
     pub fn bba_set_rx_callback(cb: eth_rx_callback_t);

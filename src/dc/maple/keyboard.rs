@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 use super::maple_device_t;
 
@@ -159,6 +163,7 @@ pub struct kbd_state_t {
     pub kbd_repeat_timer:   u64,
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn kbd_set_queue(active: c_int);
     pub fn kbd_get_key() -> c_int;

@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const NETCFG_METHOD_DHCP: c_int     = 0;
@@ -31,6 +35,7 @@ pub struct netcfg_t {
     pub driver:         [c_char; 64],
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn netcfg_load_from(r#fn: *const c_char, out: *mut netcfg_t) -> c_int;
     pub fn netcfg_load_flash(out: *mut netcfg_t) -> c_int;

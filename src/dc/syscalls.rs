@@ -1,5 +1,10 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn syscalls_sysinfo_init();
     pub fn syscall_sysinfo_icon(icon: u32, dest: *mut u8) -> c_int;

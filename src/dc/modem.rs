@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const MODEM_SPEED_AUTO: c_uchar         = 0x0;
@@ -82,6 +86,7 @@ pub enum modemEvent_t {
 
 pub type MODEMEVENTHANDLERPROC = Option<unsafe extern "C" fn(event: modemEvent_t)>;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn modem_init() -> c_int;
     pub fn modem_shutdown();

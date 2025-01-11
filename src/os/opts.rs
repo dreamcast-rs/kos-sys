@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 //FIXME: Parse these options on the fly from C opts.h.
 //       For now, we'll hardcode the default values.
 //       FD_SETSIZE is also hardcoded in the libc crate.

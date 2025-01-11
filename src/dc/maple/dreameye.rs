@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 use super::maple_device_t;
 
@@ -20,6 +24,7 @@ pub const DREAMEYE_SUBCOMMAND_ERROR: c_int          = 0xFF;
 pub const DREAMEYE_IMAGEREQ_CONTINUE: c_int         = 0x00;
 pub const DREAMEYE_IMAGEREQ_START: c_int            = 0x40;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn dreameye_get_image_count(dev: *mut maple_device_t, block: c_int) -> c_int;
     pub fn dreameye_get_image(dev: *mut maple_device_t, image: u8, data: *mut *mut u8,

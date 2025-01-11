@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 #[repr(C)]
@@ -41,6 +45,7 @@ pub const KOS_IMG_INVERTED_Y: u32   = 0x0200;
 
 pub const KOS_IMG_NOT_OWNER: u32    = 0x0400;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn kos_img_free(img: *mut kos_img_t, struct_also: c_int);
 }

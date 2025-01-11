@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const ASIC_EVT_PVR_RENDERDONE_VIDEO: u16    = 0x0000;
@@ -65,6 +69,7 @@ pub const ASIC_IRQ_DEFAULT: u8                  = ASIC_IRQ9;
 
 pub type asic_evt_handler = Option<unsafe extern "C" fn(code: u32, data: *mut c_void)>;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn asic_evt_set_handler(code: u16, handler: asic_evt_handler, data: *mut c_void);
     pub fn asic_evt_request_threaded_handler(code: u16, handler: asic_evt_handler,

@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const _UTSNAME_LENGTH: usize    = 64;
@@ -11,6 +15,7 @@ pub struct utsname {
     machine:    [c_char; _UTSNAME_LENGTH],
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn uname(n: *mut utsname);
 }

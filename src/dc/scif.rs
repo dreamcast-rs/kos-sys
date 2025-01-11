@@ -1,5 +1,10 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub static dbgio: crate::os::dbgio::dbgio_handler_t;
     pub fn scif_set_parameters(baud: c_int, fifo: c_int);

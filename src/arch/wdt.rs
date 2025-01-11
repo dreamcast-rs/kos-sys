@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 #[repr(C)]
@@ -20,6 +24,7 @@ pub enum WDT_RST {
 
 pub type wdt_callback = Option<unsafe extern "C" fn(user_data: *mut c_void)>;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn wdt_enable_timer(initial_count: u8, microsec_period: u32, irq_prio: u8,
                             callback: wdt_callback, user_data: *mut c_void);

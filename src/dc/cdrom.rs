@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const CMD_CHECK_LICENSE: c_int              = 2;
@@ -128,6 +132,7 @@ macro_rules! TOC_TRACK {
     };
 }
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn cdrom_set_sector_size(size: c_int) -> c_int;
     pub fn cdrom_exec_cmd(cmd: c_int, param: *mut c_void) -> c_int;

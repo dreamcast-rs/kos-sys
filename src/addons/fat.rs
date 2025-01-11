@@ -1,8 +1,13 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const FS_FAT_MOUNT_READONLY: u32    = 0x00000000;
 pub const FS_FAT_MOUNT_READWRITE: u32   = 0x00000001;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn fs_fat_init() -> c_int;
     pub fn fs_fat_shutdown() -> c_int;

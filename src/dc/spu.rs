@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::prelude::*;
 
 pub const SPU_RAM_BASE: c_uintptr_t             = 0x00800000;
@@ -6,9 +10,11 @@ pub const SPU_RAM_UNCACHED_BASE: c_uintptr_t    = crate::arch::memory::MEM_AREA_
 
 pub type spu_dma_callback_t = crate::dc::g2bus::g2_dma_callback_t;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn spu_memload(to: c_uintptr_t, from: *mut c_void, length: c_size_t);
     pub fn spu_memload_sq(to: c_uintptr_t, from: *mut c_void, length: c_size_t);
+    pub fn spu_memload_dma(to: c_uintptr_t, from: *mut c_void, length: c_size_t);
     pub fn spu_memread(to: *mut c_void, from: c_uintptr_t, length: c_size_t);
     pub fn spu_memset(to: c_uintptr_t, what: u32, length: c_size_t);
     pub fn spu_memset_sq(to: c_uintptr_t, what: u32, length: c_size_t);

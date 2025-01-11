@@ -1,6 +1,11 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 use crate::dc::vector::{point_t, vector_t};
 use crate::prelude::*;
 
+#[link(name = "kallisti")]
 extern "C" {
     pub fn mat_rotate_x(r: c_float);
     pub fn mat_rotate_y(r: c_float);

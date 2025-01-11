@@ -1,3 +1,7 @@
+// Rust for KallistiOS/Dreamcast
+// Copyright (C) 2024 Eric Fradella
+// https://dreamcast.rs/
+
 pub const MEM_AREA_CACHE_MASK: u32                  = 0x1fffffff;
 pub const MEM_AREA_U0_BASE: u32                     = 0x00000000;
 pub const MEM_AREA_P0_BASE: u32                     = 0x00000000;
