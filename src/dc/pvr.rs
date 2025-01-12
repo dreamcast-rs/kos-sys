@@ -91,7 +91,7 @@ pub struct txr_cxt_t {
 #[repr(C)]
 pub struct pvr_poly_cxt_t {
     pub list_type:              c_int,
-    pub gen:                    gen_poly_cxt_t,
+    pub r#gen:                  gen_poly_cxt_t,
     pub blend:                  blend_poly_cxt_t,
     pub fmt:                    fmt_cxt_t,
     pub depth:                  depth_cxt_t,
@@ -102,7 +102,7 @@ pub struct pvr_poly_cxt_t {
 #[repr(C)]
 pub struct pvr_sprite_cxt_t {
     pub list_type:              c_int,
-    pub gen:                    gen_sprite_cxt_t,
+    pub r#gen:                  gen_sprite_cxt_t,
     pub blend:                  blend_sprite_cxt_t,
     pub depth:                  depth_cxt_t,
     pub txr:                    txr_cxt_t,
