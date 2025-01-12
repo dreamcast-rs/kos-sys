@@ -21,7 +21,7 @@ pub mod prelude;
 #[cfg(feature = "allocator")]
 pub mod allocator;
 #[cfg(feature = "panic_handler")]
-pub mod panic_handler;
+pub mod panic;
 
 pub mod addons;
 pub mod arch;
