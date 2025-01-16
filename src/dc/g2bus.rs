@@ -19,6 +19,16 @@ pub struct g2_ctx_t {
     irq_state:  c_int,
 }
 
+#[inline]
+pub fn g2_read_32_raw(address: c_uintptr_t) -> u32 {
+    unsafe { (address as *const u32).read_volatile() }
+}
+
+#[inline]
+pub fn g2_write_32_raw(address: c_uintptr_t, value: u32) {
+    unsafe { (address as *mut u32).write_volatile(value) }
+}
+
 #[link(name = "kallisti")]
 extern "C" {
     pub fn g2_dma_transfer(sh4: *mut c_void, g2bus: *mut c_void, length: c_size_t,

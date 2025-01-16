@@ -26,4 +26,6 @@ extern "C" {
                           size: c_size_t);
     pub fn snd_adpcm_split(data: *mut u32, left: *mut u32, right: *mut u32,
                           size: c_size_t);
+    pub fn snd_get_pos(ch: c_uint) -> u16;
+    pub fn snd_is_playing(ch: c_uint) -> bool;
 }

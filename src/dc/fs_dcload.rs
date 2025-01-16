@@ -2,8 +2,6 @@
 // Copyright (C) 2024 Eric Fradella
 // https://dreamcast.rs/
 
-use crate::os::fs::dirent_t;
-use crate::os::fs::vfs_handler_t;
 use crate::prelude::*;
 use libc::off_t;
 
@@ -80,19 +78,7 @@ extern "C" {
     pub fn dcload_printk(str: *const c_char);
     pub fn dcload_gdbpacket(in_buf: *const c_char, in_size: c_size_t,
                             out_buf: *mut c_char, out_size: c_size_t) -> c_size_t;
-    pub fn dcload_open(vfs: *mut vfs_handler_t, r#fn: *const c_char,
-                       mode: c_int) -> *mut c_void;
-    pub fn dcload_close(hnd: *mut c_void) -> c_int;
-    pub fn dcload_read(hnd: *mut c_void, buf: *mut c_void, cnt: c_size_t) -> c_ssize_t;
-    pub fn dcload_seek(hnd: *mut c_void, offset: off_t, whence: c_int) -> off_t;
-    pub fn dcload_tell(hnd: *mut c_void) -> off_t;
-    pub fn dcload_total(hnd: *mut c_void) -> c_size_t;
-    pub fn dcload_readdir(hnd: *mut c_void) -> *mut dirent_t;
-    pub fn dcload_rename(vfs: *mut vfs_handler_t,
-                         fn1: *const c_char, fn2: *const c_char) -> c_int;
-    pub fn dcload_unlink(vfs: *mut vfs_handler_t, r#fn: *const c_char) -> c_int;
     pub fn fs_dcload_init_console();
     pub fn fs_dcload_init();
     pub fn fs_dcload_shutdown();
-    pub fn fs_dcload_init_lwip(p: *mut c_void) -> c_int;
 }
