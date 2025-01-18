@@ -5,7 +5,10 @@
 use crate::prelude::*;
 
 pub const SND_STREAM_MAX: c_size_t              = 4;
-pub const SND_STREAM_BUFFER_MAX: c_size_t       = 0x10000;
+pub const SND_STREAM_BUFFER_MAX_PCM16: c_size_t = 128 << 10;
+pub const SND_STREAM_BUFFER_MAX_PCM8: c_size_t  = 64 << 10;
+pub const SND_STREAM_BUFFER_MAX_ADPCM: c_size_t = 32 << 10;
+pub const SND_STREAM_BUFFER_MAX: c_size_t       = 64 << 10;
 
 pub type snd_stream_hnd_t = c_int;
 

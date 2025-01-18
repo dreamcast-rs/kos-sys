@@ -34,6 +34,8 @@ extern "C" {
                             w: c_uint, h: c_uint, data: *const c_char);
     pub fn vmufb_clear_area(fb: *mut vmufb_t, x: c_uint, y: c_uint, w: c_uint, h: c_uint);
     pub fn vmufb_clear(fb: *mut vmufb_t);
+    pub fn vmufb_paint_xbm(fb: *mut vmufb_t, x: c_uint, y: c_uint, w: c_uint, h: c_uint,
+                           xbm_data: *const u8);
     pub fn vmufb_present(fb: *const vmufb_t, dev: *mut super::maple::maple_device_t);
     pub fn vmufb_print_string_into(fb: *mut vmufb_t, font: *const vmufb_font_t, x: c_uint,
                                    y: c_uint, w: c_uint, h: c_uint, line_spacing: c_uint,

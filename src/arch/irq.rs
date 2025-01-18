@@ -124,10 +124,10 @@ pub const EXC_DATA_ADDRESS_READ: irq_t  = irq_t::EXC_INSTR_ADDRESS;
 pub const EXC_DTLB_MISS_READ: irq_t     = irq_t::EXC_ITLB_MISS;
 pub const EXC_DTLB_PV_READ: irq_t       = irq_t::EXC_ITLB_PV;
 
-pub const EXC_OFFSET_000: u32   = 0;
-pub const EXC_OFFSET_100: u32   = 1;
-pub const EXC_OFFSET_400: u32   = 2;
-pub const EXC_OFFSET_600: u32   = 3;
+pub const EXC_OFFSET_000: u32           = 0;
+pub const EXC_OFFSET_100: u32           = 1;
+pub const EXC_OFFSET_400: u32           = 2;
+pub const EXC_OFFSET_600: u32           = 3;
 
 pub const TIMER_IRQ: irq_t     = irq_t::EXC_TMU0_TUNI0;
 
@@ -144,6 +144,30 @@ pub type irq_handler = Option<unsafe extern "C" fn(code: irq_t,
     #define __irq_disable_scoped(l)
     #define irq_disable_scoped()
 */
+
+pub const IRQ_PRIO_MAX: c_uint          = 15;
+pub const IRQ_PRIO_MIN: c_uint          = 1;
+pub const IRQ_PRIO_MASKED: c_uint       = 0;
+
+#[repr(C)]
+pub enum irq_src_t {
+    IRQ_SRC_RTC,
+    IRQ_SRC_TMU2,
+    IRQ_SRC_TMU1,
+    IRQ_SRC_TMU0,
+    _IRQ_SRC_RESV,
+    IRQ_SRC_SCI1,
+    IRQ_SRC_REF,
+    IRQ_SRC_WDT,
+    IRQ_SRC_HUDI,
+    IRQ_SRC_SCIF,
+    IRQ_SRC_DMAC,
+    IRQ_SRC_GPIO,
+    IRQ_SRC_IRL3,
+    IRQ_SRC_IRL2,
+    IRQ_SRC_IRL1,
+    IRQ_SRC_IRL0,
+}
 
 #[link(name = "kallisti")]
 extern "C" {
@@ -162,4 +186,6 @@ extern "C" {
     pub fn irq_get_global_handler() -> irq_handler;
     pub fn irq_init() -> c_int;
     pub fn irq_shutdown();
+    pub fn irq_set_priority(src: irq_src_t, prio: c_uint);
+    pub fn irq_get_priority(src: irq_src_t) -> c_uint;
 }

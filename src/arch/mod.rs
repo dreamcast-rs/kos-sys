@@ -3,6 +3,7 @@
 // https://dreamcast.rs/
 
 pub mod cache;
+pub mod dmac;
 pub mod exec;
 pub mod gdb;
 pub mod init_flags;
