@@ -11,11 +11,13 @@ pub const SFXHND_INVALID: sfxhnd_t  = 0;
 
 #[repr(C)]
 pub struct sfx_play_data_t {
-    chn:    c_int,
-    idx:    sfxhnd_t,
-    pan:    c_int,
-    r#loop: c_int,
-    freq:   c_int,
+    chn:        c_int,
+    idx:        sfxhnd_t,
+    pan:        c_int,
+    r#loop:     c_int,
+    freq:       c_int,
+    loopstart:  c_uint,
+    loopend:    c_uint,
 }
 
 #[link(name = "kallisti")]
