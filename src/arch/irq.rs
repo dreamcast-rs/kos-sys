@@ -137,6 +137,12 @@ pub type irq_handler = Option<unsafe extern "C" fn(code: irq_t,
                                                    context: *mut irq_context_t,
                                                    data: *mut c_void)>;
 
+#[repr(C)]
+pub struct irq_cb_t {
+    hdl:    irq_handler,
+    data:   *mut c_void,
+}
+
 // FIXME: Unimplemented bindings for the following:
 /*
     static inline void __irq_scoped_cleanup(int *state)
@@ -181,9 +187,9 @@ extern "C" {
     pub fn irq_restore(v: irq_mask_t);
     pub fn irq_force_return();
     pub fn irq_set_handler(code: irq_t, hnd: irq_handler, data: *mut c_void) -> c_int;
-    pub fn irq_get_handler(code: irq_t) -> irq_handler;
+    pub fn irq_get_handler(code: irq_t) -> irq_cb_t;
     pub fn irq_set_global_handler(handler: irq_handler, data: *mut c_void) -> c_int;
-    pub fn irq_get_global_handler() -> irq_handler;
+    pub fn irq_get_global_handler() -> irq_cb_t;
     pub fn irq_init() -> c_int;
     pub fn irq_shutdown();
     pub fn irq_set_priority(src: irq_src_t, prio: c_uint);

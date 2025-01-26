@@ -16,6 +16,30 @@ pub const R_RAD: c_float =  10430.37835;
 
 #[link(name = "kallisti")]
 extern "C" {
+    #[link_name = "vec_fipr_wrapper"]
+    pub fn vec_fipr(vec: vec3f_t);
+    #[link_name = "vec_dot_wrapper"]
+    pub fn vec_dot(vec1: vec3f_t, vec2: vec3f_t);
+    #[link_name = "vec_length_wrapper"]
+    pub fn vec_length(vec: vec3f_t);
+    #[link_name = "vec_distance_wrapper"]
+    pub fn vec_distance(vec1: vec3f_t, vec2: vec3f_t);
+    #[link_name = "vec_normalize_wrapper"]
+    pub fn vec_normalize(vec: vec3f_t);
+    #[link_name = "vec_sub_normalize_wrapper"]
+    pub fn vec_sub_normalize(vec1: vec3f_t, vec2: vec3f_t);
+    #[link_name = "vec_rotr_xy_wrapper"]
+    pub fn vec_rotr_xy(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotr_xz_wrapper"]
+    pub fn vec_rotr_xz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotr_yz_wrapper"]
+    pub fn vec_rotr_yz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotr_xy_wrapper"]
+    pub fn vec_rotr_xy(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotr_xz_wrapper"]
+    pub fn vec_rotr_xz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotr_yz_wrapper"]
+    pub fn vec_rotr_yz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
     #[link_name = "vec3f_dot_wrapper"]
     pub fn vec3f_dot(x1: c_float, y1: c_float, z1: c_float,
                      x2: c_float, y2: c_float, z2: c_float, w: c_float);
