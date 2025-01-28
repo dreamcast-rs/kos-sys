@@ -137,6 +137,13 @@ pub const CONT_TYPE_DENSHA_DE_GO: u32               = CONT_CAPABILITIES_STANDARD
                                                       CONT_CAPABILITIES_EXTENDED_BUTTONS |
                                                       CONT_CAPABILITY_D |
                                                       CONT_CAPABILITIES_DPAD;
+pub const CONT_TYPE_PANTHERDC: u32                  = CONT_CAPABILITIES_STANDARD_BUTTONS |
+                                                      CONT_CAPABILITIES_EXTENDED_BUTTONS |
+                                                      CONT_CAPABILITY_D |
+                                                      CONT_CAPABILITIES_TRIGGERS |
+                                                      CONT_CAPABILITIES_DPAD |
+                                                      CONT_CAPABILITIES_DUAL_ANALOG;
+
 
 #[link(name = "kallisti")]
 extern "C" {

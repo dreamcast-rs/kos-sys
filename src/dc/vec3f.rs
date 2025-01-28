@@ -34,12 +34,12 @@ extern "C" {
     pub fn vec_rotr_xz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
     #[link_name = "vec_rotr_yz_wrapper"]
     pub fn vec_rotr_yz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
-    #[link_name = "vec_rotr_xy_wrapper"]
-    pub fn vec_rotr_xy(vec: vec3f_t, origin: vec3f_t, angle: c_float);
-    #[link_name = "vec_rotr_xz_wrapper"]
-    pub fn vec_rotr_xz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
-    #[link_name = "vec_rotr_yz_wrapper"]
-    pub fn vec_rotr_yz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotd_xy_wrapper"]
+    pub fn vec_rotd_xy(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotd_xz_wrapper"]
+    pub fn vec_rotd_xz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
+    #[link_name = "vec_rotd_yz_wrapper"]
+    pub fn vec_rotd_yz(vec: vec3f_t, origin: vec3f_t, angle: c_float);
     #[link_name = "vec3f_dot_wrapper"]
     pub fn vec3f_dot(x1: c_float, y1: c_float, z1: c_float,
                      x2: c_float, y2: c_float, z2: c_float, w: c_float);
