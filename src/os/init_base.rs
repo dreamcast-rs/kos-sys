@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 // KOS_INIT_FLAG_WEAK not bound:
@@ -21,8 +21,8 @@ macro_rules! KOS_INIT_FLAG_CALL {
 macro_rules! KOS_INIT_FLAG_ALL {
     ($flags:expr, $mask:expr, $func:ident) => {
         $crate::paste::paste! {
-            extern "C" { fn $func(); }
-            #[no_mangle]
+            unsafe extern "C" { fn $func(); }
+            #[unsafe(no_mangle)]
             pub static [<$func _weak>]: Option<unsafe extern "C" fn()> =
                 if (($flags) & $mask) == $mask { None } else { Some($func) };
         }
@@ -33,8 +33,8 @@ macro_rules! KOS_INIT_FLAG_ALL {
 macro_rules! KOS_INIT_FLAG_NONE {
     ($flags:expr, $mask:expr, $func:ident) => {
         $crate::paste::paste! {
-            extern "C" { fn $func(); }
-            #[no_mangle]
+            unsafe extern "C" { fn $func(); }
+            #[unsafe(no_mangle)]
             pub static [<$func _weak>]: Option<unsafe extern "C" fn()> =
                 if (($flags) & $mask) != 0 { None } else { Some($func) };
         }
@@ -45,8 +45,8 @@ macro_rules! KOS_INIT_FLAG_NONE {
 macro_rules! KOS_INIT_FLAG {
     ($flags:expr, $mask:expr, $func:ident) => {
         $crate::paste::paste! {
-            extern "C" { fn $func(); }
-            #[no_mangle]
+            unsafe extern "C" { fn $func(); }
+            #[unsafe(no_mangle)]
             pub static [<$func _weak>]: Option<unsafe extern "C" fn()> =
                 if (($flags) & $mask) != 0 { Some($func) } else { None };
         }

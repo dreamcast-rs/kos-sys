@@ -8,7 +8,7 @@ use crate::prelude::*;
 macro_rules! KOS_INIT_FLAGS {
     ($flags:expr) => {
         use $crate::{arch::init_flags::*, os::init::*};
-        #[no_mangle]
+        #[unsafe(no_mangle)]
         pub static __kos_init_flags: u32 = $flags;
         $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_NET, arch_init_net);
         $crate::KOS_INIT_FLAG!($flags, $crate::os::init::INIT_NET, net_shutdown);
@@ -28,7 +28,7 @@ macro_rules! KOS_INIT_FLAGS {
 #[macro_export]
 macro_rules! KOS_INIT_EARLY {
     ($func:expr) => {
-        #[no_mangle]
+        #[unsafe(no_mangle)]
         pub static __kos_init_early_fn: Option<unsafe extern "C" fn()> = Some($func);
     };
 }
