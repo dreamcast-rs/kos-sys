@@ -3,29 +3,37 @@
 // https://dreamcast.rs/
 
 use crate::prelude::*;
+
+use crate::BIT;
+
 use super::maple_device_t;
 
 pub const VMU_SCREEN_WIDTH: usize   = 48;
 pub const VMU_SCREEN_HEIGHT: usize  = 32;
 
-pub const VMU_DPAD_UP: u8           = 0 << 1;
-pub const VMU_DPAD_DOWN: u8         = 1 << 1;
-pub const VMU_DPAD_LEFT: u8         = 2 << 1;
-pub const VMU_DPAD_RIGHT: u8        = 3 << 1;
-pub const VMU_A: u8                 = 4 << 1;
-pub const VMU_B: u8                 = 5 << 1;
-pub const VMU_MODE: u8              = 6 << 1;
-pub const VMU_SLEEP: u8             = 7 << 1;
+pub const VMU_DPAD_UP: u8           = BIT!(0);
+pub const VMU_DPAD_DOWN: u8         = BIT!(1);
+pub const VMU_DPAD_LEFT: u8         = BIT!(2);
+pub const VMU_DPAD_RIGHT: u8        = BIT!(3);
+pub const VMU_A: u8                 = BIT!(4);
+pub const VMU_B: u8                 = BIT!(5);
+pub const VMU_MODE: u8              = BIT!(6);
+pub const VMU_SLEEP: u8             = BIT!(7);
 
 #[repr(C)]
-pub struct vmu_cond_t {
-    pub raw_buttons:    u8,
-    pub dummy:          [u8; 3],
+pub struct vmu_buttons_t {
+    pub raw:            u8,
+}
+
+#[repr(C)]
+pub struct buttons {
+    pub current:        vmu_buttons_t,
+    pub previous:       vmu_buttons_t,
 }
 
 #[repr(C)]
 pub struct vmu_state_t {
-    pub buttons:        u8,
+    pub buttons:        buttons,
 }
 
 #[link(name = "kallisti")]

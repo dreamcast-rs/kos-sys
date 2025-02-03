@@ -18,7 +18,7 @@ unsafe extern "C" {
     #[link_name = "dcache_pref_block_wrapper"]
     pub fn dcache_pref_block(src: *const c_void);
     #[link_name = "dcache_wback_sq_wrapper"]
-    pub fn dcache_wback_sq(ptr: *const c_void);
+    pub fn dcache_wback_sq(src: *mut c_void);
     #[link_name = "dcache_alloc_block_wrapper"]
     pub fn dcache_alloc_block(src: *mut c_void, value: u32);
 }

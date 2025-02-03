@@ -5,7 +5,7 @@
 #[macro_export]
 macro_rules! BIT {
     ($bit:expr) => {
-        1u32 << $bit
+        1 << $bit
     };
 }
 
