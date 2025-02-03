@@ -1,12 +1,12 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::os::blockdev::kos_blockdev_t;
 use crate::prelude::*;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn sd_crc7(data: *const u8, size: c_int, crc: u8) -> u8;
     pub fn sd_init() -> c_int;
     pub fn sd_shutdown() -> c_int;

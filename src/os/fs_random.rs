@@ -5,7 +5,7 @@
 use crate::prelude::*;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn fs_rnd_init() -> c_int;
     pub fn fs_rnd_shutdown() -> c_int;
 }

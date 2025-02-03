@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -15,7 +15,7 @@ pub const fn SQ_MASK_DEST(dest: c_uintptr_t) -> *mut u32 {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn sq_lock(dest: *mut c_void) -> *mut u32;
     pub fn sq_unlock();
     pub fn sq_wait();

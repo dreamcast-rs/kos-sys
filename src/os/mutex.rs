@@ -45,7 +45,7 @@ pub const RECURSIVE_MUTEX_INITIALIZER: mutex_t = mutex_t {
 // FIXME: Implement scoped mutex using RAII/Drop
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn mutex_init(m: *mut mutex_t, mtype: c_int) -> c_int;
     pub fn mutex_destroy(m: *mut mutex_t) -> c_int;
     pub fn mutex_lock(m: *mut mutex_t) -> c_int;

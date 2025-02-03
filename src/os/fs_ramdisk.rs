@@ -5,7 +5,7 @@
 use crate::prelude::*;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn fs_ramdisk_init() -> c_int;
     pub fn fs_ramdisk_shutdown() -> c_int;
     pub fn fs_ramdisk_attach(r#fn: *const c_char, obj: *mut c_void,

@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -31,7 +31,7 @@ pub const SIP_SAMPLE_11KHZ: c_uint          = 0x00;
 pub const SIP_SAMPLE_8KHZ: c_uint           = 0x01;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn sip_set_gain(dev: *mut maple_device_t, g: c_uint) -> c_int;
     pub fn sip_set_sample_type(dev: *mut maple_device_t, r#type: c_uint) -> c_int;
     pub fn sip_set_frequency(dev: *mut maple_device_t, freq: c_uint) -> c_int;

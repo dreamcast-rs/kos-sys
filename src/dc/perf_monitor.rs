@@ -32,7 +32,7 @@ pub struct perf_monitor {
 */
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn __stop_perf_monitor(monitor: *mut *mut perf_monitor);
     pub fn __start_perf_monitor(monitor: *mut perf_monitor) -> *mut perf_monitor;
     pub fn perf_monitor_init(event1: perf_cntr_event_t, event2: perf_cntr_event_t);

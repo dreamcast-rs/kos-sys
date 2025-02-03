@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -61,7 +61,7 @@ pub const IN6ADDR_LOOPBACK_INIT: in6_addr   = in6_addr {
     },
 };
 
-extern "C" {
+unsafe extern "C" {
     pub static in6addr_any: in6_addr;
     pub static in6addr_loopback: in6_addr;
 }

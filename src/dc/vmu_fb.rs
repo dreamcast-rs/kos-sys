@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -29,7 +29,7 @@ pub fn vmufb_print_string(fb: *mut vmufb_t, font: *const vmufb_font_t,
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn vmufb_paint_area(fb: *mut vmufb_t, x: c_uint, y: c_uint,
                             w: c_uint, h: c_uint, data: *const c_char);
     pub fn vmufb_clear_area(fb: *mut vmufb_t, x: c_uint, y: c_uint, w: c_uint, h: c_uint);

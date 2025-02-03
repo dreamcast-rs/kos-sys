@@ -29,7 +29,7 @@ pub struct vmu_state_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn vmu_has_241_blocks(dev: *mut maple_device_t) -> c_int;
     pub fn vmu_toggle_241_blocks(dev: *mut maple_device_t) -> c_int;
     pub fn vmu_use_custom_color(dev: *mut maple_device_t, enable: c_int) -> c_int;

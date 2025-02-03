@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -7,7 +7,7 @@ use crate::prelude::*;
 pub const CPU_CACHE_BLOCK_SIZE: usize  = 32;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn icache_flush_range(start: c_uintptr_t, count: c_size_t);
     pub fn dcache_inval_range(start: c_uintptr_t, count: c_size_t);
     pub fn dcache_flush_range(start: c_uintptr_t, count: c_size_t);

@@ -69,7 +69,7 @@ pub struct dcload_stat {
 pub type dcload_stat_t = dcload_stat;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static dbgio_dcload: crate::os::dbgio::dbgio_handler_t;
     pub static dcload_type: c_int;
     pub fn dcloadsyscall(syscall: c_uint, ...) -> c_int;

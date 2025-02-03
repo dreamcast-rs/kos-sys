@@ -72,15 +72,13 @@ pub fn arch_valid_address(ptr: c_uintptr_t) -> bool {
 }
 
 #[inline]
-fn arch_valid_text_address(ptr: c_uintptr_t) -> bool {
-    unsafe {
-        (ptr as usize) >= (&_executable_start as *const c_char as usize)
-            && (ptr as usize) < (&_etext as *const c_char as usize)
-    }
+pub fn arch_valid_text_address(ptr: c_uintptr_t) -> bool {
+    (ptr as usize) >= (&raw const _executable_start as usize)
+        && (ptr as usize) < (&raw const _etext as usize)
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut _arch_mem_top: u32;
     pub static mut _executable_start: c_char;
     pub static mut _etext: c_char;

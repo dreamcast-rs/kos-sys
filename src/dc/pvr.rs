@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::{BIT, GENMASK};
@@ -764,7 +764,7 @@ pub enum pvr_dma_type_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     #[link_name = "PVR_PACK_16BIT_UV_WRAPPER"]
     pub fn PVR_PACK_16BIT_UV(u: c_float, v: c_float) -> u32;
     pub fn pvr_init(params: *const pvr_init_params_t) -> c_int;

@@ -54,7 +54,7 @@ pub const fn KOS_VERSION_BELOW(major: u8, minor: u16, patch: u8) -> bool {
 pub type kos_version_t = u32;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn kos_version() -> kos_version_t;
     pub fn kos_version_string() -> *const c_char;
     pub fn kos_version_above(major: u8, minor: u16, patch: u8) -> bool;

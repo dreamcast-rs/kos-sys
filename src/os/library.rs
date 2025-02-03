@@ -42,7 +42,7 @@ pub struct klibrary_t {
 pub const LIBRARY_DEFAULTS: u32 = 0;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut library_list: kllist;
     pub fn library_by_libid(libid: libid_t) -> *mut klibrary_t;
     pub fn library_create(flags: c_int) -> *mut klibrary_t;

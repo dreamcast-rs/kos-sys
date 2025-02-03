@@ -42,7 +42,7 @@ pub const NMMGR_TYPE_SYMTAB: u32        = 0x0040;
 pub const NMMGR_SYS_MAX: u32            = 0x10000;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn nmmgr_lookup(name: *const c_char) -> *mut nmmgr_handler_t;
     pub fn nmmgr_get_list() -> *mut nmmgr_list_t;
     pub fn nmmgr_handler_add(hnd: *mut nmmgr_handler_t) -> c_int;

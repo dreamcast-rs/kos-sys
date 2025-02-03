@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -162,7 +162,7 @@ pub struct net_udp_stats_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut net_input_target: net_input_func;
     pub static mut net_icmp_echo_cb: net_echo_cb;
     pub static mut net_icmp6_echo_cb: net6_echo_cb;

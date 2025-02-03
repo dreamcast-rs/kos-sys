@@ -18,7 +18,7 @@ macro_rules! SEM_INITIALIZER {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn sem_init(sm: *mut semaphore_t, count: c_int) -> c_int;
     pub fn sem_destroy(sem: *mut semaphore_t) -> c_int;
     pub fn sem_wait(sem: *mut semaphore_t) -> c_int;

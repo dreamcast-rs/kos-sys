@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -14,7 +14,7 @@ pub const DBG_DEBUG: c_int      = 6;
 pub const DBG_KDEBUG: c_int     = 7;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn dbglog(level: c_int, fmt: *const c_char, ...);
     pub fn dbglog_set_level(level: c_int);
 }

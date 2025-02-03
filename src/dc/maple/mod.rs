@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -223,7 +223,7 @@ macro_rules! MAPLE_FOREACH {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut maple_state: maple_state_t;
 
     // maple_utils

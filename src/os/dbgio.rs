@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -23,7 +23,7 @@ pub const DBGIO_MODE_POLLED: c_int  = 0;
 pub const DBGIO_MODE_IRQ: c_int     = 1;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut dbgio_handlers: *mut *mut dbgio_handler_t;
     pub static mut dbgio_handler_cnt: c_int;
     pub static mut dbgio_null: dbgio_handler_t;

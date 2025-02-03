@@ -5,7 +5,7 @@
 use crate::prelude::*;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn fs_dev_init() -> c_int;
     pub fn fs_dev_shutdown() -> c_int;
 }

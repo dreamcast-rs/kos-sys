@@ -22,7 +22,7 @@ pub const RWSEM_INITIALIZER: rw_semaphore_t = rw_semaphore_t {
                                               };
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn rwsem_init(s: *mut rw_semaphore_t) -> c_int;
     pub fn rwsem_destroy(s: *mut rw_semaphore_t) -> c_int;
     pub fn rwsem_read_lock_timed(s: *mut rw_semaphore_t, timeout: c_int) -> c_int;

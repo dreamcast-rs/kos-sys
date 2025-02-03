@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -7,7 +7,7 @@ use super::netinet::{in_addr, in_addr_t};
 use super::socket::socklen_t;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn htonl(value: u32) -> u32;
     pub fn ntohl(value: u32) -> u32;
     pub fn htons(value: u16) -> u16;

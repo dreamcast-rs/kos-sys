@@ -64,7 +64,7 @@ pub const FS_SOCKET_GEN_MAX: c_int  = 0x00008000;
 pub const FS_SOCKET_FAM_MAX: c_int  = 0x00800000;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn fs_socket_init() -> c_int;
     pub fn fs_socket_shutdown() -> c_int;
     pub fn fs_socket_open_sock(proto: *mut fs_socket_proto_t) -> *mut net_socket_t;

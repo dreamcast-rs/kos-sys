@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -32,7 +32,7 @@ pub type snd_stream_filter_t = Option<unsafe extern "C" fn(hnd: snd_stream_hnd_t
                                                            samplecnt: *mut c_int)>;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn snd_stream_set_callback(hnd: snd_stream_hnd_t, cb: snd_stream_callback_t);
     pub fn snd_stream_set_callback_direct(hnd: snd_stream_hnd_t,
                                           cb: snd_stream_callback_direct_t);

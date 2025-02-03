@@ -15,7 +15,7 @@ pub struct condvar_t {
 pub const COND_INITIALIZER: condvar_t = condvar_t { dummy: 0, dynamic: 0 };
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn cond_init(cv: *mut condvar_t) -> c_int;
     pub fn cond_destroy(cv: *mut condvar_t) -> c_int;
     pub fn cond_wait(cv: *mut condvar_t, m: *mut mutex_t) -> c_int;

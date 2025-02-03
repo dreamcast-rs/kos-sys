@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 #[repr(C)]
@@ -53,7 +53,7 @@ pub enum perf_cntr_event_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn perf_cntr_config(counter: perf_cntr_t, event_mode: *mut perf_cntr_event_t,
                             clock_type: *mut perf_cntr_clock_t) -> bool;
     pub fn perf_cntr_start(counter: perf_cntr_t, event_mode: perf_cntr_event_t,

@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -58,7 +58,7 @@ pub const PPP_FLAG_WANT_MRU: u32        = 0x00000020;
 pub const PPP_FLAG_NO_ACCM: u32         = 0x00000040;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn ppp_set_device(dev: *mut ppp_device_t) -> c_int;
     pub fn ppp_set_login(username: *const c_char, password: *const c_char) -> c_int;
     pub fn ppp_send(data: *const u8, len: c_size_t, proto: u16) -> c_int;

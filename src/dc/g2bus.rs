@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -30,7 +30,7 @@ pub fn g2_write_32_raw(address: c_uintptr_t, value: u32) {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn g2_dma_transfer(sh4: *mut c_void, g2bus: *mut c_void, length: c_size_t,
                            block: u32, callback: g2_dma_callback_t, cbdata: *mut c_void,
                            dir: u32, mode: u32, g2chn: u32, sh4chn: u32) -> c_int;

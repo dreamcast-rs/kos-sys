@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -134,7 +134,7 @@ pub struct flashrom_ispcfg_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn flashrom_info(part: c_int, start_out: *mut c_int,
                          size_out: *mut c_int) -> c_int;
     pub fn flashrom_read(offset: c_int, buffer_out: *mut c_void, bytes: c_int) -> c_int;

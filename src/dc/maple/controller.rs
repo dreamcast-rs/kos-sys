@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -146,7 +146,7 @@ pub const CONT_TYPE_PANTHERDC: u32                  = CONT_CAPABILITIES_STANDARD
 
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn cont_btn_callback(addr: u8, btns: u32, cb: cont_btn_callback_t);
     pub fn cont_has_capabilities(cont: *const maple_device_t, capabilities: u32) -> c_int;
     pub fn cont_is_type(cont: *const maple_device_t, r#type: u32) -> c_int;

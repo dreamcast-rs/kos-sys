@@ -1,12 +1,12 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::dc::vector::{matrix_t, vector_t};
 use crate::prelude::*;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn mat_store(out: *mut matrix_t);
     pub fn mat_load(src: *const matrix_t);
     pub fn mat_identity();

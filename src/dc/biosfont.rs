@@ -209,7 +209,7 @@ pub enum bfont_code_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn bfont_set_foreground_color(c: u32) -> u32;
     pub fn bfont_set_background_color(c: u32) -> u32;
     pub fn bfont_set_encoding(enc: u8);

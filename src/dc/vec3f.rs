@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -15,7 +15,7 @@ pub const R_DEG: c_float =  182.04444443623349541909523793743;
 pub const R_RAD: c_float =  10430.37835;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     #[link_name = "vec_fipr_wrapper"]
     pub fn vec_fipr(vec: vec3f_t);
     #[link_name = "vec_dot_wrapper"]

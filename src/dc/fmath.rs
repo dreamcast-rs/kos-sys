@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -7,7 +7,7 @@ use crate::prelude::*;
 pub const F_PI: c_float = 3.1415926;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     #[link_name = "fipr_wrapper"]
     pub fn fipr(x: c_float, y: c_float, z: c_float, w: c_float,
                 a: c_float, b: c_float, c: c_float, d: c_float) -> c_float;

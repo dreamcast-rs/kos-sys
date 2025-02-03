@@ -145,7 +145,7 @@ pub struct elf_prog_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn elf_load(r#fn: *const c_char, shell: *mut klibrary_t,
                     out: *mut elf_prog_t) -> c_int;
     pub fn elf_free(prog: *mut elf_prog_t);

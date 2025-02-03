@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -40,7 +40,7 @@ pub const PURUPURU_SPECIAL_MOTOR2: u8       = 1 << 7;
 pub const PURUPURU_SPECIAL_PULSE: u8        = 1;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn purupuru_rumble(dev: *mut maple_device_t,
                            effect: *mut purupuru_effect_t) -> c_int;
     pub fn purupuru_rumble_raw(dev: *mut maple_device_t, effect: u32) -> c_int;

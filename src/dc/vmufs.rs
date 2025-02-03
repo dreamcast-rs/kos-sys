@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -49,7 +49,7 @@ pub struct vmu_dir_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn vmufs_dir_fill_time(d: *mut vmu_dir_t);
     pub fn vmufs_root_read(dev: *mut maple_device_t, root_buf: *mut vmu_root_t) -> c_int;
     pub fn vmufs_root_write(dev: *mut maple_device_t, root_buf: *mut vmu_root_t) -> c_int;

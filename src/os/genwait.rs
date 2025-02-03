@@ -6,7 +6,7 @@ use crate::prelude::*;
 
 use super::thread::kthread_t;
 
-extern "C" {
+unsafe extern "C" {
     pub fn genwait_wait(obj: *mut c_void, mesg: *const c_char, timeout: c_int,
                         callback: Option<unsafe extern "C" fn(*mut c_void)>) -> c_int;
     pub fn genwait_wake_cnt(obj: *mut c_void, cnt: c_int, err: c_int) -> c_int;

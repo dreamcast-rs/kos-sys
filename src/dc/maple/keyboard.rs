@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -164,7 +164,7 @@ pub struct kbd_state_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn kbd_set_queue(active: c_int);
     pub fn kbd_get_key() -> c_int;
     pub fn kbd_queue_pop(dev: *mut maple_device_t, xlat: c_int) -> c_int;

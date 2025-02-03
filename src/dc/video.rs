@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -79,7 +79,7 @@ pub struct vid_mode_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut vram_s: *mut u16;
     pub static mut vram_l: *mut u32;
     pub fn vid_check_cable() -> i8;

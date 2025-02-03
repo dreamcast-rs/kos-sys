@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -46,6 +46,6 @@ pub const INIT_FS_ROMDISK: u32  = 0x00000040;
 pub const INIT_NO_SHUTDOWN: u32 = 0x00000080;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static __kos_romdisk: *mut c_void;
 }

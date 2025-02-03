@@ -5,7 +5,7 @@
 use crate::prelude::*;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn fs_romdisk_init();
     pub fn fs_romdisk_shutdown();
     pub fn fs_romdisk_mount(mountpoint: *const c_char, img: *const u8,

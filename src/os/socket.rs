@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -78,7 +78,7 @@ pub const SHUT_RDWR: u32        = SHUT_RD | SHUT_WR;
 pub const SOMAXCONN: c_int      = 32;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn accept(socket: c_int, address: *mut sockaddr,
                   address_len: *mut socklen_t) -> c_int;
     pub fn bind(socket: c_int, address: *const sockaddr, address_len: socklen_t) -> c_int;

@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::arch::irq::irq_context_t;
@@ -79,7 +79,7 @@ pub type ubc_break_func_t = Option<unsafe extern "C" fn(bp: *const ubc_breakpoin
                                                         user_data: *mut c_void) -> bool>;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn ubc_add_breakpoint(bp: *const ubc_breakpoint_t, callback: ubc_break_func_t,
                               user_data: *mut c_void) -> bool;
     pub fn ubc_remove_breakpoint(bp: *const ubc_breakpoint_t) -> bool;

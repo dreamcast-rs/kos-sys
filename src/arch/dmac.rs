@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -67,7 +67,7 @@ pub struct dma_config_t {
 pub type dma_addr_t = u32;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn hw_to_dma_addr(hw_addr: c_uintptr_t) -> dma_addr_t;
     pub fn dma_map_src(ptr: *const c_void, len: c_size_t) -> dma_addr_t;
     pub fn dma_map_dst(ptr: *mut c_void, len: c_size_t) -> dma_addr_t;

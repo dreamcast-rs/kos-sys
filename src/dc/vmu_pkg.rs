@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -39,7 +39,7 @@ pub const VMUPKG_EC_256COL: c_int   = 2;
 pub const VMUPKG_EC_16COL: c_int    = 3;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn vmu_pkg_build(src: *mut vmu_pkg_t, dst: *mut *mut u8,
                          dst_size: *mut c_int) -> c_int;
     pub fn vmu_pkg_parse(data: *mut u8, pkg: *mut vmu_pkg_t) -> c_int;

@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -12,7 +12,7 @@ pub type trapa_handler = Option<unsafe extern "C" fn(trap: trapa_t,
                                                      data: *mut c_void)>;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn trapa_set_handler(trap: trapa_t, hnd: trapa_handler,
                              data: *mut c_void) -> c_int;
     pub fn trapa_get_handler(trap: trapa_t, data: *mut *mut c_void) -> trapa_handler;

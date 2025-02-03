@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::os::fs::file_t;
@@ -21,7 +21,7 @@ pub struct sfx_play_data_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn snd_sfx_load(r#fn: *const c_char) -> sfxhnd_t;
     pub fn snd_sfx_load_ex(r#fn: *const c_char, rate: u32, bitsize: u16,
                            channels: u16) -> sfxhnd_t;

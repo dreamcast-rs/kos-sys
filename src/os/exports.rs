@@ -19,7 +19,7 @@ pub struct symtab_handler_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut kernel_symtab: [export_sym_t; 0];
     pub static mut arch_symtab: [export_sym_t; 0];
     pub fn export_init();

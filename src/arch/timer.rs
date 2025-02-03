@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -19,7 +19,7 @@ pub type timer_primary_callback_t = Option<unsafe extern "C"
                                           fn(*mut super::irq::irq_context_t)>;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn timer_prime(channel: c_int, speed: u32, interrupts: c_int) -> c_int;
     pub fn timer_start(channel: c_int) -> c_int;
     pub fn timer_stop(channel: c_int) -> c_int;

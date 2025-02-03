@@ -125,7 +125,7 @@ pub enum kthread_mode_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut thd_current: *mut kthread_t;
     pub fn thd_block_now(mycxt: *mut irq_context_t) -> c_int;
     pub fn thd_choose_new() -> *mut irq_context_t;

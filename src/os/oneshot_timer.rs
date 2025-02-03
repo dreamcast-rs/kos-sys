@@ -18,7 +18,7 @@ pub extern "C" fn oneshot_timer_reset(timer: *mut oneshot_timer_t) {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn oneshot_timer_create(cb: Option<unsafe extern "C" fn(*mut c_void)>,
                                 data: *mut c_void, timeout_ms: c_uint)
                                 -> *mut oneshot_timer_t;

@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -36,7 +36,7 @@ pub struct netcfg_t {
 }
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub fn netcfg_load_from(r#fn: *const c_char, out: *mut netcfg_t) -> c_int;
     pub fn netcfg_load_flash(out: *mut netcfg_t) -> c_int;
     pub fn netcfg_load(out: *mut netcfg_t) -> c_int;

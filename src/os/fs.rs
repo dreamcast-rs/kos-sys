@@ -97,7 +97,7 @@ pub const SEEK_CUR: c_int           = 1;
 pub const SEEK_END: c_int           = 2;
 
 #[link(name = "kallisti")]
-extern "C" {
+unsafe extern "C" {
     pub static mut fd_table: [*mut c_void; super::opts::FD_SETSIZE];
     pub fn fs_open(r#fn: *const c_char, mode: c_int) -> file_t;
     pub fn fs_close(hnd: file_t) -> c_int;

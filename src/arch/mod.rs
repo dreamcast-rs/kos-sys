@@ -1,7 +1,8 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
+pub mod arch;
 pub mod cache;
 pub mod dmac;
 pub mod exec;
