@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -10,7 +10,7 @@ pub struct nmmgr_list_t {
 }
 
 pub const NMMGR_LIST_INIT: nmmgr_list_t = nmmgr_list_t {
-                                              lh_first: core::ptr::null_mut()
+                                              lh_first: null_mut()
                                           };
 
 #[repr(C)]

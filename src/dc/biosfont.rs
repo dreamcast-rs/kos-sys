@@ -1,8 +1,7 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
-use core::ffi::VaList;
 use crate::prelude::*;
 
 pub const BFONT_THIN_WIDTH: u32                 = 12;

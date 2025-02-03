@@ -1,10 +1,8 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
-use core::ffi::VaList;
 use crate::prelude::*;
-use libc::{off_t, off64_t, stat, time_t};
 
 #[repr(C)]
 pub struct dirent_t {

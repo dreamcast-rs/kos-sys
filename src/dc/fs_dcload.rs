@@ -1,10 +1,8 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
-use libc::off_t;
-
 
 pub const DCLOADMAGICVALUE: u32         = 0xdeadbeef;
 

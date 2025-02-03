@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -31,7 +31,7 @@ pub const DEFAULT_SERIAL_BAUD: c_int        = 115200;
 
 pub const DEFAULT_SERIAL_FIFO: c_int        = 1;
 
-pub const ELF_SYM_PREFIX: &core::ffi::CStr  = c"_";
+pub const ELF_SYM_PREFIX: &CStr             = c"_";
 
 pub const ELF_SYM_PREFIX_LEN: u32           = 1;
 

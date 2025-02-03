@@ -6,7 +6,6 @@ use crate::prelude::*;
 
 use crate::arch::types::{prio_t, tid_t};
 use crate::arch::irq::irq_context_t;
-use libc::pid_t;
 use super::tls::kthread_tls_kv_list;
 
 pub const KOS_PID: pid_t                    = 1;

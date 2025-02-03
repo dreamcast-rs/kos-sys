@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
@@ -50,8 +50,8 @@ extern "C" {
     pub fn vmu_beep_raw(dev: *mut maple_device_t, beep: u32) -> c_int;
     pub fn vmu_beep_waveform(dev: *mut maple_device_t, period1: u8, duty_cycle1: u8,
                              period2: u8, duty_cycle2: u8) -> c_int;
-    pub fn vmu_set_datetime(dev: *mut maple_device_t, unix: libc::time_t) -> c_int;
-    pub fn vmu_get_datetime(dev: *mut maple_device_t, unix: *mut libc::time_t) -> c_int;
+    pub fn vmu_set_datetime(dev: *mut maple_device_t, unix: time_t) -> c_int;
+    pub fn vmu_get_datetime(dev: *mut maple_device_t, unix: *mut time_t) -> c_int;
     pub fn vmu_set_buttons_enabled(enable: c_int);
     pub fn vmu_get_buttons_enabled() -> c_int;
     pub fn vmu_init();

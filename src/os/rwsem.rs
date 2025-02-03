@@ -17,8 +17,8 @@ pub struct rw_semaphore_t {
 pub const RWSEM_INITIALIZER: rw_semaphore_t = rw_semaphore_t {
                                                   dynamic: 0,
                                                   read_count: 0,
-                                                  write_lock: core::ptr::null_mut(),
-                                                  reader_waiting: core::ptr::null_mut()
+                                                  write_lock: null_mut(),
+                                                  reader_waiting: null_mut()
                                               };
 
 #[link(name = "kallisti")]

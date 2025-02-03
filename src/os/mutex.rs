@@ -24,21 +24,21 @@ pub const MUTEX_TYPE_DEFAULT: c_int     = MUTEX_TYPE_NORMAL;
 pub const MUTEX_INITIALIZER: mutex_t = mutex_t {
                                            r#type: MUTEX_TYPE_NORMAL,
                                            dynamic: 0,
-                                           holder: core::ptr::null_mut(),
+                                           holder: null_mut(),
                                            count: 0,
                                        };
 
 pub const ERRORCHECK_MUTEX_INITIALIZER: mutex_t = mutex_t {
                                                       r#type: MUTEX_TYPE_ERRORCHECK,
                                                       dynamic: 0,
-                                                      holder: core::ptr::null_mut(),
+                                                      holder: null_mut(),
                                                       count: 0,
                                                   };
 
 pub const RECURSIVE_MUTEX_INITIALIZER: mutex_t = mutex_t {
                                                      r#type: MUTEX_TYPE_RECURSIVE,
                                                      dynamic: 0,
-                                                     holder: core::ptr::null_mut(),
+                                                     holder: null_mut(),
                                                      count: 0,
                                                  };
 

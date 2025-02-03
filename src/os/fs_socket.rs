@@ -4,8 +4,6 @@
 
 use crate::prelude::*;
 
-use core::ffi::VaList;
-
 use crate::os::fs::file_t;
 use crate::os::net::netif_t;
 use crate::os::socket::{sockaddr, socklen_t};
@@ -55,8 +53,8 @@ pub struct fs_socket_proto_t {
 }
 
 pub const FS_SOCKET_PROTO_ENTRY: entry = entry {
-                                             tqe_next: core::ptr::null_mut(),
-                                             tqe_prev: core::ptr::null_mut(),
+                                             tqe_next: null_mut(),
+                                             tqe_prev: null_mut(),
                                          };
 
 pub const FS_SOCKET_NONBLOCK: c_int = 0x00000001;

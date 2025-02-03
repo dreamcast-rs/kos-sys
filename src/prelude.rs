@@ -1,6 +1,25 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
+
+/* Here we re-export extremely common types and
+   functions for interoperating with KOS C code */
+
+pub use core::{
+    ffi::{
+        CStr,
+        VaList,
+    },
+    mem::{
+        size_of,
+    },
+    ptr::{
+        null,
+        null_mut,
+        read_volatile,
+        write_volatile,
+    },
+};
 
 pub use libc::{
     c_char,
@@ -17,19 +36,21 @@ pub use libc::{
     c_ulong,
     c_ushort,
     c_void,
+    FILE,
+    off_t,
+    off64_t,
+    pid_t,
+    stat,
+    time_t,
 };
-
-use core::fmt::{Debug, Formatter, Result};
-use core::marker::PhantomData;
-use core::slice;
 
 #[repr(C)]
 #[derive(Default)]
-pub struct FAM<T>(PhantomData<T>, [T; 0]);
+pub struct FAM<T>(core::marker::PhantomData<T>, [T; 0]);
 impl<T> FAM<T> {
     #[inline]
     pub const fn new() -> Self {
-        FAM(PhantomData, [])
+        FAM(core::marker::PhantomData, [])
     }
     #[inline]
     pub fn as_ptr(&self) -> *const T {
@@ -41,16 +62,16 @@ impl<T> FAM<T> {
     }
     #[inline]
     pub unsafe fn as_slice(&self, len: usize) -> &[T] {
-        slice::from_raw_parts(self.as_ptr(), len)
+        core::slice::from_raw_parts(self.as_ptr(), len)
     }
     #[inline]
     pub unsafe fn as_mut_slice(&mut self, len: usize) -> &mut [T] {
-        slice::from_raw_parts_mut(self.as_mut_ptr(), len)
+        core::slice::from_raw_parts_mut(self.as_mut_ptr(), len)
     }
 }
 
-impl<T> Debug for FAM<T> {
-    fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
+impl<T> core::fmt::Debug for FAM<T> {
+    fn fmt(&self, fmt: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         fmt.write_str("FAM")
     }
 }

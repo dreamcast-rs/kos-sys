@@ -1,8 +1,8 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
-use core::ptr::read_volatile;
+use crate::prelude::*;
 
 #[inline]
 pub fn FIFO_STATUS() -> u32 {

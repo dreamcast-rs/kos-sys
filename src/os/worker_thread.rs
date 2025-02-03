@@ -26,7 +26,7 @@ pub struct kthread_job_t {
 pub unsafe fn thd_worker_create(routine: Option<unsafe extern "C" fn(*mut c_void)>,
                                 data: *mut c_void) -> *mut kthread_worker_t {
     unsafe {
-        thd_worker_create_ex(core::ptr::null(), routine, data)
+        thd_worker_create_ex(null(), routine, data)
     }
 }
 

@@ -1,9 +1,8 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 use crate::prelude::*;
-use core::ptr::write_volatile;
 
 pub const DMAC_BASE: c_uintptr_t        = 0xffa00000;
 
