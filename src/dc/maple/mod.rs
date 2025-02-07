@@ -136,7 +136,7 @@ pub struct maple_device_t {
     pub probe_mask:             u8,
     pub dev_mask:               u8,
     pub status_valid:           u8, // volatile
-    pub status:                 FAM<u32>,
+    pub status:                 *mut c_void,
 }
 
 pub const MAPLE_PORT_COUNT: c_size_t        = 4;
