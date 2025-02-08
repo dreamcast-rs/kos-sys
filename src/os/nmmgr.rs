@@ -14,14 +14,19 @@ pub const NMMGR_LIST_INIT: nmmgr_list_t = nmmgr_list_t {
 };
 
 #[repr(C)]
+pub struct list_ent {
+    pub le_next:    *mut nmmgr_handler_t,
+    pub le_prev:    *mut *mut nmmgr_handler_t,
+}
+
+#[repr(C)]
 pub struct nmmgr_handler_t {
     pub pathname:   [c_char; crate::os::limits::NAME_MAX],
     pub pid:        c_int,
     pub version:    u32,
     pub flags:      u32,
     pub r#type:     u32,
-    pub le_next:    *mut nmmgr_handler_t,
-    pub le_prev:    *mut *mut nmmgr_handler_t,
+    pub list_ent:   list_ent,
 }
 
 #[repr(C)]

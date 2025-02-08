@@ -3,13 +3,19 @@
 // https://dreamcast.rs/
 
 use crate::prelude::*;
+
 use super::netinet::in6_addr;
+
+#[repr(C)]
+pub struct if_list {
+    pub le_next:    *mut netif_t,
+    pub le_prev:    *mut *mut netif_t,
+}
 
 // "self" parameters renamed to "netif"
 #[repr(C)]
 pub struct netif_t {
-    pub le_next:                *mut netif_t,
-    pub le_prev:                *mut *mut netif_t,
+    pub if_list:                if_list,
     pub name:                   *const c_char,
     pub descr:                  *const c_char,
     pub index:                  c_int,
@@ -71,7 +77,7 @@ pub const NETIF_BLOCK: c_int                    = 1;
 
 #[repr(C)]
 pub struct netif_list {
-    lh_first:               *mut netif_t,
+    lh_first:                   *mut netif_t,
 }
 
 #[repr(C, packed)]

@@ -10,27 +10,27 @@ use crate::os::socket::{sockaddr, socklen_t};
 
 #[repr(C)]
 pub struct sock_list {
-    pub le_next:    *mut net_socket_t,
-    pub le_prev:    *mut *mut net_socket_t,
+    pub le_next:        *mut net_socket_t,
+    pub le_prev:        *mut *mut net_socket_t,
 }
 
 #[repr(C)]
 pub struct net_socket_t {
-    pub sock_list:  sock_list,
-    pub fd:         file_t,
-    pub protocol:   *mut fs_socket_proto_t,
-    pub data:       *mut c_void,
+    pub sock_list:      sock_list,
+    pub fd:             file_t,
+    pub protocol:       *mut fs_socket_proto_t,
+    pub data:           *mut c_void,
 }
 
 #[repr(C)]
 pub struct entry {
-    pub tqe_next:   *mut fs_socket_proto_t,
-    pub tqe_prev:   *mut *mut fs_socket_proto_t,
+    pub tqe_next:       *mut fs_socket_proto_t,
+    pub tqe_prev:       *mut *mut fs_socket_proto_t,
 }
 
 #[repr(C)]
 pub struct fs_socket_proto_t {
-    pub entry:      entry,
+    pub entry:          entry,
     pub domain:         c_int,
     pub r#type:         c_int,
     pub protocol:       c_int,
@@ -73,9 +73,9 @@ pub struct fs_socket_proto_t {
 }
 
 pub const FS_SOCKET_PROTO_ENTRY: entry = entry {
-                                             tqe_next: null_mut(),
-                                             tqe_prev: null_mut(),
-                                         };
+    tqe_next: null_mut(),
+    tqe_prev: null_mut(),
+};
 
 pub const FS_SOCKET_NONBLOCK: c_int = 0x00000001;
 pub const FS_SOCKET_V6ONLY: c_int   = 0x00000002;
