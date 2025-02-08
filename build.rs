@@ -17,7 +17,7 @@ fn main() {
         .file("src/dc/fmath.c")
         .file("src/dc/g2bus.c")
         .file("src/dc/matrix.c")
-        .file("src/dc/pvr.c")
+        .file("src/dc/pvr/pvr.c")
         .file("src/dc/sq.c")
         .file("src/dc/vec3f.c")
         .compile("kossysc");

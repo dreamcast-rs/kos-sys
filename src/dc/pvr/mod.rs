@@ -6,6 +6,12 @@ use crate::prelude::*;
 
 use crate::{BIT, GENMASK};
 
+pub mod dma;
+pub mod fog;
+pub mod pal;
+pub mod regs;
+pub mod txr;
+
 pub type pvr_ptr_t = *mut c_void;
 pub type pvr_list_t = u32;
 
@@ -228,18 +234,14 @@ pub const PVR_TXRFMT_NONTWIDDLED: c_int         = 1 << 26;
 pub const PVR_TXRFMT_NOSTRIDE: c_int            = 0 << 21;
 pub const PVR_TXRFMT_STRIDE: c_int              = 1 << 21;
 
-#[macro_export]
-macro_rules! PVR_TXRFMT_8BPP_PAL {
-    ($x:expr) => {
-        $n << 25
-    };
+#[inline]
+pub const fn PVR_TXRFMT_8BPP_PAL(n: c_int) -> c_int {
+    n << 25
 }
 
-#[macro_export]
-macro_rules! PVR_TXRFMT_4BPP_PAL {
-    ($x:expr) => {
-        $n << 21
-    };
+#[inline]
+pub const fn PVR_TXRFMT_4BPP_PAL(n: c_int) -> c_int {
+    n << 21
 }
 
 pub const PVR_CLRFMT_ARGBPACKED: c_int          = 0;
@@ -424,14 +426,19 @@ pub struct pvr_modifier_vol_t {
     pub d6:                     u32,
 }
 
-#[macro_export]
-macro_rules! PVR_PACK_COLOR {
-    ($a:expr, $r:expr, $g:expr, $b:expr) => {
-        ((($a * 255.0) as u32) << 24) |
-        ((($r * 255.0) as u32) << 16) |
-        ((($g * 255.0) as u32) << 8) |
-        ((($b * 255.0) as u32) << 0)
-    };
+#[inline]
+pub const fn PVR_PACK_COLOR(a: f32, r: f32, g: f32, b: f32) -> u32 {
+    let a = ((a * 255.0) as u8) as u32;
+    let r = ((r * 255.0) as u8) as u32;
+    let g = ((g * 255.0) as u8) as u32;
+    let b = ((b * 255.0) as u8) as u32;
+
+    (a << 24) | (r << 16) | (g << 8) | b
+}
+
+#[inline]
+pub const fn PVR_PACK_16BIT_UV(u: f32, v: f32) -> u32 {
+    (u.to_bits() & 0xFFFF0000) | (v.to_bits() >> 16)
 }
 
 pub const PVR_CMD_POLYHDR: u32                  = 0x80840000;
@@ -563,127 +570,6 @@ pub const PVR_TA_PM2_VSIZE: u32                 = GENMASK!(2, 0);
 pub const PVR_TA_PM3_MIPMAP: u32                = BIT!(31);
 pub const PVR_TA_PM3_TXRFMT: u32                = GENMASK!(30, 21);
 
-#[macro_export]
-macro_rules! PVR_GET {
-    ($reg:expr) => {
-        *((0xA05F8000 as *const u32).offset($reg as isize))
-    };
-}
-
-#[macro_export]
-macro_rules! PVR_SET {
-    ($reg:expr, $value:expr) => {
-        *((0xA05F8000 as *mut u32).offset($reg as isize)) = $value;
-    };
-}
-
-pub const PVR_ID: u32                           = 0x0000;
-pub const PVR_REVISION: u32                     = 0x0004;
-pub const PVR_RESET: u32                        = 0x0008;
-
-pub const PVR_ISP_START: u32                    = 0x0014;
-pub const PVR_UNK_0018: u32                     = 0x0018;
-
-pub const PVR_ISP_VERTBUF_ADDR: u32             = 0x0020;
-
-pub const PVR_ISP_TILEMAT_ADDR: u32             = 0x002C;
-pub const PVR_SPANSORT_CFG: u32                 = 0x0030;
-
-pub const PVR_BORDER_COLOR: u32                 = 0x0040;
-pub const PVR_FB_CFG_1: u32                     = 0x0044;
-pub const PVR_FB_CFG_2: u32                     = 0x0048;
-pub const PVR_RENDER_MODULO: u32                = 0x004C;
-pub const PVR_FB_ADDR: u32                      = 0x0050;
-pub const PVR_FB_IL_ADDR: u32                   = 0x0054;
-
-pub const PVR_FB_SIZE: u32                      = 0x005C;
-pub const PVR_RENDER_ADDR: u32                  = 0x0060;
-pub const PVR_RENDER_ADDR_2: u32                = 0x0064;
-pub const PVR_PCLIP_X: u32                      = 0x0068;
-pub const PVR_PCLIP_Y: u32                      = 0x006C;
-
-pub const PVR_CHEAP_SHADOW: u32                 = 0x0074;
-pub const PVR_OBJECT_CLIP: u32                  = 0x0078;
-pub const PVR_UNK_007C: u32                     = 0x007C;
-pub const PVR_UNK_0080: u32                     = 0x0080;
-pub const PVR_TEXTURE_CLIP: u32                 = 0x0084;
-pub const PVR_BGPLANE_Z: u32                    = 0x0088;
-pub const PVR_BGPLANE_CFG: u32                  = 0x008C;
-
-pub const PVR_UNK_0098: u32                     = 0x0098;
-
-pub const PVR_UNK_00A0: u32                     = 0x00A0;
-
-pub const PVR_UNK_00A8: u32                     = 0x00A8;
-
-pub const PVR_FOG_TABLE_COLOR: u32              = 0x00B0;
-pub const PVR_FOG_VERTEX_COLOR: u32             = 0x00B4;
-pub const PVR_FOG_DENSITY: u32                  = 0x00B8;
-pub const PVR_COLOR_CLAMP_MAX: u32              = 0x00Bc;
-pub const PVR_COLOR_CLAMP_MIN: u32              = 0x00C0;
-pub const PVR_GUN_POS: u32                      = 0x00C4;
-pub const PVR_HPOS_IRQ: u32                     = 0x00C8;
-pub const PVR_VPOS_IRQ: u32                     = 0x00CC;
-pub const PVR_IL_CFG: u32                       = 0x00D0;
-pub const PVR_BORDER_X: u32                     = 0x00D4;
-pub const PVR_SCAN_CLK: u32                     = 0x00D8;
-pub const PVR_BORDER_Y: u32                     = 0x00DC;
-
-pub const PVR_TEXTURE_MODULO: u32               = 0x00E4;
-pub const PVR_VIDEO_CFG: u32                    = 0x00E8;
-pub const PVR_BITMAP_X: u32                     = 0x00EC;
-pub const PVR_BITMAP_Y: u32                     = 0x00F0;
-pub const PVR_SCALER_CFG: u32                   = 0x00F4;
-
-pub const PVR_PALETTE_CFG: u32                  = 0x0108;
-pub const PVR_SYNC_STATUS: u32                  = 0x010C;
-pub const PVR_UNK_0110: u32                     = 0x0110;
-pub const PVR_UNK_0114: u32                     = 0x0114;
-pub const PVR_UNK_0118: u32                     = 0x0118;
-
-pub const PVR_TA_OPB_START: u32                 = 0x0124;
-pub const PVR_TA_VERTBUF_START: u32             = 0x0128;
-pub const PVR_TA_OPB_END: u32                   = 0x012C;
-pub const PVR_TA_VERTBUF_END: u32               = 0x0130;
-pub const PVR_TA_OPB_POS: u32                   = 0x0134;
-pub const PVR_TA_VERTBUF_POS: u32               = 0x0138;
-pub const PVR_TILEMAT_CFG: u32                  = 0x013C;
-pub const PVR_OPB_CFG: u32                      = 0x0140;
-pub const PVR_TA_INIT: u32                      = 0x0144;
-pub const PVR_YUV_ADDR: u32                     = 0x0148;
-pub const PVR_YUV_CFG: u32                      = 0x014C;
-pub const PVR_YUV_STAT: u32                     = 0x0150;
-
-pub const PVR_UNK_0160: u32                     = 0x0160;
-pub const PVR_TA_OPB_INIT: u32                  = 0x0164;
-
-pub const PVR_FOG_TABLE_BASE: u32               = 0x0200;
-
-pub const PVR_PALETTE_TABLE_BASE: u32           = 0x1000;
-
-pub const PVR_TA_INPUT: c_uintptr_t             = 0x10000000;
-pub const PVR_TA_YUV_CONV: c_uintptr_t          = 0x10800000;
-pub const PVR_TA_TEX_MEM: c_uintptr_t           = 0x11000000;
-pub const PVR_TA_TEX_MEM_32: c_uintptr_t        = 0x13000000;
-pub const PVR_RAM_BASE_32_P0: c_uintptr_t       = 0x05000000;
-pub const PVR_RAM_BASE_64_P0: c_uintptr_t       = 0x04000000;
-pub const PVR_RAM_BASE: c_uintptr_t             = 0xA5000000;
-pub const PVR_RAM_INT_BASE: c_uintptr_t         = 0xA4000000;
-
-pub const PVR_RAM_SIZE: c_size_t                = 8*1024*1024;
-
-pub const PVR_RAM_TOP: c_uintptr_t              = PVR_RAM_BASE + PVR_RAM_SIZE;
-pub const PVR_RAM_INT_TOP: c_uintptr_t          = PVR_RAM_INT_BASE + PVR_RAM_SIZE;
-
-pub const PVR_RESET_ALL: u32                    = 0xFFFFFFFF;
-pub const PVR_RESET_NONE: u32                   = 0x00000000;
-pub const PVR_RESET_TA: u32                     = 0x00000001;
-pub const PVR_RESET_ISPTSP: u32                 = 0x00000002;
-
-pub const PVR_ISP_START_GO: u32                 = 0xFFFFFFFF;
-
-pub const PVR_TA_INIT_GO: u32                   = 0x80000000;
-
 pub const PVR_BINSIZE_0: c_int                  = 0;
 pub const PVR_BINSIZE_8: c_int                  = 8;
 pub const PVR_BINSIZE_16: c_int                 = 16;
@@ -701,7 +587,7 @@ pub struct pvr_init_params_t {
     pub vbuf_doublebuf_disabled: c_int,
 }
 
-#[repr(C, align(32))]
+#[repr(C)]
 pub struct pvr_stats_t {
     pub frame_last_time:        u64,
     pub reg_last_time:          u64,
@@ -715,14 +601,6 @@ pub struct pvr_stats_t {
     pub enabled_list_mask:      u32,
 }
 
-#[repr(C)]
-pub enum pvr_palfmt_t {
-    PVR_PAL_ARGB1555,
-    PVR_PAL_RGB565,
-    PVR_PAL_ARGB4444,
-    PVR_PAL_ARGB8888,
-}
-
 pub type pvr_dr_state_t = u32;
 
 #[inline]
@@ -731,43 +609,8 @@ pub fn pvr_dr_target(state: &mut pvr_dr_state_t) -> *mut pvr_vertex_t {
     (crate::arch::memory::MEM_AREA_SQ_BASE | *state) as *mut pvr_vertex_t
 }
 
-pub const PVR_TXRLOAD_4BPP: u32                 = 0x01;
-pub const PVR_TXRLOAD_8BPP: u32                 = 0x02;
-pub const PVR_TXRLOAD_16BPP: u32                = 0x03;
-pub const PVR_TXRLOAD_FMT_MASK: u32             = 0x0F;
-
-pub const PVR_TXRLOAD_VQ_LOAD: u32              = 0x10;
-pub const PVR_TXRLOAD_INVERT_Y: u32             = 0x20;
-pub const PVR_TXRLOAD_FMT_VQ: u32               = 0x40;
-pub const PVR_TXRLOAD_FMT_TWIDDLED: u32         = 0x80;
-pub const PVR_TXRLOAD_FMT_NOTWIDDLE: u32        = 0x80;
-pub const PVR_TXRLOAD_DMA: u32                  = 0x8000;
-pub const PVR_TXRLOAD_NONBLOCK: u32             = 0x4000;
-pub const PVR_TXRLOAD_SQ: u32                   = 0x2000;
-
-pub type pvr_dma_callback_t = Option<unsafe extern "C" fn(data: *mut c_void)>;
-
-pub const PVR_DMA_VRAM64: c_int                 = 0;
-pub const PVR_DMA_VRAM32: c_int                 = 1;
-pub const PVR_DMA_TA: c_int                     = 2;
-pub const PVR_DMA_YUV: c_int                    = 3;
-pub const PVR_DMA_VRAM32_SB: c_int              = 4;
-pub const PVR_DMA_VRAM64_SB: c_int              = 5;
-
-#[repr(C)]
-pub enum pvr_dma_type_t {
-    PVR_DMA_VRAM64,
-    PVR_DMA_VRAM32,
-    PVR_DMA_TA,
-    PVR_DMA_YUV,
-    PVR_DMA_VRAM32_SB,
-    PVR_DMA_VRAM64_SB,
-}
-
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    #[link_name = "PVR_PACK_16BIT_UV_WRAPPER"]
-    pub fn PVR_PACK_16BIT_UV(u: c_float, v: c_float) -> u32;
     pub fn pvr_init(params: *const pvr_init_params_t) -> c_int;
     pub fn pvr_init_defaults() -> c_int;
     pub fn pvr_shutdown() -> c_int;
@@ -776,16 +619,6 @@ unsafe extern "C" {
     pub fn pvr_set_zclip(zc: c_float);
     pub fn pvr_get_vbl_count() -> c_int;
     pub fn pvr_get_stats(stat: *mut pvr_stats_t) -> c_int;
-    pub fn pvr_set_pal_format(fmt: pvr_palfmt_t);
-    #[link_name = "pvr_set_pal_entry_wrapper"]
-    pub fn pvr_set_pal_entry(idx: u32, value: u32);
-    pub fn pvr_fog_table_color(a: c_float, r: c_float, g: c_float, b: c_float);
-    pub fn pvr_fog_vertex_color(a: c_float, r: c_float, g: c_float, b: c_float);
-    pub fn pvr_fog_far_depth(d: c_float);
-    pub fn pvr_fog_table_exp2(density: c_float);
-    pub fn pvr_fog_table_exp(density: c_float);
-    pub fn pvr_fog_table_linear(start: c_float, end: c_float);
-    pub fn pvr_fog_table_custom(table: *mut c_float);
     pub fn pvr_mem_malloc(size: c_size_t) -> pvr_ptr_t;
     pub fn pvr_mem_free(chunk: pvr_ptr_t);
     pub fn pvr_mem_available() -> c_size_t;
@@ -852,60 +685,5 @@ unsafe extern "C" {
         textureaddr2: pvr_ptr_t,
         filtering2: c_int,
     );
-    pub fn pvr_txr_load(src: *const c_void, dst: pvr_ptr_t, count: u32);
-    pub fn pvr_txr_load_ex(src: *const c_void, dst: pvr_ptr_t, w: u32, h: u32, flags: u32);
-    pub fn pvr_txr_load_kimg(img: *const crate::addons::img::kos_img_t, dst: pvr_ptr_t, flags: u32);
     pub fn pvr_get_front_buffer() -> pvr_ptr_t;
-    pub fn pvr_dma_transfer(
-        src: *const c_void,
-        dest: c_uintptr_t,
-        count: c_size_t,
-        r#type: pvr_dma_type_t,
-        block: bool,
-        callback: pvr_dma_callback_t,
-        cbdata: *mut c_void,
-    ) -> c_int;
-    pub fn pvr_txr_load_dma(
-        src: *const c_void,
-        dest: pvr_ptr_t,
-        count: c_size_t,
-        block: bool,
-        callback: pvr_dma_callback_t,
-        cbdata: *mut c_void,
-    ) -> c_int;
-    pub fn pvr_dma_load_ta(
-        src: *const c_void,
-        count: c_size_t,
-        block: bool,
-        callback: pvr_dma_callback_t,
-        cbdata: *mut c_void,
-    ) -> c_int;
-    pub fn pvr_dma_yuv_conv(
-        src: *const c_void,
-        count: c_size_t,
-        block: bool,
-        callback: pvr_dma_callback_t,
-        cbdata: *mut c_void,
-    ) -> c_int;
-    pub fn pvr_dma_ready() -> bool;
-    pub fn pvr_dma_init();
-    pub fn pvr_dma_shutdown();
-    pub fn pvr_sq_load(
-        dest: *mut c_void,
-        src: *const c_void,
-        n: c_size_t,
-        r#type: pvr_dma_type_t,
-    ) -> *mut c_void;
-    pub fn pvr_sq_set16(
-        dest: *mut c_void,
-        c: u32,
-        n: c_size_t,
-        r#type: pvr_dma_type_t,
-    ) -> *mut c_void;
-    pub fn pvr_sq_set32(
-        dest: *mut c_void,
-        c: u32,
-        n: c_size_t,
-        r#type: pvr_dma_type_t,
-    ) -> *mut c_void;
 }
