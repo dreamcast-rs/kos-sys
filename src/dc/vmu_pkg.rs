@@ -40,8 +40,7 @@ pub const VMUPKG_EC_16COL: c_int    = 3;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn vmu_pkg_build(src: *mut vmu_pkg_t, dst: *mut *mut u8,
-                         dst_size: *mut c_int) -> c_int;
+    pub fn vmu_pkg_build(src: *mut vmu_pkg_t, dst: *mut *mut u8, dst_size: *mut c_int) -> c_int;
     pub fn vmu_pkg_parse(data: *mut u8, pkg: *mut vmu_pkg_t) -> c_int;
     pub fn vmu_pkg_load_icon(pkg: *mut vmu_pkg_t, icon_fn: *const c_char) -> c_int;
 }

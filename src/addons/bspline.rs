@@ -2,8 +2,9 @@
 // Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
-use crate::dc::vector::point_t;
 use crate::prelude::*;
+
+use crate::dc::vector::point_t;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {

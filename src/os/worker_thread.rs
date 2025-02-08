@@ -32,9 +32,11 @@ pub unsafe fn thd_worker_create(routine: Option<unsafe extern "C" fn(*mut c_void
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn thd_worker_create_ex(attr: *const kthread_attr_t,
-                                routine: Option<unsafe extern "C" fn(*mut c_void)>,
-                                data: *mut c_void) -> *mut kthread_worker_t;
+    pub fn thd_worker_create_ex(
+        attr: *const kthread_attr_t,
+        routine: Option<unsafe extern "C" fn(*mut c_void)>,
+        data: *mut c_void,
+    ) -> *mut kthread_worker_t;
     pub fn thd_worker_destroy(thd: *mut kthread_worker_t);
     pub fn thd_worker_wakeup(thd: *mut kthread_worker_t);
     pub fn thd_worker_get_thread(thd: *mut kthread_worker_t) -> *mut kthread_t;

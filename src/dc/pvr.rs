@@ -2,8 +2,9 @@
 // Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
-use crate::{BIT, GENMASK};
 use crate::prelude::*;
+
+use crate::{BIT, GENMASK};
 
 pub type pvr_ptr_t = *mut c_void;
 pub type pvr_list_t = u32;
@@ -792,8 +793,7 @@ unsafe extern "C" {
     pub fn pvr_mem_print_list();
     pub fn pvr_mem_stats();
     pub fn pvr_vertex_dma_enabled() -> c_int;
-    pub fn pvr_set_vertbuf(list: pvr_list_t, buffer: *mut c_void,
-                           len: c_size_t) -> *mut c_void;
+    pub fn pvr_set_vertbuf(list: pvr_list_t, buffer: *mut c_void, len: c_size_t) -> *mut c_void;
     pub fn pvr_vertbuf_tail(list: pvr_list_t) -> *mut c_void;
     pub fn pvr_vertbuf_written(list: pvr_list_t, amt: c_size_t);
     pub fn pvr_set_presort_mode(presort: bool);
@@ -815,45 +815,97 @@ unsafe extern "C" {
     pub fn pvr_wait_render_done() -> c_int;
     pub fn pvr_poly_compile(dst: *mut pvr_poly_hdr_t, src: *const pvr_poly_cxt_t);
     pub fn pvr_poly_cxt_col(dst: *mut pvr_poly_cxt_t, list: pvr_list_t);
-    pub fn pvr_poly_cxt_txr(dst: *mut pvr_poly_cxt_t, list: pvr_list_t,
-                            textureformat: c_int, tw: c_int, th: c_int,
-                            textureaddr: pvr_ptr_t, filtering: c_int);
+    pub fn pvr_poly_cxt_txr(
+        dst: *mut pvr_poly_cxt_t,
+        list: pvr_list_t,
+        textureformat: c_int,
+        tw: c_int,
+        th: c_int,
+        textureaddr: pvr_ptr_t,
+        filtering: c_int,
+    );
     pub fn pvr_sprite_compile(dst: *mut pvr_sprite_hdr_t, src: *const pvr_sprite_cxt_t);
     pub fn pvr_sprite_cxt_col(dst: *mut pvr_sprite_cxt_t, list: pvr_list_t);
-    pub fn pvr_sprite_cxt_txr(dst: *mut pvr_sprite_cxt_t, list: pvr_list_t,
-                              textureformat: c_int, tw: c_int, th: c_int,
-                              textureaddr: pvr_ptr_t, filtering: c_int);
-    pub fn pvr_mod_compile(dst: *mut pvr_mod_hdr_t, list: pvr_list_t,
-                           mode: u32, cull: u32);
+    pub fn pvr_sprite_cxt_txr(
+        dst: *mut pvr_sprite_cxt_t,
+        list: pvr_list_t,
+        textureformat: c_int,
+        tw: c_int,
+        th: c_int,
+        textureaddr: pvr_ptr_t,
+        filtering: c_int,
+    );
+    pub fn pvr_mod_compile(dst: *mut pvr_mod_hdr_t, list: pvr_list_t, mode: u32, cull: u32);
     pub fn pvr_poly_mod_compile(dst: *mut pvr_poly_mod_hdr_t, src: *const pvr_poly_cxt_t);
     pub fn pvr_poly_cxt_col_mod(dst: *mut pvr_poly_cxt_t, list: pvr_list_t);
-    pub fn pvr_poly_cxt_txr_mod(dst: *mut pvr_poly_cxt_t, list: pvr_list_t,
-                                textureformat: c_int, tw: c_int, th: c_int,
-                                textureaddr: pvr_ptr_t, filtering: c_int,
-                                textureformat2: c_int, tw2: c_int, th2: c_int,
-                                textureaddr2: pvr_ptr_t, filtering2: c_int);
+    pub fn pvr_poly_cxt_txr_mod(
+        dst: *mut pvr_poly_cxt_t,
+        list: pvr_list_t,
+        textureformat: c_int,
+        tw: c_int,
+        th: c_int,
+        textureaddr: pvr_ptr_t,
+        filtering: c_int,
+        textureformat2: c_int,
+        tw2: c_int,
+        th2: c_int,
+        textureaddr2: pvr_ptr_t,
+        filtering2: c_int,
+    );
     pub fn pvr_txr_load(src: *const c_void, dst: pvr_ptr_t, count: u32);
     pub fn pvr_txr_load_ex(src: *const c_void, dst: pvr_ptr_t, w: u32, h: u32, flags: u32);
-    pub fn pvr_txr_load_kimg(img: *const crate::addons::img::kos_img_t,
-                             dst: pvr_ptr_t, flags: u32);
+    pub fn pvr_txr_load_kimg(img: *const crate::addons::img::kos_img_t, dst: pvr_ptr_t, flags: u32);
     pub fn pvr_get_front_buffer() -> pvr_ptr_t;
-    pub fn pvr_dma_transfer(src: *const c_void, dest: c_uintptr_t, count: c_size_t,
-                            r#type: pvr_dma_type_t, block: bool,
-                            callback: pvr_dma_callback_t, cbdata: *mut c_void) -> c_int;
-    pub fn pvr_txr_load_dma(src: *const c_void, dest: pvr_ptr_t, count: c_size_t,
-                            block: bool, callback: pvr_dma_callback_t,
-                            cbdata: *mut c_void) -> c_int;
-    pub fn pvr_dma_load_ta(src: *const c_void, count: c_size_t, block: bool,
-                           callback: pvr_dma_callback_t, cbdata: *mut c_void) -> c_int;
-    pub fn pvr_dma_yuv_conv(src: *const c_void, count: c_size_t, block: bool,
-                            callback: pvr_dma_callback_t, cbdata: *mut c_void) -> c_int;
+    pub fn pvr_dma_transfer(
+        src: *const c_void,
+        dest: c_uintptr_t,
+        count: c_size_t,
+        r#type: pvr_dma_type_t,
+        block: bool,
+        callback: pvr_dma_callback_t,
+        cbdata: *mut c_void,
+    ) -> c_int;
+    pub fn pvr_txr_load_dma(
+        src: *const c_void,
+        dest: pvr_ptr_t,
+        count: c_size_t,
+        block: bool,
+        callback: pvr_dma_callback_t,
+        cbdata: *mut c_void,
+    ) -> c_int;
+    pub fn pvr_dma_load_ta(
+        src: *const c_void,
+        count: c_size_t,
+        block: bool,
+        callback: pvr_dma_callback_t,
+        cbdata: *mut c_void,
+    ) -> c_int;
+    pub fn pvr_dma_yuv_conv(
+        src: *const c_void,
+        count: c_size_t,
+        block: bool,
+        callback: pvr_dma_callback_t,
+        cbdata: *mut c_void,
+    ) -> c_int;
     pub fn pvr_dma_ready() -> bool;
     pub fn pvr_dma_init();
     pub fn pvr_dma_shutdown();
-    pub fn pvr_sq_load(dest: *mut c_void, src: *const c_void, n: c_size_t,
-                       r#type: pvr_dma_type_t) -> *mut c_void;
-    pub fn pvr_sq_set16(dest: *mut c_void, c: u32, n: c_size_t,
-                        r#type: pvr_dma_type_t) -> *mut c_void;
-    pub fn pvr_sq_set32(dest: *mut c_void, c: u32, n: c_size_t,
-                        r#type: pvr_dma_type_t) -> *mut c_void;
+    pub fn pvr_sq_load(
+        dest: *mut c_void,
+        src: *const c_void,
+        n: c_size_t,
+        r#type: pvr_dma_type_t,
+    ) -> *mut c_void;
+    pub fn pvr_sq_set16(
+        dest: *mut c_void,
+        c: u32,
+        n: c_size_t,
+        r#type: pvr_dma_type_t,
+    ) -> *mut c_void;
+    pub fn pvr_sq_set32(
+        dest: *mut c_void,
+        c: u32,
+        n: c_size_t,
+        r#type: pvr_dma_type_t,
+    ) -> *mut c_void;
 }

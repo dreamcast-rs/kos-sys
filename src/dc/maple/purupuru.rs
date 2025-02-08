@@ -41,8 +41,7 @@ pub const PURUPURU_SPECIAL_PULSE: u8        = 1;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn purupuru_rumble(dev: *mut maple_device_t,
-                           effect: *mut purupuru_effect_t) -> c_int;
+    pub fn purupuru_rumble(dev: *mut maple_device_t, effect: *mut purupuru_effect_t) -> c_int;
     pub fn purupuru_rumble_raw(dev: *mut maple_device_t, effect: u32) -> c_int;
     pub fn purupuru_init();
     pub fn purupuru_shutdown();

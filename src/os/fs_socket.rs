@@ -34,22 +34,42 @@ pub struct fs_socket_proto_t {
     pub domain:         c_int,
     pub r#type:         c_int,
     pub protocol:       c_int,
-    pub socket:         Option<unsafe extern "C" fn(s: *mut net_socket_t, domain: c_int, protocol: c_int) -> c_int>,
+    pub socket:         Option<unsafe extern "C" fn(s: *mut net_socket_t, domain: c_int,
+                                                    protocol: c_int) -> c_int>,
     pub close:          Option<unsafe extern "C" fn(hnd: *mut net_socket_t)>,
-    pub accept:         Option<unsafe extern "C" fn(s: *mut net_socket_t, addr: *mut sockaddr, alen: *mut socklen_t) -> c_int>,
-    pub bind:           Option<unsafe extern "C" fn(s: *mut net_socket_t, addr: *mut sockaddr, alen: socklen_t) -> c_int>,
-    pub connect:        Option<unsafe extern "C" fn(s: *mut net_socket_t, addr: *mut sockaddr, alen: socklen_t) -> c_int>,
+    pub accept:         Option<unsafe extern "C" fn(s: *mut net_socket_t, addr: *mut sockaddr,
+                                                    alen: *mut socklen_t) -> c_int>,
+    pub bind:           Option<unsafe extern "C" fn(s: *mut net_socket_t, addr: *mut sockaddr,
+                                                    alen: socklen_t) -> c_int>,
+    pub connect:        Option<unsafe extern "C" fn(s: *mut net_socket_t, addr: *mut sockaddr,
+                                                    alen: socklen_t) -> c_int>,
     pub listen:         Option<unsafe extern "C" fn(s: *mut net_socket_t, backlog: c_int) -> c_int>,
-    pub recvfrom:       Option<unsafe extern "C" fn(s: *mut net_socket_t, buffer: *mut c_void, len: c_size_t, flags: c_int, addr: *mut sockaddr, alen: *mut socklen_t) -> c_ssize_t>,
-    pub sendto:         Option<unsafe extern "C" fn(s: *mut net_socket_t, msg: *const c_void, len: c_size_t, flags: c_int, addr: *const sockaddr, alen: socklen_t) -> c_ssize_t>,
+    pub recvfrom:       Option<unsafe extern "C" fn(s: *mut net_socket_t, buffer: *mut c_void,
+                                                    len: c_size_t, flags: c_int,
+                                                    addr: *mut sockaddr,
+                                                    alen: *mut socklen_t) -> c_ssize_t>,
+    pub sendto:         Option<unsafe extern "C" fn(s: *mut net_socket_t, msg: *const c_void,
+                                                    len: c_size_t, flags: c_int,
+                                                    addr: *const sockaddr,
+                                                    alen: socklen_t) -> c_ssize_t>,
     pub shutdownsock:   Option<unsafe extern "C" fn(s: *mut net_socket_t, how: c_int) -> c_int>,
-    pub input:          Option<unsafe extern "C" fn(src: *mut netif_t, domain: c_int, hdr: *const c_void, data: *const u8, size: c_size_t) -> c_int>,
-    pub getsockopt:     Option<unsafe extern "C" fn(s: *mut net_socket_t, level: c_int, option_name: c_int, option_value: *mut c_void, option_len: *mut socklen_t) -> c_int>,
-    pub setsockopt:     Option<unsafe extern "C" fn(s: *mut net_socket_t, level: c_int, option_name: c_int, option_value: *const c_void, option_len: socklen_t) -> c_int>,
-    pub getsockname:    Option<unsafe extern "C" fn(s: *mut net_socket_t, name: *mut sockaddr, name_len: *mut socklen_t) -> c_int>,
-    pub getpeername:    Option<unsafe extern "C" fn(s: *mut net_socket_t, name: *mut sockaddr, name_len: *mut socklen_t) -> c_int>,
-    pub fcntl:          Option<unsafe extern "C" fn(s: *mut net_socket_t, cmd: c_int, ap: VaList) -> c_int>,
-    pub poll:           Option<unsafe extern "C" fn(s: *mut net_socket_t, events: c_short) -> c_short>,
+    pub input:          Option<unsafe extern "C" fn(src: *mut netif_t, domain: c_int,
+                                                    hdr: *const c_void, data: *const u8,
+                                                    size: c_size_t) -> c_int>,
+    pub getsockopt:     Option<unsafe extern "C" fn(s: *mut net_socket_t, level: c_int,
+                                                    option_name: c_int, option_value: *mut c_void,
+                                                    option_len: *mut socklen_t) -> c_int>,
+    pub setsockopt:     Option<unsafe extern "C" fn(s: *mut net_socket_t, level: c_int,
+                                                    option_name: c_int, option_value: *const c_void,
+                                                    option_len: socklen_t) -> c_int>,
+    pub getsockname:    Option<unsafe extern "C" fn(s: *mut net_socket_t, name: *mut sockaddr,
+                                                    name_len: *mut socklen_t) -> c_int>,
+    pub getpeername:    Option<unsafe extern "C" fn(s: *mut net_socket_t, name: *mut sockaddr,
+                                                    name_len: *mut socklen_t) -> c_int>,
+    pub fcntl:          Option<unsafe extern "C" fn(s: *mut net_socket_t, cmd: c_int,
+                                                    ap: VaList) -> c_int>,
+    pub poll:           Option<unsafe extern "C" fn(s: *mut net_socket_t,
+                                                    events: c_short) -> c_short>,
 }
 
 pub const FS_SOCKET_PROTO_ENTRY: entry = entry {
@@ -68,8 +88,14 @@ unsafe extern "C" {
     pub fn fs_socket_init() -> c_int;
     pub fn fs_socket_shutdown() -> c_int;
     pub fn fs_socket_open_sock(proto: *mut fs_socket_proto_t) -> *mut net_socket_t;
-    pub fn fs_socket_input(src: *mut netif_t, domain: c_int, protocol: c_int,
-                           hdr: *const c_void, data: *const u8, size: c_size_t) -> c_int;
+    pub fn fs_socket_input(
+        src: *mut netif_t,
+        domain: c_int,
+        protocol: c_int,
+        hdr: *const c_void,
+        data: *const u8,
+        size: c_size_t,
+    ) -> c_int;
     pub fn fs_socket_proto_add(proto: *mut fs_socket_proto_t) -> c_int;
     pub fn fs_socket_proto_remove(proto: *mut fs_socket_proto_t) -> c_int;
 }

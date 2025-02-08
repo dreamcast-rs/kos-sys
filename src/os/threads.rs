@@ -4,10 +4,10 @@
 
 use crate::prelude::*;
 
-use crate::os::once::kthread_once_t;
-use crate::os::once::KTHREAD_ONCE_INIT;
-use crate::os::mutex::mutex_t;
 use crate::os::cond::condvar_t;
+use crate::os::mutex::mutex_t;
+use crate::os::once::KTHREAD_ONCE_INIT;
+use crate::os::once::kthread_once_t;
 use crate::os::thread::kthread_t;
 use crate::os::tls::kthread_key_t;
 

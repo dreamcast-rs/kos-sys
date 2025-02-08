@@ -34,20 +34,24 @@ pub type snd_stream_filter_t = Option<unsafe extern "C" fn(hnd: snd_stream_hnd_t
 #[link(name = "kallisti")]
 unsafe extern "C" {
     pub fn snd_stream_set_callback(hnd: snd_stream_hnd_t, cb: snd_stream_callback_t);
-    pub fn snd_stream_set_callback_direct(hnd: snd_stream_hnd_t,
-                                          cb: snd_stream_callback_direct_t);
+    pub fn snd_stream_set_callback_direct(hnd: snd_stream_hnd_t, cb: snd_stream_callback_direct_t);
     pub fn snd_stream_set_userdata(hnd: snd_stream_hnd_t, d: *mut c_void);
     pub fn snd_stream_get_userdata(hnd: snd_stream_hnd_t) -> *mut c_void;
-    pub fn snd_stream_filter_add(hnd: snd_stream_hnd_t, filtfunc: snd_stream_filter_t,
-                                 obj: *mut c_void);
-    pub fn snd_stream_filter_remove(hnd: snd_stream_hnd_t, filtfunc: snd_stream_filter_t,
-                                    obj: *mut c_void);
+    pub fn snd_stream_filter_add(
+        hnd: snd_stream_hnd_t,
+        filtfunc: snd_stream_filter_t,
+        obj: *mut c_void,
+    );
+    pub fn snd_stream_filter_remove(
+        hnd: snd_stream_hnd_t,
+        filtfunc: snd_stream_filter_t,
+        obj: *mut c_void,
+    );
     pub fn snd_stream_prefill(hnd: snd_stream_hnd_t);
     pub fn snd_stream_init() -> c_int;
     pub fn snd_stream_init_ex(channels: c_int, buffer_size: c_size_t) -> c_int;
     pub fn snd_stream_shutdown();
-    pub fn snd_stream_alloc(cb: snd_stream_callback_t, bufsize: c_int)
-                            -> snd_stream_hnd_t;
+    pub fn snd_stream_alloc(cb: snd_stream_callback_t, bufsize: c_int) -> snd_stream_hnd_t;
     pub fn snd_stream_reinit(hnd: snd_stream_hnd_t, cb: snd_stream_callback_t) -> c_int;
     pub fn snd_stream_destroy(hnd: snd_stream_hnd_t);
     pub fn snd_stream_queue_enable(hnd: snd_stream_hnd_t);

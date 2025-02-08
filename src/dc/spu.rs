@@ -18,9 +18,14 @@ unsafe extern "C" {
     pub fn spu_memread(to: *mut c_void, from: c_uintptr_t, length: c_size_t);
     pub fn spu_memset(to: c_uintptr_t, what: u32, length: c_size_t);
     pub fn spu_memset_sq(to: c_uintptr_t, what: u32, length: c_size_t);
-    pub fn spu_dma_transfer(from: *mut c_void, dest: c_uintptr_t, length: c_size_t,
-                            block: c_int, callback: spu_dma_callback_t,
-                            cbdata: *mut c_void) -> c_int;
+    pub fn spu_dma_transfer(
+        from: *mut c_void,
+        dest: c_uintptr_t,
+        length: c_size_t,
+        block: c_int,
+        callback: spu_dma_callback_t,
+        cbdata: *mut c_void,
+    ) -> c_int;
     pub fn spu_enable();
     pub fn spu_disable();
     pub fn spu_cdda_volume(left_volume: c_int, right_volume: c_int);

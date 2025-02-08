@@ -71,8 +71,13 @@ unsafe extern "C" {
     pub fn hw_to_dma_addr(hw_addr: c_uintptr_t) -> dma_addr_t;
     pub fn dma_map_src(ptr: *const c_void, len: c_size_t) -> dma_addr_t;
     pub fn dma_map_dst(ptr: *mut c_void, len: c_size_t) -> dma_addr_t;
-    pub fn dma_transfer(cfg: *const dma_config_t, dst: dma_addr_t, src: dma_addr_t,
-                        len: c_size_t, cb_data: *mut c_void) -> c_int;
+    pub fn dma_transfer(
+        cfg: *const dma_config_t,
+        dst: dma_addr_t,
+        src: dma_addr_t,
+        len: c_size_t,
+        cb_data: *mut c_void,
+    ) -> c_int;
     pub fn dma_wait_complete(channel: dma_channel_t);
     pub fn dma_transfer_get_remaining(channel: dma_channel_t) -> c_size_t;
 }

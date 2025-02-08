@@ -12,7 +12,10 @@ pub struct condvar_t {
     pub dynamic:    c_int,
 }
 
-pub const COND_INITIALIZER: condvar_t = condvar_t { dummy: 0, dynamic: 0 };
+pub const COND_INITIALIZER: condvar_t   = condvar_t {
+    dummy: 0,
+    dynamic: 0,
+};
 
 #[link(name = "kallisti")]
 unsafe extern "C" {

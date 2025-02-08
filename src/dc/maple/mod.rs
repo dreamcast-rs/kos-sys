@@ -255,9 +255,10 @@ unsafe extern "C" {
     pub fn maple_driver_unreg(driver: *mut maple_driver_t) -> c_int;
     pub fn maple_driver_attach(det: *mut maple_frame_t) -> c_int;
     pub fn maple_driver_detach(p: c_int, u: c_int) -> c_int;
-    pub fn maple_driver_foreach(drv: *mut maple_driver_t,
-                                callback: Option<unsafe extern "C" fn(*mut maple_device_t)
-                                -> c_int>) -> c_int;
+    pub fn maple_driver_foreach(
+        drv: *mut maple_driver_t,
+        callback: Option<unsafe extern "C" fn(*mut maple_device_t) -> c_int>,
+    ) -> c_int;
     pub fn maple_attach_callback(functions: u32, cb: maple_attach_callback_t);
     pub fn maple_detach_callback(functions: u32, cb: maple_detach_callback_t);
 

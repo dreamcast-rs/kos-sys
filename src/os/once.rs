@@ -10,6 +10,8 @@ pub const KTHREAD_ONCE_INIT: kthread_once_t  = 0;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn kthread_once(once_control: *mut kthread_once_t,
-                        init_routine: Option<unsafe extern "C" fn()>) -> c_int;
+    pub fn kthread_once(
+        once_control: *mut kthread_once_t,
+        init_routine: Option<unsafe extern "C" fn()>,
+    ) -> c_int;
 }

@@ -14,33 +14,33 @@ pub struct mutex_t {
     pub count:      c_int,
 }
 
-pub const MUTEX_TYPE_NORMAL: c_int      = 0;
-pub const MUTEX_TYPE_OLDNORMAL: c_int   = 1;
-pub const MUTEX_TYPE_ERRORCHECK: c_int  = 2;
-pub const MUTEX_TYPE_RECURSIVE: c_int   = 3;
+pub const MUTEX_TYPE_NORMAL: c_int              = 0;
+pub const MUTEX_TYPE_OLDNORMAL: c_int           = 1;
+pub const MUTEX_TYPE_ERRORCHECK: c_int          = 2;
+pub const MUTEX_TYPE_RECURSIVE: c_int           = 3;
 
-pub const MUTEX_TYPE_DEFAULT: c_int     = MUTEX_TYPE_NORMAL;
+pub const MUTEX_TYPE_DEFAULT: c_int             = MUTEX_TYPE_NORMAL;
 
-pub const MUTEX_INITIALIZER: mutex_t = mutex_t {
-                                           r#type: MUTEX_TYPE_NORMAL,
-                                           dynamic: 0,
-                                           holder: null_mut(),
-                                           count: 0,
-                                       };
+pub const MUTEX_INITIALIZER: mutex_t            = mutex_t {
+    r#type: MUTEX_TYPE_NORMAL,
+    dynamic: 0,
+    holder: null_mut(),
+    count: 0,
+};
 
 pub const ERRORCHECK_MUTEX_INITIALIZER: mutex_t = mutex_t {
-                                                      r#type: MUTEX_TYPE_ERRORCHECK,
-                                                      dynamic: 0,
-                                                      holder: null_mut(),
-                                                      count: 0,
-                                                  };
+    r#type: MUTEX_TYPE_ERRORCHECK,
+    dynamic: 0,
+    holder: null_mut(),
+    count: 0,
+};
 
-pub const RECURSIVE_MUTEX_INITIALIZER: mutex_t = mutex_t {
-                                                     r#type: MUTEX_TYPE_RECURSIVE,
-                                                     dynamic: 0,
-                                                     holder: null_mut(),
-                                                     count: 0,
-                                                 };
+pub const RECURSIVE_MUTEX_INITIALIZER: mutex_t  = mutex_t {
+    r#type: MUTEX_TYPE_RECURSIVE,
+    dynamic: 0,
+    holder: null_mut(),
+    count: 0,
+};
 
 // FIXME: Implement scoped mutex using RAII/Drop
 

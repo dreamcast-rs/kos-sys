@@ -14,7 +14,7 @@ macro_rules! KOS_INIT_FLAG_CALL {
             ret = 1;
         }
         ret
-    }}
+    }};
 }
 
 #[macro_export]

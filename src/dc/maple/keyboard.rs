@@ -3,6 +3,7 @@
 // https://dreamcast.rs/
 
 use crate::prelude::*;
+
 use super::maple_device_t;
 
 pub const KBD_MOD_LCTRL: u8             = 1 << 0;

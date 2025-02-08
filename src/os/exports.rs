@@ -24,7 +24,6 @@ unsafe extern "C" {
     pub static mut arch_symtab: [export_sym_t; 0];
     pub fn export_init();
     pub fn export_lookup(name: *const c_char) -> *mut export_sym_t;
-    pub fn export_lookup_path(name: *const c_char,
-                              path: *const c_char) -> *mut export_sym_t;
+    pub fn export_lookup_path(name: *const c_char, path: *const c_char) -> *mut export_sym_t;
     pub fn export_lookup_addr(addr: c_uintptr_t) -> *mut export_sym_t;
 }

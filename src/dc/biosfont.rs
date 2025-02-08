@@ -217,25 +217,65 @@ unsafe extern "C" {
     pub fn bfont_find_char_jp(ch: u32) -> *mut u8;
     pub fn bfont_find_char_jp_half(ch: u32) -> *mut u8;
     pub fn bfont_find_icon(icon: bfont_vmu_icon_t) -> *mut u8;
-    pub fn bfont_draw_ex(buffer: *mut c_void, bufwidth: u32, fg: u32, bg: u32, bpp: u8,
-                         opaque: bool, c: u32, wide: bool, iskana: bool) -> c_size_t;
-    pub fn bfont_draw(buffer: *mut c_void, bufwidth: u32, opaque: bool,
-                      c: u32) -> c_size_t;
-    pub fn bfont_draw_thin(buffer: *mut c_void, bufwidth: u32, opaque: bool, c: u32,
-                           iskana: bool) -> c_size_t;
-    pub fn bfont_draw_wide(buffer: *mut c_void, bufwidth: u32, opaque: bool,
-                           c: u32) -> c_size_t;
-    pub fn bfont_draw_str_ex(b: *mut c_void, width: u32, fg: u32, bg: u32, bpp: u8,
-                             opaque: bool, str: *const c_char);
-    pub fn bfont_draw_str_ex_fmt(b: *mut c_void, width: u32, fg: u32, bg: u32, bpp: u8,
-                                 opaque: bool, fmt: *const c_char, ...);
-    pub fn bfont_draw_str_ex_vfmt(b: *mut c_void, width: u32, fg: u32, bg: u32, bpp: u8,
-                                  opaque: bool, fmt: *const c_char,
-                                  var_args: *mut VaList);
+    pub fn bfont_draw_ex(
+        buffer: *mut c_void,
+        bufwidth: u32,
+        fg: u32,
+        bg: u32,
+        bpp: u8,
+        opaque: bool,
+        c: u32,
+        wide: bool,
+        iskana: bool,
+    ) -> c_size_t;
+    pub fn bfont_draw(buffer: *mut c_void, bufwidth: u32, opaque: bool, c: u32) -> c_size_t;
+    pub fn bfont_draw_thin(
+        buffer: *mut c_void,
+        bufwidth: u32,
+        opaque: bool,
+        c: u32,
+        iskana: bool,
+    ) -> c_size_t;
+    pub fn bfont_draw_wide(buffer: *mut c_void, bufwidth: u32, opaque: bool, c: u32) -> c_size_t;
+    pub fn bfont_draw_str_ex(
+        b: *mut c_void,
+        width: u32,
+        fg: u32,
+        bg: u32,
+        bpp: u8,
+        opaque: bool,
+        str: *const c_char,
+    );
+    pub fn bfont_draw_str_ex_fmt(
+        b: *mut c_void,
+        width: u32,
+        fg: u32,
+        bg: u32,
+        bpp: u8,
+        opaque: bool,
+        fmt: *const c_char,
+        ...
+    );
+    pub fn bfont_draw_str_ex_vfmt(
+        b: *mut c_void,
+        width: u32,
+        fg: u32,
+        bg: u32,
+        bpp: u8,
+        opaque: bool,
+        fmt: *const c_char,
+        var_args: *mut VaList,
+    );
     pub fn bfont_draw_str(b: *mut c_void, width: u32, opaque: bool, str: *const c_char);
-    pub fn bfont_draw_str_fmt(b: *mut c_void, width: u32, opaque: bool,
-                              fmt: *const c_char, ...);
-    pub fn bfont_draw_str_vram_vfmt(x: u32, y: u32, fg: u32, bg: u32, opaque: bool,
-                                    fmt: *const c_char, var_args: *mut VaList);
+    pub fn bfont_draw_str_fmt(b: *mut c_void, width: u32, opaque: bool, fmt: *const c_char, ...);
+    pub fn bfont_draw_str_vram_vfmt(
+        x: u32,
+        y: u32,
+        fg: u32,
+        bg: u32,
+        opaque: bool,
+        fmt: *const c_char,
+        var_args: *mut VaList,
+    );
     pub fn bfont_draw_str_vram_fmt(x: u32, y: u32, opaque: bool, fmt: *const c_char, ...);
 }

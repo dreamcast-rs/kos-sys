@@ -3,6 +3,7 @@
 // https://dreamcast.rs/
 
 use crate::prelude::*;
+
 use super::maple_device_t;
 
 #[repr(C)]
@@ -27,10 +28,13 @@ pub const DREAMEYE_IMAGEREQ_START: c_int            = 0x40;
 #[link(name = "kallisti")]
 unsafe extern "C" {
     pub fn dreameye_get_image_count(dev: *mut maple_device_t, block: c_int) -> c_int;
-    pub fn dreameye_get_image(dev: *mut maple_device_t, image: u8, data: *mut *mut u8,
-                              img_sz: *mut c_int) -> c_int;
-    pub fn dreameye_erase_image(dev: *mut maple_device_t, image: u8,
-                                block: c_int) -> c_int;
+    pub fn dreameye_get_image(
+        dev: *mut maple_device_t,
+        image: u8,
+        data: *mut *mut u8,
+        img_sz: *mut c_int,
+    ) -> c_int;
+    pub fn dreameye_erase_image(dev: *mut maple_device_t, image: u8, block: c_int) -> c_int;
     pub fn dreameye_init();
     pub fn dreameye_shutdown();
 }

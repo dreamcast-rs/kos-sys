@@ -179,8 +179,13 @@ pub enum irq_src_t {
 unsafe extern "C" {
     pub fn irq_set_context(regbank: *mut irq_context_t);
     pub fn irq_get_context() -> *mut irq_context_t;
-    pub fn irq_create_context(context: *mut irq_context_t, stack_pointer: u32,
-                              routine: u32, args: *const u32, usermode: bool);
+    pub fn irq_create_context(
+        context: *mut irq_context_t,
+        stack_pointer: u32,
+        routine: u32,
+        args: *const u32,
+        usermode: bool,
+    );
     pub fn irq_inside_int() -> c_int;
     pub fn irq_disable() -> irq_mask_t;
     pub fn irq_enable();

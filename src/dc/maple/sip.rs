@@ -3,6 +3,7 @@
 // https://dreamcast.rs/
 
 use crate::prelude::*;
+
 use super::maple_device_t;
 
 pub type sip_sample_cb = Option<unsafe extern "C" fn(dev: *mut maple_device_t,
@@ -35,8 +36,7 @@ unsafe extern "C" {
     pub fn sip_set_gain(dev: *mut maple_device_t, g: c_uint) -> c_int;
     pub fn sip_set_sample_type(dev: *mut maple_device_t, r#type: c_uint) -> c_int;
     pub fn sip_set_frequency(dev: *mut maple_device_t, freq: c_uint) -> c_int;
-    pub fn sip_start_sampling(dev: *mut maple_device_t, cb: sip_sample_cb,
-                              block: c_int) -> c_int;
+    pub fn sip_start_sampling(dev: *mut maple_device_t, cb: sip_sample_cb, block: c_int) -> c_int;
     pub fn sip_stop_sampling(dev: *mut maple_device_t, block: c_int) -> c_int;
     pub fn sip_init();
     pub fn sip_shutdown();

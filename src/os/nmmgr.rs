@@ -10,8 +10,8 @@ pub struct nmmgr_list_t {
 }
 
 pub const NMMGR_LIST_INIT: nmmgr_list_t = nmmgr_list_t {
-                                              lh_first: null_mut()
-                                          };
+    lh_first: null_mut()
+};
 
 #[repr(C)]
 pub struct nmmgr_handler_t {

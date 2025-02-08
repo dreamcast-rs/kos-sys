@@ -138,15 +138,17 @@ unsafe extern "C" {
     pub fn cdrom_exec_cmd(cmd: c_int, param: *mut c_void) -> c_int;
     pub fn cdrom_exec_cmd_timed(cmd: c_int, param: *mut c_void, timeout: c_int) -> c_int;
     pub fn cdrom_get_status(status: *mut c_int, disc_type: *mut c_int) -> c_int;
-    pub fn cdrom_change_dataype(sector_part: c_int, cdxa: c_int,
-                                sector_size: c_int) -> c_int;
-    pub fn cdrom_change_datatype(sector_part: c_int, cdxa: c_int,
-                                 sector_size: c_int) -> c_int;
+    pub fn cdrom_change_dataype(sector_part: c_int, cdxa: c_int, sector_size: c_int) -> c_int;
+    pub fn cdrom_change_datatype(sector_part: c_int, cdxa: c_int, sector_size: c_int) -> c_int;
     pub fn cdrom_reinit() -> c_int;
     pub fn cdrom_reinit_ex(sector_part: c_int, cdxa: c_int, sector_size: c_int) -> c_int;
     pub fn cdrom_read_toc(toc_buffer: *mut CDROM_TOC, session: c_int) -> c_int;
-    pub fn cdrom_read_sectors_ex(buffer: *mut c_void, sector: c_int,
-                                 cnt: c_int, mode: c_int) -> c_int;
+    pub fn cdrom_read_sectors_ex(
+        buffer: *mut c_void,
+        sector: c_int,
+        cnt: c_int,
+        mode: c_int,
+    ) -> c_int;
     pub fn cdrom_read_sectors(buffer: *mut c_void, sector: c_int, cnt: c_int) -> c_int;
     pub fn cdrom_get_subcode(buffer: *mut c_void, buflen: c_int, which: c_int) -> c_int;
     pub fn cdrom_locate_data_track(toc: *mut CDROM_TOC) -> u32;

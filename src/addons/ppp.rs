@@ -70,8 +70,7 @@ unsafe extern "C" {
     pub fn ppp_set_flags(flags: u32);
     pub fn ppp_connect() -> c_int;
     pub fn ppp_scif_init(bps: c_int) -> c_int;
-    pub fn ppp_modem_init(number: *const c_char, blind: c_int,
-                          conn_rate: *mut c_int) -> c_int;
+    pub fn ppp_modem_init(number: *const c_char, blind: c_int, conn_rate: *mut c_int) -> c_int;
     pub fn ppp_init() -> c_int;
     pub fn ppp_shutdown() -> c_int;
 }

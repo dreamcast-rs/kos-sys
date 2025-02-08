@@ -3,6 +3,7 @@
 // https://dreamcast.rs/
 
 use crate::prelude::*;
+
 use super::maple::maple_device_t;
 
 #[repr(C, packed)]
@@ -55,25 +56,54 @@ unsafe extern "C" {
     pub fn vmufs_root_write(dev: *mut maple_device_t, root_buf: *mut vmu_root_t) -> c_int;
     pub fn vmu_dir_blocks(root_buf: *mut vmu_root_t) -> c_int;
     pub fn vmu_fat_blocks(root_buf: *mut vmu_root_t) -> c_int;
-    pub fn vmu_dir_read(dev: *mut maple_device_t, root_buf: *mut vmu_root_t,
-                        dir_buf: *mut vmu_dir_t) -> c_int;
-    pub fn vmu_dir_write(dev: *mut maple_device_t, root: *mut vmu_root_t,
-                         dir_buf: *mut vmu_dir_t) -> c_int;
-    pub fn vmufs_fat_read(dev: *mut maple_device_t, root: *mut vmu_root_t,
-                          fat_buf: *mut u16) -> c_int;
-    pub fn vmufs_fat_write(dev: *mut maple_device_t, root: *mut vmu_root_t,
-                           fat_buf: *mut u16) -> c_int;
-    pub fn vmufs_dir_find(root: *mut vmu_root_t, dir: *mut vmu_dir_t,
-                          r#fn: *const c_char) -> c_int;
-    pub fn vmufs_dir_add(root: *mut vmu_root_t, dir: *mut vmu_dir_t,
-                         newdirent: *mut vmu_dir_t) -> c_int;
-    pub fn vmufs_file_read(dev: * mut maple_device_t, fat: *mut u16,
-                           dirent: *mut vmu_dir_t, outbuf: *mut c_void) -> c_int;
-    pub fn vmufs_file_write(dev: *mut maple_device_t, root: *mut vmu_root_t,
-                            fat: *mut u16, dir: *mut vmu_dir_t, newdirent: *mut vmu_dir_t,
-                            filebuf: *mut c_void, size: c_int) -> c_int;
-    pub fn vmufs_file_delete(root: *mut vmu_root_t, fat: *mut u16, dir: *mut vmu_dir_t,
-                             r#fn: *const c_char) -> c_int;
+    pub fn vmu_dir_read(
+        dev: *mut maple_device_t,
+        root_buf: *mut vmu_root_t,
+        dir_buf: *mut vmu_dir_t,
+    ) -> c_int;
+    pub fn vmu_dir_write(
+        dev: *mut maple_device_t,
+        root: *mut vmu_root_t,
+        dir_buf: *mut vmu_dir_t,
+    ) -> c_int;
+    pub fn vmufs_fat_read(
+        dev: *mut maple_device_t,
+        root: *mut vmu_root_t,
+        fat_buf: *mut u16,
+    ) -> c_int;
+    pub fn vmufs_fat_write(
+        dev: *mut maple_device_t,
+        root: *mut vmu_root_t,
+        fat_buf: *mut u16,
+    ) -> c_int;
+    pub fn vmufs_dir_find(root: *mut vmu_root_t, dir: *mut vmu_dir_t, r#fn: *const c_char)
+    -> c_int;
+    pub fn vmufs_dir_add(
+        root: *mut vmu_root_t,
+        dir: *mut vmu_dir_t,
+        newdirent: *mut vmu_dir_t,
+    ) -> c_int;
+    pub fn vmufs_file_read(
+        dev: *mut maple_device_t,
+        fat: *mut u16,
+        dirent: *mut vmu_dir_t,
+        outbuf: *mut c_void,
+    ) -> c_int;
+    pub fn vmufs_file_write(
+        dev: *mut maple_device_t,
+        root: *mut vmu_root_t,
+        fat: *mut u16,
+        dir: *mut vmu_dir_t,
+        newdirent: *mut vmu_dir_t,
+        filebuf: *mut c_void,
+        size: c_int,
+    ) -> c_int;
+    pub fn vmufs_file_delete(
+        root: *mut vmu_root_t,
+        fat: *mut u16,
+        dir: *mut vmu_dir_t,
+        r#fn: *const c_char,
+    ) -> c_int;
     pub fn vmufs_fat_free(root: *mut vmu_root_t, fat: *mut u16) -> c_int;
     pub fn vmufs_dir_free(root: *mut vmu_root_t, dir: *mut vmu_dir_t) -> c_int;
     pub fn vmufs_mutex_lock() -> c_int;

@@ -40,8 +40,9 @@ unsafe extern "C" {
     pub fn timer_spin_sleep(ms: c_int);
     pub fn timer_spin_delay_us(us: c_ushort);
     pub fn timer_spin_delay_ns(ns: c_ushort);
-    pub fn timer_primary_set_callback(callback: timer_primary_callback_t)
-                                      -> timer_primary_callback_t;
+    pub fn timer_primary_set_callback(
+        callback: timer_primary_callback_t,
+    ) -> timer_primary_callback_t;
     pub fn timer_primary_weakeup(millis: u32);
     pub fn timer_init() -> c_int;
     pub fn timer_shutdown();

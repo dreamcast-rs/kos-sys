@@ -55,8 +55,12 @@ pub const AI_ADDRCONFIG: c_int  = 0x00000040;
 unsafe extern "C" {
     pub static mut h_errno: c_int;
     pub fn freeaddrinfo(ai: *mut addrinfo);
-    pub fn getaddrinfo(nodename: *const c_char, servname: *const c_char,
-                       hints: *const addrinfo, res: *mut *mut addrinfo) -> c_int;
+    pub fn getaddrinfo(
+        nodename: *const c_char,
+        servname: *const c_char,
+        hints: *const addrinfo,
+        res: *mut *mut addrinfo,
+    ) -> c_int;
     pub fn gethostbyname(name: *const c_char) -> *mut hostent;
     pub fn gethostbyname2(name: *const c_char, af: c_int) -> *mut hostent;
 }

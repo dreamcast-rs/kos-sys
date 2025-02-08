@@ -2,8 +2,9 @@
 // Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
-use crate::arch::irq::irq_context_t;
 use crate::prelude::*;
+
+use crate::arch::irq::irq_context_t;
 
 #[repr(C)]
 pub enum ubc_address_mask_t {
@@ -80,8 +81,11 @@ pub type ubc_break_func_t = Option<unsafe extern "C" fn(bp: *const ubc_breakpoin
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn ubc_add_breakpoint(bp: *const ubc_breakpoint_t, callback: ubc_break_func_t,
-                              user_data: *mut c_void) -> bool;
+    pub fn ubc_add_breakpoint(
+        bp: *const ubc_breakpoint_t,
+        callback: ubc_break_func_t,
+        user_data: *mut c_void,
+    ) -> bool;
     pub fn ubc_remove_breakpoint(bp: *const ubc_breakpoint_t) -> bool;
     pub fn ubc_clear_breakpoints();
     pub fn ubc_init();

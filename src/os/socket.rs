@@ -79,28 +79,45 @@ pub const SOMAXCONN: c_int      = 32;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn accept(socket: c_int, address: *mut sockaddr,
-                  address_len: *mut socklen_t) -> c_int;
+    pub fn accept(socket: c_int, address: *mut sockaddr, address_len: *mut socklen_t) -> c_int;
     pub fn bind(socket: c_int, address: *const sockaddr, address_len: socklen_t) -> c_int;
-    pub fn connect(socket: c_int, address: *const sockaddr,
-                   address_len: socklen_t) -> c_int;
+    pub fn connect(socket: c_int, address: *const sockaddr, address_len: socklen_t) -> c_int;
     pub fn listen(socket: c_int, backlog: c_int) -> c_int;
-    pub fn recv(socket: c_int, buffer: *mut c_void, length: c_size_t,
-                flags: c_int) -> c_ssize_t;
-    pub fn recvfrom(socket: c_int, buffer: *mut c_void, length: c_size_t, flags: c_int,
-                    address: *mut sockaddr, address_len: *mut socklen_t) -> c_ssize_t;
-    pub fn send(socket: c_int, message: *const c_void, length: c_size_t,
-                flags: c_int) -> c_ssize_t;
-    pub fn sendto(socket: c_int, message: *const c_void, length: c_size_t, flags: c_int,
-                  dest_addr: *const sockaddr, dest_len: socklen_t) -> c_ssize_t;
+    pub fn recv(socket: c_int, buffer: *mut c_void, length: c_size_t, flags: c_int) -> c_ssize_t;
+    pub fn recvfrom(
+        socket: c_int,
+        buffer: *mut c_void,
+        length: c_size_t,
+        flags: c_int,
+        address: *mut sockaddr,
+        address_len: *mut socklen_t,
+    ) -> c_ssize_t;
+    pub fn send(socket: c_int, message: *const c_void, length: c_size_t, flags: c_int)
+    -> c_ssize_t;
+    pub fn sendto(
+        socket: c_int,
+        message: *const c_void,
+        length: c_size_t,
+        flags: c_int,
+        dest_addr: *const sockaddr,
+        dest_len: socklen_t,
+    ) -> c_ssize_t;
     pub fn shutdown(socket: c_int, how: c_int) -> c_int;
     pub fn socket(domain: c_int, r#type: c_int, protocol: c_int) -> c_int;
-    pub fn getsockname(socket: c_int, name: *mut sockaddr,
-                       name_len: *mut socklen_t) -> c_int;
-    pub fn getpeername(socket: c_int, name: *mut sockaddr,
-                       name_len: *mut socklen_t) -> c_int;
-    pub fn getsockopt(socket: c_int, level: c_int, option_name: c_int,
-                      option_value: *mut c_void, option_len: *mut socklen_t) -> c_int;
-    pub fn setsockopt(socket: c_int, level: c_int, option_name: c_int,
-                      option_value: *const c_void, option_len: socklen_t) -> c_int;
+    pub fn getsockname(socket: c_int, name: *mut sockaddr, name_len: *mut socklen_t) -> c_int;
+    pub fn getpeername(socket: c_int, name: *mut sockaddr, name_len: *mut socklen_t) -> c_int;
+    pub fn getsockopt(
+        socket: c_int,
+        level: c_int,
+        option_name: c_int,
+        option_value: *mut c_void,
+        option_len: *mut socklen_t,
+    ) -> c_int;
+    pub fn setsockopt(
+        socket: c_int,
+        level: c_int,
+        option_name: c_int,
+        option_value: *const c_void,
+        option_len: socklen_t,
+    ) -> c_int;
 }

@@ -18,14 +18,15 @@ unsafe extern "C" {
     pub fn snd_sh4_to_aica_stop();
     pub fn snd_aia_to_sh4(packetout: *mut c_void) -> c_int;
     pub fn snd_poll_resp();
-    pub fn snd_pcm16_split(data: *mut u32, left: *mut u32, right: *mut u32,
-                           size: c_size_t);
-    pub fn snd_pcm16_split_sq(data: *mut u32, left: c_uintptr_t,
-                              right: c_uintptr_t, size: c_size_t);
-    pub fn snd_pcm8_split(data: *mut u32, left: *mut u32, right: *mut u32,
-                          size: c_size_t);
-    pub fn snd_adpcm_split(data: *mut u32, left: *mut u32, right: *mut u32,
-                          size: c_size_t);
+    pub fn snd_pcm16_split(data: *mut u32, left: *mut u32, right: *mut u32, size: c_size_t);
+    pub fn snd_pcm16_split_sq(
+        data: *mut u32,
+        left: c_uintptr_t,
+        right: c_uintptr_t,
+        size: c_size_t,
+    );
+    pub fn snd_pcm8_split(data: *mut u32, left: *mut u32, right: *mut u32, size: c_size_t);
+    pub fn snd_adpcm_split(data: *mut u32, left: *mut u32, right: *mut u32, size: c_size_t);
     pub fn snd_get_pos(ch: c_uint) -> u16;
     pub fn snd_is_playing(ch: c_uint) -> bool;
 }

@@ -135,13 +135,11 @@ pub struct flashrom_ispcfg_t {
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn flashrom_info(part: c_int, start_out: *mut c_int,
-                         size_out: *mut c_int) -> c_int;
+    pub fn flashrom_info(part: c_int, start_out: *mut c_int, size_out: *mut c_int) -> c_int;
     pub fn flashrom_read(offset: c_int, buffer_out: *mut c_void, bytes: c_int) -> c_int;
     pub fn flashrom_write(offset: c_int, buffer: *mut c_void, bytes: c_int) -> c_int;
     pub fn flashrom_delete(offset: c_int) -> c_int;
-    pub fn flashrom_get_block(partid: c_int, blockid: c_int,
-                              buffer_out: *mut u8) -> c_int;
+    pub fn flashrom_get_block(partid: c_int, blockid: c_int, buffer_out: *mut u8) -> c_int;
     pub fn flashrom_get_syscfg(out: *mut flashrom_syscfg_t) -> c_int;
     pub fn flashrom_get_region() -> c_int;
     pub fn flashrom_get_ispcfg(out: *mut flashrom_ispcfg_t) -> c_int;

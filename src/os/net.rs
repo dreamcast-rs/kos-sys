@@ -170,48 +170,96 @@ unsafe extern "C" {
     pub static mut net_default_dev: *mut netif_t;
     pub fn net_arp_init() -> c_int;
     pub fn net_arp_shutdown();
-    pub fn net_arp_insert(nif: *mut netif_t, mac: *const u8,
-                          ip: *const u8, timestamp: u64) -> c_int;
-    pub fn net_arp_lookup(nif: *mut netif_t, ip_in: *const u8, mac_out: *mut u8,
-                          pkt: *const ip_hdr_t, data: *const u8,
-                          data_size: c_int) -> c_int;
-    pub fn net_arp_revlookup(nif: *mut netif_t, ip_out: *mut u8,
-                             mac_in: *const u8) -> c_int;
+    pub fn net_arp_insert(
+        nif: *mut netif_t,
+        mac: *const u8,
+        ip: *const u8,
+        timestamp: u64,
+    ) -> c_int;
+    pub fn net_arp_lookup(
+        nif: *mut netif_t,
+        ip_in: *const u8,
+        mac_out: *mut u8,
+        pkt: *const ip_hdr_t,
+        data: *const u8,
+        data_size: c_int,
+    ) -> c_int;
+    pub fn net_arp_revlookup(nif: *mut netif_t, ip_out: *mut u8, mac_in: *const u8) -> c_int;
     pub fn net_arp_input(nif: *mut netif_t, pkt: *const u8, len: c_int) -> c_int;
     pub fn net_arp_query(nif: *mut netif_t, ip: *const u8) -> c_int;
     pub fn net_input(device: *mut netif_t, data: *const u8, len: c_int) -> c_int;
     pub fn net_input_set_target(t: net_input_func) -> net_input_func;
-    pub fn net_icmp_send_echo(net: *mut netif_t, ipaddr: *const u8, ident: u16,
-                              seq: u16, data: *const u8, size: c_size_t) -> c_int;
-    pub fn net_icmp_send_dest_unreach(net: *mut netif_t, code: u8,
-                                      msg: *const u8) -> c_int;
-    pub fn net_icmp_send_time_exceeded(net: *mut netif_t, code: u8,
-                                       msg: *const u8) -> c_int;
+    pub fn net_icmp_send_echo(
+        net: *mut netif_t,
+        ipaddr: *const u8,
+        ident: u16,
+        seq: u16,
+        data: *const u8,
+        size: c_size_t,
+    ) -> c_int;
+    pub fn net_icmp_send_dest_unreach(net: *mut netif_t, code: u8, msg: *const u8) -> c_int;
+    pub fn net_icmp_send_time_exceeded(net: *mut netif_t, code: u8, msg: *const u8) -> c_int;
     pub fn net_ipv4_get_stats() -> net_ipv4_stats_t;
     pub fn net_ipv4_address(addr: *const u8) -> u32;
     pub fn net_ipv4_parse_address(addr: u32, out: *mut u8);
-    pub fn net_icmp6_send_echo(net: *mut netif_t, dst: *const in6_addr, ident: u16,
-                               seq: u16, data: *const u8, size: c_size_t) -> c_int;
-    pub fn net_icmp6_send_nsol(net: *mut netif_t, dst: *const in6_addr,
-                               target: *const in6_addr, dupdet: c_int) -> c_int;
-    pub fn net_icmp6_send_nadv(net: *mut netif_t, dst: *const in6_addr,
-                               target: *const in6_addr, sol: c_int) -> c_int;
+    pub fn net_icmp6_send_echo(
+        net: *mut netif_t,
+        dst: *const in6_addr,
+        ident: u16,
+        seq: u16,
+        data: *const u8,
+        size: c_size_t,
+    ) -> c_int;
+    pub fn net_icmp6_send_nsol(
+        net: *mut netif_t,
+        dst: *const in6_addr,
+        target: *const in6_addr,
+        dupdet: c_int,
+    ) -> c_int;
+    pub fn net_icmp6_send_nadv(
+        net: *mut netif_t,
+        dst: *const in6_addr,
+        target: *const in6_addr,
+        sol: c_int,
+    ) -> c_int;
     pub fn net_icmp6_send_rsol(net: *mut netif_t) -> c_int;
-    pub fn net_icmp6_send_dest_unreach(net: *mut netif_t, code: u8, ppkt: *const u8,
-                                       psz: c_size_t) -> c_int;
-    pub fn net_icmp6_send_time_exceeded(net: *mut netif_t, code: u8, ppkt: *const u8,
-                                        psz: c_size_t) -> c_int;
-    pub fn net_icmp6_send_param_prob(net: *mut netif_t, code: u8, ptr: u32,
-                                     ppkt: *const u8, psz: c_size_t) -> c_int;
+    pub fn net_icmp6_send_dest_unreach(
+        net: *mut netif_t,
+        code: u8,
+        ppkt: *const u8,
+        psz: c_size_t,
+    ) -> c_int;
+    pub fn net_icmp6_send_time_exceeded(
+        net: *mut netif_t,
+        code: u8,
+        ppkt: *const u8,
+        psz: c_size_t,
+    ) -> c_int;
+    pub fn net_icmp6_send_param_prob(
+        net: *mut netif_t,
+        code: u8,
+        ptr: u32,
+        ppkt: *const u8,
+        psz: c_size_t,
+    ) -> c_int;
     pub fn net_ipv6_get_stats() -> net_ipv6_stats_t;
     pub fn net_ndp_init() -> c_int;
     pub fn net_ndp_shutdown();
     pub fn net_ndp_gc();
-    pub fn net_ndp_insert(nif: *mut netif_t, mac: *const u8, ip: *const in6_addr,
-                          unsol: c_int) -> c_int;
-    pub fn net_ndp_lookup(net: *mut netif_t, ip: *const in6_addr, mac_out: *mut u8,
-                          pkt: *const ipv6_hdr_t, data: *const u8,
-                          data_size: c_int) -> c_int;
+    pub fn net_ndp_insert(
+        nif: *mut netif_t,
+        mac: *const u8,
+        ip: *const in6_addr,
+        unsol: c_int,
+    ) -> c_int;
+    pub fn net_ndp_lookup(
+        net: *mut netif_t,
+        ip: *const in6_addr,
+        mac_out: *mut u8,
+        pkt: *const ipv6_hdr_t,
+        data: *const u8,
+        data_size: c_int,
+    ) -> c_int;
     pub fn net_udp_get_stats() -> net_udp_stats_t;
     pub fn net_udp_init() -> c_int;
     pub fn net_udp_shutdown();

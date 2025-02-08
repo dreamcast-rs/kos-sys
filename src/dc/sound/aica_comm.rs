@@ -45,8 +45,7 @@ pub struct aica_channel_t {
 #[macro_export]
 macro_rules! AICA_CMDSTR_CHANNEL {
     ($t:ident, $cmdr:ident, $chanr:ident) => {
-        let mut $t = [0u32; size_of::<aica_cmd_t>()
-                          + size_of::<aica_channel_t>() / 4];
+        let mut $t = [0u32; size_of::<aica_cmd_t>() + size_of::<aica_channel_t>() / 4];
         let $cmdr = $t.as_mut_ptr() as *mut aica_cmd_t;
         let $chanr = &mut (*$cmdr).cmd_data as *mut _ as *mut aica_channel_t;
     };

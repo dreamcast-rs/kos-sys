@@ -74,8 +74,12 @@ unsafe extern "C" {
     pub static dcload_type: c_int;
     pub fn dcloadsyscall(syscall: c_uint, ...) -> c_int;
     pub fn dcload_printk(str: *const c_char);
-    pub fn dcload_gdbpacket(in_buf: *const c_char, in_size: c_size_t,
-                            out_buf: *mut c_char, out_size: c_size_t) -> c_size_t;
+    pub fn dcload_gdbpacket(
+        in_buf: *const c_char,
+        in_size: c_size_t,
+        out_buf: *mut c_char,
+        out_size: c_size_t,
+    ) -> c_size_t;
     pub fn fs_dcload_init_console();
     pub fn fs_dcload_init();
     pub fn fs_dcload_shutdown();

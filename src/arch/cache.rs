@@ -4,7 +4,7 @@
 
 use crate::prelude::*;
 
-pub const CPU_CACHE_BLOCK_SIZE: usize  = 32;
+pub const CPU_CACHE_BLOCK_SIZE: usize   = 32;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {

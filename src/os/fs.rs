@@ -121,8 +121,7 @@ unsafe extern "C" {
     pub fn fs_fcntl(fd: file_t, cmd: c_int, ...) -> c_int;
     pub fn fs_link(path1: *const c_char, path2: *const c_char) -> c_int;
     pub fn fs_symlink(path1: *const c_char, path2: *const c_char) -> c_int;
-    pub fn fs_readlink(path: *const c_char, buf: *mut c_char,
-                       bufsize: c_size_t) -> c_ssize_t;
+    pub fn fs_readlink(path: *const c_char, buf: *mut c_char, bufsize: c_size_t) -> c_ssize_t;
     pub fn fs_stat(path: *const c_char, buf: *mut stat, flag: c_int) -> c_int;
     pub fn fs_rewinddir(hnd: file_t) -> c_int;
     pub fn fs_fstat(hnd: file_t, buf: *mut stat) -> c_int;
@@ -134,8 +133,7 @@ unsafe extern "C" {
     pub fn fs_getwd() -> *const c_char;
     pub fn fs_copy(src: *const c_char, dst: *const c_char) -> c_ssize_t;
     pub fn fs_load(src: *const c_char, out_ptr: *mut *mut c_void) -> c_ssize_t;
-    pub fn fs_path_append(dst: *mut c_char, src: *const c_char,
-                          len: c_size_t) -> c_ssize_t;
+    pub fn fs_path_append(dst: *mut c_char, src: *const c_char, len: c_size_t) -> c_ssize_t;
     pub fn fs_normalize_path(path: *const c_char, resolved: *mut c_char) -> *mut c_char;
     pub fn fs_init() -> c_int;
     pub fn fs_shutdown();

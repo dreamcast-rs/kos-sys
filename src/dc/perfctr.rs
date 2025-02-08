@@ -54,10 +54,16 @@ pub enum perf_cntr_event_t {
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn perf_cntr_config(counter: perf_cntr_t, event_mode: *mut perf_cntr_event_t,
-                            clock_type: *mut perf_cntr_clock_t) -> bool;
-    pub fn perf_cntr_start(counter: perf_cntr_t, event_mode: perf_cntr_event_t,
-                           clock_type: perf_cntr_clock_t);
+    pub fn perf_cntr_config(
+        counter: perf_cntr_t,
+        event_mode: *mut perf_cntr_event_t,
+        clock_type: *mut perf_cntr_clock_t,
+    ) -> bool;
+    pub fn perf_cntr_start(
+        counter: perf_cntr_t,
+        event_mode: perf_cntr_event_t,
+        clock_type: perf_cntr_clock_t,
+    );
     pub fn perf_cntr_stop(counter: perf_cntr_t);
     pub fn perf_cntr_resume(counter: perf_cntr_t);
     pub fn perf_cntr_clear(counter: perf_cntr_t);

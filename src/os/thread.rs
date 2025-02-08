@@ -6,6 +6,7 @@ use crate::prelude::*;
 
 use crate::arch::types::{prio_t, tid_t};
 use crate::arch::irq::irq_context_t;
+
 use super::tls::kthread_tls_kv_list;
 
 pub const KOS_PID: pid_t                    = 1;
@@ -132,12 +133,16 @@ unsafe extern "C" {
     pub fn thd_by_tid(tid: tid_t) -> *mut kthread_t;
     pub fn thd_add_to_runnable(t: *mut kthread_t, front_of_line: bool);
     pub fn thd_remove_from_runnable(thd: *mut kthread_t) -> c_int;
-    pub fn thd_create(detach: bool, routine:
-                      Option<unsafe extern "C" fn(param: *mut c_void) -> *mut c_void>,
-                      param: *mut c_void) -> *mut kthread_t;
-    pub fn thd_create_ex(attr: *const kthread_attr_t, routine:
-                      Option<unsafe extern "C" fn(param: *mut c_void) -> *mut c_void>,
-                      param: *mut c_void) -> *mut kthread_t;
+    pub fn thd_create(
+        detach: bool,
+        routine: Option<unsafe extern "C" fn(param: *mut c_void) -> *mut c_void>,
+        param: *mut c_void,
+    ) -> *mut kthread_t;
+    pub fn thd_create_ex(
+        attr: *const kthread_attr_t,
+        routine: Option<unsafe extern "C" fn(param: *mut c_void) -> *mut c_void>,
+        param: *mut c_void,
+    ) -> *mut kthread_t;
     pub fn thd_destroy(thd: *mut kthread_t) -> c_int;
     pub fn thd_exit(rv: *mut c_void) -> !;
     pub fn thd_schedule(front_of_line: bool, now: u64);
@@ -159,12 +164,14 @@ unsafe extern "C" {
     pub fn thd_get_hz() -> c_uint;
     pub fn thd_join(thd: *mut kthread_t, value_ptr: *mut *mut c_void) -> c_int;
     pub fn thd_detach(thd: *mut kthread_t) -> c_int;
-    pub fn thd_each(cb: Option<unsafe extern "C" fn(thd: *mut kthread_t,
-                    user_data: *mut c_void) -> c_int>, data: *mut c_void) -> c_int;
-    pub fn thd_pslist(pf: Option<unsafe extern "C" fn(fmt: *const c_char, ...) -> c_int>)
-                      -> c_int;
-    pub fn thd_pslist_queue(pf: Option<unsafe extern "C"
-                            fn(fmt: *const c_char, ...) -> c_int>) -> c_int;
+    pub fn thd_each(
+        cb: Option<unsafe extern "C" fn(thd: *mut kthread_t, user_data: *mut c_void) -> c_int>,
+        data: *mut c_void,
+    ) -> c_int;
+    pub fn thd_pslist(pf: Option<unsafe extern "C" fn(fmt: *const c_char, ...) -> c_int>) -> c_int;
+    pub fn thd_pslist_queue(
+        pf: Option<unsafe extern "C" fn(fmt: *const c_char, ...) -> c_int>,
+    ) -> c_int;
     pub fn thd_init() -> c_int;
     pub fn thd_shutdown();
 }

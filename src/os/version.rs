@@ -13,7 +13,8 @@ pub const fn KOS_VERSION_MAKE(major: u8, minor: u16, patch: u8) -> kos_version_t
     ((major as u32) << 16) | ((minor as u32) << 8) | (patch as u32)
 }
 
-pub const KOS_VERSION: kos_version_t = KOS_VERSION_MAKE(KOS_VERSION_MAJOR, KOS_VERSION_MINOR, KOS_VERSION_PATCH);
+pub const KOS_VERSION: kos_version_t =
+    KOS_VERSION_MAKE(KOS_VERSION_MAJOR, KOS_VERSION_MINOR, KOS_VERSION_PATCH);
 
 #[inline]
 pub const fn KOS_VERSION_STRING() -> &'static str {

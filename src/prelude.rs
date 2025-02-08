@@ -68,16 +68,12 @@ impl<T> FAM<T> {
 
     #[inline]
     pub unsafe fn as_slice(&self, len: usize) -> &[T] {
-        unsafe {
-            core::slice::from_raw_parts(self.as_ptr(), len)
-        }
+        unsafe { core::slice::from_raw_parts(self.as_ptr(), len) }
     }
 
     #[inline]
     pub unsafe fn as_mut_slice(&mut self, len: usize) -> &mut [T] {
-        unsafe {
-            core::slice::from_raw_parts_mut(self.as_mut_ptr(), len)
-        }
+        unsafe { core::slice::from_raw_parts_mut(self.as_mut_ptr(), len) }
     }
 }
 

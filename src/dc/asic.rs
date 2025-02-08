@@ -72,11 +72,13 @@ pub type asic_evt_handler = Option<unsafe extern "C" fn(code: u32, data: *mut c_
 #[link(name = "kallisti")]
 unsafe extern "C" {
     pub fn asic_evt_set_handler(code: u16, handler: asic_evt_handler, data: *mut c_void);
-    pub fn asic_evt_request_threaded_handler(code: u16, handler: asic_evt_handler,
-                                             data: *mut c_void,
-                                             ack_and_mask: Option<unsafe extern "C"
-                                             fn(u16)>, unmask: Option<unsafe extern "C"
-                                             fn(u16)>) -> c_int;
+    pub fn asic_evt_request_threaded_handler(
+        code: u16,
+        handler: asic_evt_handler,
+        data: *mut c_void,
+        ack_and_mask: Option<unsafe extern "C" fn(u16)>,
+        unmask: Option<unsafe extern "C" fn(u16)>,
+    ) -> c_int;
     pub fn asic_evt_remove_handler(code: u16);
     pub fn asic_evt_disable_all();
     pub fn asic_evt_disable(code: u16, irqlevel: u8);

@@ -9,8 +9,16 @@ pub const F_PI: c_float = 3.1415926;
 #[link(name = "kallisti")]
 unsafe extern "C" {
     #[link_name = "fipr_wrapper"]
-    pub fn fipr(x: c_float, y: c_float, z: c_float, w: c_float,
-                a: c_float, b: c_float, c: c_float, d: c_float) -> c_float;
+    pub fn fipr(
+        x: c_float,
+        y: c_float,
+        z: c_float,
+        w: c_float,
+        a: c_float,
+        b: c_float,
+        c: c_float,
+        d: c_float,
+    ) -> c_float;
     #[link_name = "fipr_magnitude_sqr_wrapper"]
     pub fn fiper_magnitude_sqr(x: c_float, y: c_float, z: c_float, w: c_float) -> c_float;
     #[link_name = "fsin_wrapper"]
