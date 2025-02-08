@@ -13,6 +13,7 @@ pub mod purupuru;
 pub mod sip;
 pub mod vmu;
 
+// FIXME: Detect if MAPLE_DMA_DEBUG enabled
 pub const MAPLE_DMA_DEBUG: c_uint           = 0;
 pub const MAPLE_IRQ_DEBUG: c_uint           = 0;
 
@@ -83,9 +84,14 @@ pub struct maple_driver_list {
 }
 
 #[repr(C)]
+pub struct frameq {
+    pub tqe_next:   *mut maple_frame_t,
+    pub tqe_prev:   *mut *mut maple_frame_t,
+}
+
+#[repr(C)]
 pub struct maple_frame_t {
-    pub frame_next:             *mut maple_frame_t,
-    pub frame_prev:             *mut *mut maple_frame_t,
+    pub frameq:                 frameq,
     pub cmd:                    c_int,
     pub dst_port:               c_int,
     pub dst_unit:               c_int,
@@ -97,7 +103,12 @@ pub struct maple_frame_t {
     pub dev:                    *mut maple_device_t,
     pub callback:               Option<unsafe extern "C" fn(*mut maple_state_t,
                                                             *mut maple_frame_t)>,
+    // FIXME:
+    // if MAPLE_DMA_DEBUG enabled:
+    //   pub recv_buf_arr:      [u8; 1024 + 1024 + 32],
+    // else
     pub recv_buf_arr:           [u8; 1024 + 32],
+    // endif
 }
 
 pub const MAPLE_FRAME_VACANT: c_int         = 0;
@@ -149,9 +160,14 @@ pub struct maple_port_t {
 }
 
 #[repr(C)]
+pub struct drv_list {
+    pub le_next:    *mut maple_driver_t,
+    pub le_prev:    *mut *mut maple_driver_t,
+}
+
+#[repr(C)]
 pub struct maple_driver_t {
-    pub next:                   *mut maple_driver_t,
-    pub prev:                   *mut *mut maple_driver_t,
+    pub drv_list:               drv_list,
     pub functions:              u32,
     pub name:                   *const c_char,
     pub status_size:            c_size_t,
@@ -182,18 +198,14 @@ pub struct maple_state_t {
 
 pub const MAPLE_DMA_SIZE: c_size_t          = 16384;
 
-#[macro_export]
-macro_rules! maple_read {
-    ($addr:expr) => {
-        *(($addr as *const u32))
-    };
+#[inline]
+pub unsafe fn maple_read(addr: usize) -> u32 {
+    unsafe { read_volatile(addr as *const u32) }
 }
 
-#[macro_export]
-macro_rules! maple_write {
-    ($addr:expr, $value:expr) => {
-        *(($addr as *mut u32)) = $value
-    };
+#[inline]
+pub unsafe fn maple_write(addr: usize, value: u32) {
+    unsafe { write_volatile(addr as *mut u32, value) }
 }
 
 pub const MAPLE_EOK: c_int                  = 0;
@@ -241,6 +253,11 @@ unsafe extern "C" {
     pub fn maple_gun_enable(port: c_int) -> c_int;
     pub fn maple_gun_disable();
     pub fn maple_gun_read_pos(x: *mut c_int, y: *mut c_int);
+    // FIXME:
+    // if MAPLE_DMA_DEBUG defined:
+    // pub fn maple_sentinel_setup(buffer: *mut c_void, bufsize: c_int);
+    // pub fn maple_sentinel_verify(bufname: *const c_char, buffer: *mut c_void, bufsize: c_int);
+    // endif
 
     // maple_queue
     pub fn maple_queue_flush();
