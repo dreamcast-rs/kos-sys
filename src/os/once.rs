@@ -6,7 +6,7 @@ use crate::prelude::*;
 
 pub type kthread_once_t = c_int; // volatile
 
-pub const KTHEAD_ONCE_INIT: kthread_once_t  = 0;
+pub const KTHREAD_ONCE_INIT: kthread_once_t  = 0;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {

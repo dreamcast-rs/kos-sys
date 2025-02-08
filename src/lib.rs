@@ -1,5 +1,5 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
 #![doc(html_logo_url = "https://kos-sys.dreamcast.wiki/kos-rs_logo.png")]
@@ -27,7 +27,6 @@ pub mod addons;
 pub mod arch;
 pub mod dc;
 pub mod os;
-pub mod malloc;
 
 // Re-export dependency crates
 pub extern crate libc;

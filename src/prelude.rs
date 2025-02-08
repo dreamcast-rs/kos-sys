@@ -36,12 +36,15 @@ pub use libc::{
     c_ulong,
     c_ushort,
     c_void,
+    clockid_t,
     FILE,
     off_t,
     off64_t,
     pid_t,
+    sched_param,
     stat,
     time_t,
+    timespec,
 };
 
 #[repr(C)]
