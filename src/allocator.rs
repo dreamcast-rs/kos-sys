@@ -1,24 +1,29 @@
 // Rust for KallistiOS/Dreamcast
-// Copyright (C) 2024 Eric Fradella
+// Copyright (C) 2024, 2025 Eric Fradella
 // https://dreamcast.rs/
 
-use alloc::alloc::{GlobalAlloc, Layout};
-struct KOSAllocator;
+use crate::prelude::*;
 
-extern "C" {
-    pub fn memalign(alignment: usize, size: usize) -> *mut u8;
-    pub fn free(ptr: *mut u8);
-}
+use crate::os::malloc::free;
+use crate::os::stdlib::posix_memalign;
+
+extern crate alloc;
+use alloc::alloc::{GlobalAlloc, Layout};
+
+struct KOSAllocator;
 
 unsafe impl GlobalAlloc for KOSAllocator {
     #[inline]
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
-        memalign(layout.align(), layout.size()) as *mut u8
+        let mut out = null_mut();
+        let align = layout.align().max(size_of::<usize>());
+        let ret = unsafe { posix_memalign(&mut out, align, layout.size()) };
+        if ret != 0 { null_mut() } else { out as *mut u8 }
     }
 
     #[inline]
     unsafe fn dealloc(&self, ptr: *mut u8, _layout: Layout) {
-        free(ptr as *mut u8);
+        unsafe { free(ptr as *mut c_void) };
     }
 }
 
