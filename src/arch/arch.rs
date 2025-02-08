@@ -23,9 +23,9 @@ pub const THD_STACK_SIZE: c_size_t          = 32768;
 
 pub const THD_KERNEL_STACK_SIZE: c_size_t   = 64 * 1024;
 
-pub const DEFAULT_VID_MODE: c_int           = crate::dc::video::vid_display_mode_generic_t::DM_640x480 as c_int;
+pub const DEFAULT_VID_MODE: c_int           = crate::dc::video::DM_640x480;
 
-pub const DEFAULT_PIXEL_MODE: c_int         = crate::dc::video::vid_pixel_mode_t::PM_RGB565 as c_int;
+pub const DEFAULT_PIXEL_MODE: c_int         = crate::dc::video::PM_RGB565;
 
 pub const DEFAULT_SERIAL_BAUD: c_int        = 115200;
 

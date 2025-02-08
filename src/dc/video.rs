@@ -4,58 +4,49 @@
 
 use crate::prelude::*;
 
-pub const CT_ANY: i8            = -1;
-pub const CT_VGA: i8            = 0;
-pub const CT_NONE: i8           = 1;
-pub const CT_RGB: i8            = 2;
-pub const CT_COMPOSITE: i8      = 3;
+pub const CT_ANY: i8                                    = -1;
+pub const CT_VGA: i8                                    = 0;
+pub const CT_NONE: i8                                   = 1;
+pub const CT_RGB: i8                                    = 2;
+pub const CT_COMPOSITE: i8                              = 3;
 
-#[repr(C)]
-pub enum vid_pixel_mode_t {
-    PM_RGB555   = 0,
-    PM_RGB565   = 1,
-    PM_RGB888P  = 2,
-    PM_RGB0888  = 3,
-}
+pub type vid_pixel_mode_t = c_int;
+pub const PM_RGB555: vid_pixel_mode_t                   = 0;
+pub const PM_RGB565: vid_pixel_mode_t                   = 1;
+pub const PM_RGB888P: vid_pixel_mode_t                  = 2;
+pub const PM_RGB0888: vid_pixel_mode_t                  = 3;
+pub const PM_RGB888: vid_pixel_mode_t                   = 3;
 
-pub const PM_RGB888: vid_pixel_mode_t = vid_pixel_mode_t::PM_RGB0888;
+pub type vid_display_mode_generic_t = c_int;
+pub const DM_GENERIC_FIRST: vid_display_mode_generic_t  = 0x1000;
+pub const DM_320x240: vid_display_mode_generic_t        = 0x1000;
+pub const DM_640x480: vid_display_mode_generic_t        = 0x1001;
+pub const DM_256x256: vid_display_mode_generic_t        = 0x1002;
+pub const DM_768x480: vid_display_mode_generic_t        = 0x1003;
+pub const DM_768x576: vid_display_mode_generic_t        = 0x1004;
+pub const DM_GENERIC_LAST: vid_display_mode_generic_t   = DM_768x576;
 
-#[repr(C)]
-pub enum vid_display_mode_generic_t {
-    DM_320x240 = 0x1000,
-    DM_640x480,
-    DM_256x256,
-    DM_768x480,
-    DM_768x576,
-    DM_MULTIBUFFER
-}
+pub const DM_MULTIBUFFER: vid_display_mode_generic_t    = 0x2000;
 
-pub const DM_GENERIC_FIRST: vid_display_mode_generic_t = vid_display_mode_generic_t::DM_320x240;
-pub const DM_GENERIC_LAST: vid_display_mode_generic_t = vid_display_mode_generic_t::DM_768x576;
+pub type vid_display_mode_t = c_int;
+pub const DM_INVALID: vid_display_mode_t                = 0;
+pub const DM_320x240_VGA: vid_display_mode_t            = 1;
+pub const DM_320x240_NTSC: vid_display_mode_t           = 2;
+pub const DM_640x480_VGA: vid_display_mode_t            = 3;
+pub const DM_640x480_NTSC_IL: vid_display_mode_t        = 4;
+pub const DM_640x480_PAL_IL: vid_display_mode_t         = 5;
+pub const DM_256x256_PAL_IL: vid_display_mode_t         = 6;
+pub const DM_768x480_NTSC_IL: vid_display_mode_t        = 7;
+pub const DM_768x576_PAL_IL: vid_display_mode_t         = 8;
+pub const DM_768x480_PAL_IL: vid_display_mode_t         = 9;
+pub const DM_320x240_PAL: vid_display_mode_t            = 10;
+pub const DM_SENTINEL: vid_display_mode_t               = 11;
+pub const DM_MODE_COUNT: usize                          = 12;
 
-pub const DM_MULTIBUFFER: u32   = 0x2000;
-
-#[repr(C)]
-pub enum vid_display_mode_t {
-    DM_INVALID = 0,
-    DM_320x240_VGA = 1,
-    DM_320x240_NTSC,
-    DM_640x480_VGA,
-    DM_640x480_NTSC_IL,
-    DM_640x480_PAL_IL,
-    DM_256x256_PAL_IL,
-    DM_768x480_NTSC_IL,
-    DM_768x576_PAL_IL,
-    DM_768x480_PAL_IL,
-    DM_320x240_PAL,
-    DM_SENTINEL,
-    DM_MODE_COUNT,
-}
-
-pub const VID_INTERLACE: u32    = 0x00000001;
-pub const VID_LINEDOUBLE: u32   = 0x00000002;
-pub const VID_PIXELDOUBLE: u32  = 0x00000004;
-pub const VID_PAL: u32          = 0x00000008;
+pub const VID_INTERLACE: u32                            = 0x00000001;
+pub const VID_LINEDOUBLE: u32                           = 0x00000002;
+pub const VID_PIXELDOUBLE: u32                          = 0x00000004;
+pub const VID_PAL: u32                                  = 0x00000008;
 
 #[repr(C)]
 pub struct vid_mode_t {
@@ -80,6 +71,8 @@ pub struct vid_mode_t {
 
 #[link(name = "kallisti")]
 unsafe extern "C" {
+    pub static mut vid_builtin: [vid_mode_t; DM_MODE_COUNT as usize];
+    pub static mut vid_mode: *mut vid_mode_t;
     pub static mut vram_s: *mut u16;
     pub static mut vram_l: *mut u32;
     pub fn vid_check_cable() -> i8;
