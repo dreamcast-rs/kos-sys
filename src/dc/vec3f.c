@@ -54,15 +54,18 @@ vec3f_t vec_rotd_yz_wrapper(vec3f_t vec, vec3f_t origin, float angle) {
 
 void vec3f_dot_wrapper(float x1, float y1, float z1,
                        float x2, float y2, float z2, float w) {
+    (void) w;
     vec3f_dot(x1, y1, z1, x2, y2, z2, w);
 }
 
 void vec3f_length_wrapper(float x, float y, float z, float w) {
+    (void) w;
     vec3f_length(x, y, z, w);
 }
 
 void vec3f_distance_wrapper(float x1, float y1, float z1,
                             float x2, float y2, float z2, float w) {
+    (void) w;
     vec3f_distance(x1, y1, z1, x2, y2, z2, w);
 }
 
@@ -73,6 +76,9 @@ void vec3f_normalize_wrapper(float x, float y, float z) {
 void vec3f_sub_normalize_wrapper(float x1, float y1, float z1,
                                  float x2, float y2, float z2,
                                  float x3, float y3, float z3) {
+    (void) x3;
+    (void) y3;
+    (void) z3;
     vec3f_sub_normalize(x1, y1, z1, x2, y2, z2, x3, y3, z3);
 }
 

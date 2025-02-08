@@ -20,7 +20,5 @@ fn main() {
         .file("src/dc/pvr.c")
         .file("src/dc/sq.c")
         .file("src/dc/vec3f.c")
-        .flag("-Wno-unused-but-set-parameter")
-        .flag("-Wno-unused-parameter")
         .compile("kossysc");
 }
