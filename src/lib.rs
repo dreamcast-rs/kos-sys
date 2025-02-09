@@ -18,6 +18,8 @@
 //! See [dreamcast.rs](https://dreamcast.rs) or the [dreamcast.wiki](https://dreamcast.wiki)
 //! for more information on setting up KallistiOS and Rust to use this crate.
 
+mod type_checks;
+
 pub mod prelude;
 
 #[cfg(feature = "allocator")]
