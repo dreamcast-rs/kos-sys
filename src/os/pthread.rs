@@ -4,6 +4,9 @@
 
 use crate::prelude::*;
 
+use crate::os::sched_param::sched_param;
+use crate::os::types::clockid_t;
+
 use super::pthreadtypes::*;
 
 pub const PTHREAD_PROCESS_PRIVATE: c_int        = 0;
