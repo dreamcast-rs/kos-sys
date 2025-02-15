@@ -69,9 +69,19 @@ pub const ASIC_IRQ_DEFAULT: u8                  = ASIC_IRQ9;
 
 pub type asic_evt_handler = Option<unsafe extern "C" fn(code: u32, data: *mut c_void)>;
 
+#[repr(C)]
+pub struct asic_evt_handler_entry_t {
+    hdl:    asic_evt_handler,
+    data:   *mut c_void,
+}
+
 #[link(name = "kallisti")]
 unsafe extern "C" {
-    pub fn asic_evt_set_handler(code: u16, handler: asic_evt_handler, data: *mut c_void);
+    pub fn asic_evt_set_handler(
+        code: u16,
+        handler: asic_evt_handler,
+        data: *mut c_void
+    ) -> asic_evt_handler_entry_t;
     pub fn asic_evt_request_threaded_handler(
         code: u16,
         handler: asic_evt_handler,
