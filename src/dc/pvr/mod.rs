@@ -6,13 +6,15 @@ use crate::prelude::*;
 
 use crate::{BIT, GENMASK};
 
+use mem::pvr_ptr_t;
+
 pub mod dma;
 pub mod fog;
+pub mod mem;
 pub mod pal;
 pub mod regs;
 pub mod txr;
 
-pub type pvr_ptr_t = *mut c_void;
 pub type pvr_list_t = u32;
 
 // gen struct for pvr_poly_cxt_t
@@ -619,12 +621,6 @@ unsafe extern "C" {
     pub fn pvr_set_zclip(zc: c_float);
     pub fn pvr_get_vbl_count() -> c_int;
     pub fn pvr_get_stats(stat: *mut pvr_stats_t) -> c_int;
-    pub fn pvr_mem_malloc(size: c_size_t) -> pvr_ptr_t;
-    pub fn pvr_mem_free(chunk: pvr_ptr_t);
-    pub fn pvr_mem_available() -> c_size_t;
-    pub fn pvr_mem_reset();
-    pub fn pvr_mem_print_list();
-    pub fn pvr_mem_stats();
     pub fn pvr_vertex_dma_enabled() -> c_int;
     pub fn pvr_set_vertbuf(list: pvr_list_t, buffer: *mut c_void, len: c_size_t) -> *mut c_void;
     pub fn pvr_vertbuf_tail(list: pvr_list_t) -> *mut c_void;

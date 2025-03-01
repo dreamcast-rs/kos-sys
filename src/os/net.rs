@@ -80,7 +80,7 @@ pub struct netif_list {
     lh_first:                   *mut netif_t,
 }
 
-#[repr(C, packed)]
+#[repr(C)]
 pub struct ip_hdr_t {
     pub version_ihl:            u8,
     pub tos:                    u8,
@@ -94,7 +94,7 @@ pub struct ip_hdr_t {
     pub dest:                   u32,
 }
 
-#[repr(C, packed)]
+#[repr(C)]
 pub struct ipv6_hdr_t {
     pub version_lclass:         u8,
     pub hclass_lflow:           u8,

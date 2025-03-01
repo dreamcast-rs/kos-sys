@@ -6,10 +6,19 @@ use crate::prelude::*;
 
 use crate::os::blockdev::kos_blockdev_t;
 
-pub const G1_ATA_MASTER: u8     = 0x00;
-pub const G1_ATA_MASTER_ALT: u8 = 0x90;
-pub const G1_ATA_SLAVE: u8      = 0xB0;
-pub const G1_ATA_LBA_MODE: u8   = 0x40;
+pub const G1_ATA_MASTER: u8                             = 0x00;
+pub const G1_ATA_MASTER_ALT: u8                         = 0x90;
+pub const G1_ATA_SLAVE: u8                              = 0xB0;
+pub const G1_ATA_LBA_MODE: u8                           = 0x40;
+pub const G1_ATA_BUS_PROTECTION: u32                    = 0x005F74E4;
+pub const G1_ATA_BUS_PROTECTION_STATUS: u32             = 0x005F74EC;
+pub const G1_ATA_BUS_PROTECTION_STATUS_IN_PROGRESS: u32 = 0x00;
+pub const G1_ATA_BUS_PROTECTION_STATUS_FAILED: u32      = 0x02;
+pub const G1_ATA_BUS_PROTECTION_STATUS_PASSED: u32      = 0x03;
+pub const G1_ATA_DMA_PROTECTION: u32                    = 0x005F74B8;
+pub const G1_ATA_DMA_UNLOCK_CODE: u32                   = 0x8843;
+pub const G1_ATA_DMA_UNLOCK_SYSMEM: u32                 = G1_ATA_DMA_UNLOCK_CODE << 16 | 0x407F;
+pub const G1_ATA_DMA_UNLOCK_ALLMEM: u32                 = G1_ATA_DMA_UNLOCK_CODE << 16 | 0x007F;
 
 #[link(name = "kallisti")]
 unsafe extern "C" {

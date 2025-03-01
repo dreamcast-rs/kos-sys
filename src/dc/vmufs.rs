@@ -6,7 +6,7 @@ use crate::prelude::*;
 
 use super::maple::maple_device_t;
 
-#[repr(C, packed)]
+#[repr(C)]
 pub struct vmu_timestamp_t {
     pub cent:           u8,
     pub year:           u8,
@@ -18,7 +18,7 @@ pub struct vmu_timestamp_t {
     pub dow:            u8,
 }
 
-#[repr(C, packed)]
+#[repr(C)]
 pub struct vmu_root_t {
     pub magic:          [u8; 16],
     pub use_custom:     u8,
@@ -36,7 +36,7 @@ pub struct vmu_root_t {
     pub unk2:           [u8; 430],
 }
 
-#[repr(C, packed)]
+#[repr(C)]
 pub struct vmu_dir_t {
     pub filetype:       u8,
     pub copyprotect:    u8,
