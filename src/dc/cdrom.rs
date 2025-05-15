@@ -136,7 +136,8 @@ macro_rules! TOC_TRACK {
 unsafe extern "C" {
     pub fn cdrom_set_sector_size(size: c_int) -> c_int;
     pub fn cdrom_exec_cmd(cmd: c_int, param: *mut c_void) -> c_int;
-    pub fn cdrom_exec_cmd_timed(cmd: c_int, param: *mut c_void, timeout: c_int) -> c_int;
+    pub fn cdrom_exec_cmd_timed(cmd: c_int, param: *mut c_void, timeout: u32) -> c_int;
+    pub fn cdrom_abort_cmd(timeout: u32, abort_dma: bool) -> c_int;
     pub fn cdrom_get_status(status: *mut c_int, disc_type: *mut c_int) -> c_int;
     pub fn cdrom_change_dataype(sector_part: c_int, cdxa: c_int, sector_size: c_int) -> c_int;
     pub fn cdrom_change_datatype(sector_part: c_int, cdxa: c_int, sector_size: c_int) -> c_int;

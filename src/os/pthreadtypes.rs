@@ -14,7 +14,7 @@ pub struct pthread_mutexattr_t {
 
 #[repr(C)]
 pub struct pthread_rwlockattr_t {
-    _opaque:        [u8; 0],
+    _unused:        [c_char; 0],
 }
 
 pub const __PTHREAD_HAVE_CONDATTR_TYPE: c_int   = 1;
@@ -28,7 +28,7 @@ pub union pthread_condattr_t {
 
 #[repr(C)]
 pub struct pthread_barrierattr_t {
-    _opaque:        [u8; 0],
+    _unused:        [c_char; 0],
 }
 
 pub const __PTHREAD_HAVE_ATTR_TYPE: c_int       = 1;
