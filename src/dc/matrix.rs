@@ -12,6 +12,7 @@ unsafe extern "C" {
     pub fn mat_load(src: *const matrix_t);
     pub fn mat_identity();
     pub fn mat_apply(src: *const matrix_t);
+    pub fn mat_multiply(dst: *mut matrix_t, src: *const matrix_t);
     pub fn mat_transform(
         invecs: *const vector_t,
         outvecs: *mut vector_t,

@@ -6,14 +6,17 @@ use crate::prelude::*;
 
 use crate::{BIT, GENMASK};
 
+use header::pvr_poly_hdr_t;
 use mem::pvr_ptr_t;
 
 pub mod dma;
 pub mod fog;
+pub mod header;
 pub mod mem;
 pub mod pal;
 pub mod regs;
 pub mod txr;
+
 
 pub type pvr_list_t = u32;
 
@@ -118,28 +121,8 @@ pub struct pvr_sprite_cxt_t {
 }
 
 
-pub const PVR_LIST_OP_POLY: pvr_list_t          = 0;
-pub const PVR_LIST_OP_MOD: pvr_list_t           = 1;
-pub const PVR_LIST_TR_POLY: pvr_list_t          = 2;
-pub const PVR_LIST_TR_MOD: pvr_list_t           = 3;
-pub const PVR_LIST_PT_POLY: pvr_list_t          = 4;
-
 pub const PVR_SHADE_FLAT: c_int                 = 0;
 pub const PVR_SHADE_GOURAUD: c_int              = 1;
-
-pub const PVR_DEPTHCMP_NEVER: c_int             = 0;
-pub const PVR_DEPTHCMP_LESS: c_int              = 1;
-pub const PVR_DEPTHCMP_EQUAL: c_int             = 2;
-pub const PVR_DEPTHCMP_LEQUAL: c_int            = 3;
-pub const PVR_DEPTHCMP_GREATER: c_int           = 4;
-pub const PVR_DEPTHCMP_NOTEQUAL: c_int          = 5;
-pub const PVR_DEPTHCMP_GEQUAL: c_int            = 6;
-pub const PVR_DEPTHCMP_ALWAYS: c_int            = 7;
-
-pub const PVR_CULLING_NONE: c_int               = 0;
-pub const PVR_CULLING_SMALL: c_int              = 1;
-pub const PVR_CULLING_CCW: c_int                = 2;
-pub const PVR_CULLING_CW: c_int                 = 3;
 
 pub const PVR_DEPTHWRITE_ENABLE: c_int          = 0;
 pub const PVR_DEPTHWRITE_DISABLE: c_int         = 1;
@@ -147,26 +130,8 @@ pub const PVR_DEPTHWRITE_DISABLE: c_int         = 1;
 pub const PVR_TEXTURE_DISABLE: c_int            = 0;
 pub const PVR_TEXTURE_ENABLE: c_int             = 1;
 
-pub const PVR_BLEND_ZERO: c_int                 = 0;
-pub const PVR_BLEND_ONE: c_int                  = 1;
-pub const PVR_BLEND_DESTCOLOR: c_int            = 2;
-pub const PVR_BLEND_INVDESTCOLOR: c_int         = 3;
-pub const PVR_BLEND_SRCALPHA: c_int             = 4;
-pub const PVR_BLEND_INVSRCALPHA: c_int          = 5;
-pub const PVR_BLEND_DESTALPHA: c_int            = 6;
-pub const PVR_BLEND_INVDESTALPHA: c_int         = 7;
-
 pub const PVR_BLEND_DISABLE: c_int              = 0;
 pub const PVR_BLEND_ENABLE: c_int               = 1;
-
-pub const PVR_FOG_TABLE: c_int                  = 0;
-pub const PVR_FOG_VERTEX: c_int                 = 1;
-pub const PVR_FOG_DISABLE: c_int                = 2;
-pub const PVR_FOG_TABLE2: c_int                 = 3;
-
-pub const PVR_USERCLIP_DISABLE: c_int           = 0;
-pub const PVR_USERCLIP_INSIDE: c_int            = 2;
-pub const PVR_USERCLIP_OUTSIDE: c_int           = 3;
 
 pub const PVR_CLRCLAMP_DISABLE: c_int           = 0;
 pub const PVR_CLRCLAMP_ENABLE: c_int            = 1;
@@ -190,12 +155,6 @@ pub const PVR_UVCLAMP_V: c_int                  = 1;
 pub const PVR_UVCLAMP_U: c_int                  = 2;
 pub const PVR_UVCLAMP_UV: c_int                 = 3;
 
-pub const PVR_FILTER_NONE: c_int                = 0;
-pub const PVR_FILTER_NEAREST: c_int             = 0;
-pub const PVR_FILTER_BILINEAR: c_int            = 2;
-pub const PVR_FILTER_TRILINEAR1: c_int          = 4;
-pub const PVR_FILTER_TRILINEAR2: c_int          = 6;
-
 pub const PVR_MIPBIAS_NORMAL: c_int             = PVR_MIPBIAS_1_00;
 pub const PVR_MIPBIAS_0_25: c_int               = 1;
 pub const PVR_MIPBIAS_0_50: c_int               = 2;
@@ -212,11 +171,6 @@ pub const PVR_MIPBIAS_3_00: c_int               = 12;
 pub const PVR_MIPBIAS_3_25: c_int               = 13;
 pub const PVR_MIPBIAS_3_50: c_int               = 14;
 pub const PVR_MIPBIAS_3_75: c_int               = 15;
-
-pub const PVR_TXRENV_REPLACE: c_int             = 0;
-pub const PVR_TXRENV_MODULATE: c_int            = 1;
-pub const PVR_TXRENV_DECAL: c_int               = 2;
-pub const PVR_TXRENV_MODULATEALPHA: c_int       = 3;
 
 pub const PVR_MIPMAP_DISABLE: c_int             = 0;
 pub const PVR_MIPMAP_ENABLE: c_int              = 1;
@@ -264,65 +218,10 @@ pub const PVR_MODIFIER_OTHER_POLY: c_int        = 0;
 pub const PVR_MODIFIER_INCLUDE_LAST_POLY: c_int = 1;
 pub const PVR_MODIFIER_EXCLUDE_LAST_POLY: c_int = 2;
 
-#[repr(C, align(32))]
-pub struct pvr_poly_hdr_t {
-    pub cmd:                    u32,
-    pub mode1:                  u32,
-    pub mode2:                  u32,
-    pub mode3:                  u32,
-    pub d1:                     u32,
-    pub d2:                     u32,
-    pub d3:                     u32,
-    pub d4:                     u32,
-}
-
-#[repr(C, align(32))]
-pub struct pvr_poly_ic_hdr_t {
-    pub cmd:                    u32,
-    pub mode1:                  u32,
-    pub mode2:                  u32,
-    pub mode3:                  u32,
-    pub a:                      c_float,
-    pub r:                      c_float,
-    pub g:                      c_float,
-    pub b:                      c_float,
-}
-
-#[repr(C, align(32))]
-pub struct pvr_poly_mod_hdr_t {
-    pub cmd:                    u32,
-    pub mode1:                  u32,
-    pub mode2_0:                u32,
-    pub mode3_0:                u32,
-    pub mode2_1:                u32,
-    pub mode3_1:                u32,
-    pub d1:                     u32,
-    pub d2:                     u32,
-}
-
-#[repr(C, align(32))]
-pub struct pvr_sprite_hdr_t {
-    pub cmd:                    u32,
-    pub mode1:                  u32,
-    pub mode2:                  u32,
-    pub mode3:                  u32,
-    pub argb:                   u32,
-    pub oargb:                  u32,
-    pub d1:                     u32,
-    pub d2:                     u32,
-}
-
-#[repr(C, align(32))]
-pub struct pvr_mod_hdr_t {
-    pub cmd:                    u32,
-    pub mode1:                  u32,
-    pub d1:                     u32,
-    pub d2:                     u32,
-    pub d3:                     u32,
-    pub d4:                     u32,
-    pub d5:                     u32,
-    pub d6:                     u32,
-}
+pub type pvr_poly_ic_hdr_t = pvr_poly_hdr_t;
+pub type pvr_poly_mod_hdr_t = pvr_poly_hdr_t;
+pub type pvr_sprite_hdr_t = pvr_poly_hdr_t;
+pub type pvr_mod_hdr_t = pvr_poly_hdr_t;
 
 #[repr(C, align(32))]
 pub struct pvr_vertex_t {
@@ -564,7 +463,7 @@ pub const PVR_TA_PM2_ALPHA: u32                 = BIT!(20);
 pub const PVR_TA_PM2_TXRALPHA: u32              = BIT!(19);
 pub const PVR_TA_PM2_UVFLIP: u32                = GENMASK!(18, 17);
 pub const PVR_TA_PM2_UVCLAMP: u32               = GENMASK!(16, 15);
-pub const PVR_TA_PM2_FILTER: u32                = GENMASK!(14, 12);
+pub const PVR_TA_PM2_FILTER: u32                = GENMASK!(14, 13);
 pub const PVR_TA_PM2_MIPBIAS: u32               = GENMASK!(11, 8);
 pub const PVR_TA_PM2_TXRENV: u32                = GENMASK!(7, 6);
 pub const PVR_TA_PM2_USIZE: u32                 = GENMASK!(5, 3);

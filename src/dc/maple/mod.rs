@@ -177,6 +177,8 @@ pub struct maple_driver_t {
                                                             -> c_int>,
     pub detach:                 Option<unsafe extern "C" fn(drv: *mut maple_driver_t,
                                                             dev: *mut maple_device_t)>,
+    pub user_attach:            Option<unsafe extern "C" fn(dev: *mut maple_device_t)>,
+    pub user_detach:            Option<unsafe extern "C" fn(dev: *mut maple_device_t)>,
 }
 
 #[repr(C)]

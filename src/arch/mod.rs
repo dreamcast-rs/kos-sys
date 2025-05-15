@@ -13,6 +13,7 @@ pub mod memory;
 pub mod rtc;
 pub mod stack;
 pub mod timer;
+pub mod tls_static;
 pub mod trap;
 pub mod types;
 pub mod wdt;

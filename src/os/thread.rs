@@ -43,12 +43,6 @@ pub enum kthread_state_t {
     STATE_FINISHED  = 0x0004,
 }
 
-#[repr(C)]
-pub struct tcbhead_t {
-    pub dtv:            *mut c_void,
-    pub pointer_guard:  c_uintptr_t,
-}
-
 // FIXME:
 // Treating _reent as an opaque type for now
 // 316 bytes on Newlib 4.5.0
@@ -104,7 +98,7 @@ pub struct kthread_t {
     thd_errno:          c_int,
     thd_reent:          _reent,
     tls_list:           kthread_tls_kv_list,
-    tcbhead:            *mut tcbhead_t,
+    tls_hnd:            *mut c_void,
     rv:                 *mut c_void,
 }
 
@@ -160,6 +154,7 @@ unsafe extern "C" {
     pub fn thd_get_errno(thd: *mut kthread_t) -> *mut c_int;
     pub fn thd_get_reent(thd: *mut kthread_t) -> *mut _reent;
     pub fn thd_get_cpu_time(thd: *mut kthread_t) -> u64;
+    pub fn thd_get_total_cpu_time() -> u64;
     pub fn thd_set_hz(hertz: c_uint) -> c_int;
     pub fn thd_get_hz() -> c_uint;
     pub fn thd_join(thd: *mut kthread_t, value_ptr: *mut *mut c_void) -> c_int;

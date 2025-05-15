@@ -15,6 +15,7 @@ fn main() {
         .expect("Missing $KOS_CFLAGS -- KallistiOS environment not sourced!")
         .file("src/arch/cache.c")
         .file("src/dc/fmath.c")
+        .file("src/dc/fs_vmu.c")
         .file("src/dc/g2bus.c")
         .file("src/dc/matrix.c")
         .file("src/dc/pvr/pvr.c")

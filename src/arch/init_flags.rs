@@ -70,15 +70,18 @@ macro_rules! KOS_INIT_FLAGS_ARCH {
 
 pub const INIT_DEFAULT_ARCH: u32    = INIT_MAPLE_ALL | INIT_CDROM;
 
-pub const INIT_CONTROLLER: u32      = 0x00001000;
-pub const INIT_KEYBOARD: u32        = 0x00002000;
-pub const INIT_MOUSE: u32           = 0x00004000;
-pub const INIT_LIGHTGUN: u32        = 0x00008000;
-pub const INIT_VMU: u32             = 0x00010000;
-pub const INIT_PURUPURU: u32        = 0x00020000;
-pub const INIT_SIP: u32             = 0x00040000;
-pub const INIT_DREAMEYE: u32        = 0x00080000;
-pub const INIT_MAPLE_ALL: u32       = 0x000FF000;
+pub const INIT_MAPLE_ALL: u32       = INIT_CONTROLLER | INIT_KEYBOARD | INIT_MOUSE |
+                                      INIT_LIGHTGUN | INIT_VMU | INIT_PURUPURU |
+                                      INIT_SIP | INIT_DREAMEYE;
+
+pub const INIT_CONTROLLER: u32      = 0x00004000;
+pub const INIT_KEYBOARD: u32        = 0x00008000;
+pub const INIT_MOUSE: u32           = 0x00010000;
+pub const INIT_LIGHTGUN: u32        = 0x00020000;
+pub const INIT_VMU: u32             = 0x00040000;
+pub const INIT_PURUPURU: u32        = 0x00080000;
+pub const INIT_SIP: u32             = 0x00100000;
+pub const INIT_DREAMEYE: u32        = 0x00200000;
 
 pub const INIT_CDROM: u32           = 0x00100000;
 

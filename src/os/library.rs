@@ -55,6 +55,6 @@ unsafe extern "C" {
     pub fn library_get_refcnt(lib: *mut klibrary_t) -> c_int;
     pub fn library_get_name(lib: *mut klibrary_t) -> *const c_char;
     pub fn library_get_version(lib: *mut klibrary_t) -> u32;
-    pub fn library_init() -> c_int;
+    pub fn library_init();
     pub fn library_shutdown();
 }

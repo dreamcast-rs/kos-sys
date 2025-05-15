@@ -63,4 +63,5 @@ unsafe extern "C" {
     pub fn vmu_printf(fmt: *const c_char, ...);
     pub fn vmu_set_font(font: *const vmufb_font_t) -> *const vmufb_font_t;
     pub fn vmu_get_font() -> *const vmufb_font_t;
+    pub fn vmufb_screen_shot(fb: *mut vmufb_t, destfn: *const c_char) -> c_int;
 }

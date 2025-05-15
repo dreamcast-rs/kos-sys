@@ -14,6 +14,6 @@ unsafe extern "C" {
         master_out: *mut file_t,
         slave_out: *mut file_t,
     ) -> c_int;
-    pub fn fs_pty_init() -> c_int;
-    pub fn fs_pty_shutdown() -> c_int;
+    pub fn fs_pty_init();
+    pub fn fs_pty_shutdown();
 }
