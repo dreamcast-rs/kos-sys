@@ -161,7 +161,7 @@ pub struct pvr_poly_hdr_mode3 {
 
 // FIXME: The pvr_poly_hdr_t type is incomplete
 
-#[repr(C, packed)]
+#[repr(C, align(32))]
 pub struct pvr_poly_hdr_t {
     cmd:        pvr_poly_hdr_cmd,
     mode1:      pvr_poly_hdr_mode1,

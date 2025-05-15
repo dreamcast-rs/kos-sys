@@ -6,19 +6,17 @@ use crate::prelude::*;
 
 use crate::{BIT, GENMASK};
 
-use header::pvr_poly_hdr_t;
-use mem::pvr_ptr_t;
-
 pub mod dma;
 pub mod fog;
 pub mod header;
+pub use header::*;
 pub mod mem;
+pub use mem::*;
 pub mod pal;
 pub mod regs;
 pub mod txr;
 
-
-pub type pvr_list_t = u32;
+pub type pvr_list_t = pvr_list_type;
 
 // gen struct for pvr_poly_cxt_t
 #[repr(C)]
